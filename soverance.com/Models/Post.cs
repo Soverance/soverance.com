@@ -6,11 +6,12 @@ namespace soverance.com.Models
     public partial class Post
     {
         public int PostId { get; set; }
-        public int BlogsId { get; set; }
+        public int CategoryId { get; set; }
+        public string Date { get; set; }
         public string Title { get; set; }
-        public string Category { get; set; }
         public string Content { get; set; }
+        public string Author { get; set; }
 
-        public Blogs Blogs { get; set; }
+        public Category Category { get; set; }
     }
 }

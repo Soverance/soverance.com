@@ -1,7 +1,7 @@
-﻿@model soverance.com.Models.Blogs
+﻿@model soverance.com.Models.Category
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
 <!-- PAGE NAME START -->
@@ -14,7 +14,6 @@
             <div class="breadcrumbs">
                 <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> /
                 <a asp-area="" asp-controller="Blog" asp-action="Index">Blog</a> /
-                <a href="#">Edit</a> /
                 <span class="color-1">Edit</span>
             </div>
         </div>
@@ -29,15 +28,16 @@
                 <div class="equal-height">
                     <div class="row">
                         <div class="col-md-4">
-                            <form asp-action="Create">
+                            <form asp-action="EditCategory">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="CategoryId" />
                                 <div class="form-group">
-                                    <label asp-for="Url" class="control-label"></label>
-                                    <input asp-for="Url" class="form-control" />
-                                    <span asp-validation-for="Url" class="text-danger"></span>
+                                    <label asp-for="CategoryName" class="control-label"></label>
+                                    <input asp-for="CategoryName" class="form-control" />
+                                    <span asp-validation-for="CategoryName" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" value="Create" class="btn btn-default" />
+                                    <input type="submit" value="Save" class="btn header-btn ml25 color-white hidden-sm hidden-xs" />
                                 </div>
                             </form>
                         </div>

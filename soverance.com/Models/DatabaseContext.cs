@@ -12,21 +12,21 @@ namespace soverance.com.Models
         {
         }
 
-        public virtual DbSet<Blogs> Blogs { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Post> Post { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Blogs>(entity =>
+            modelBuilder.Entity<Category>(entity =>
             {
-                entity.Property(e => e.Url).IsRequired();
+                entity.Property(e => e.CategoryName).IsRequired();
             });
 
             modelBuilder.Entity<Post>(entity =>
             {
-                entity.HasOne(d => d.Blogs)
+                entity.HasOne(d => d.Category)
                     .WithMany(p => p.Post)
-                    .HasForeignKey(d => d.BlogsId);
+                    .HasForeignKey(d => d.CategoryId);
             });
         }
     }

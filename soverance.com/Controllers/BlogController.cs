@@ -18,76 +18,76 @@ namespace soverance.com.Controllers
             _context = context;
         }
 
-        // GET: Blog
+        // GET: /Blog
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Blogs.ToListAsync());
+            return View(await _context.Category.ToListAsync());
         }
 
-        // GET: Blog/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: /Blog/DetailsCategory/5
+        public async Task<IActionResult> DetailsCategory(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var blogs = await _context.Blogs
-                .FirstOrDefaultAsync(m => m.BlogsId == id);
-            if (blogs == null)
+            var Category = await _context.Category
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (Category == null)
             {
                 return NotFound();
             }
 
-            return View(blogs);
+            return View(Category);
         }
 
-        // GET: Blog/Create
-        public IActionResult Create()
+        // GET: /Blog/CreateCategory
+        public IActionResult CreateCategory()
         {
             return View();
         }
 
-        // POST: Blog/Create
+        // POST: /Blog/CreateCategory
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogsId,Url")] Blogs blogs)
+        public async Task<IActionResult> CreateCategory([Bind("CategoryId,CategoryName")] Category Category)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(blogs);
+                _context.Add(Category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(blogs);
+            return View(Category);
         }
 
-        // GET: Blog/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Blog/EditCategory/5
+        public async Task<IActionResult> EditCategory(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var blogs = await _context.Blogs.FindAsync(id);
-            if (blogs == null)
+            var Category = await _context.Category.FindAsync(id);
+            if (Category == null)
             {
                 return NotFound();
             }
-            return View(blogs);
+            return View(Category);
         }
 
-        // POST: Blog/Edit/5
+        // POST: Blog/EditCategory/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BlogsId,Url")] Blogs blogs)
+        public async Task<IActionResult> EditCategory(int id, [Bind("CategoryId,CategoryName")] Category Category)
         {
-            if (id != blogs.BlogsId)
+            if (id != Category.CategoryId)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace soverance.com.Controllers
             {
                 try
                 {
-                    _context.Update(blogs);
+                    _context.Update(Category);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BlogsExists(blogs.BlogsId))
+                    if (!CategoryExists(Category.CategoryId))
                     {
                         return NotFound();
                     }
@@ -112,41 +112,41 @@ namespace soverance.com.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(blogs);
+            return View(Category);
         }
 
-        // GET: Blog/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: Blog/DeleteCategory/5
+        public async Task<IActionResult> DeleteCategory(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var blogs = await _context.Blogs
-                .FirstOrDefaultAsync(m => m.BlogsId == id);
-            if (blogs == null)
+            var Category = await _context.Category
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (Category == null)
             {
                 return NotFound();
             }
 
-            return View(blogs);
+            return View(Category);
         }
 
-        // POST: Blog/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Blog/DeleteCategory/5
+        [HttpPost, ActionName("DeleteCategory")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteCategoryConfirmed(int id)
         {
-            var blogs = await _context.Blogs.FindAsync(id);
-            _context.Blogs.Remove(blogs);
+            var Category = await _context.Category.FindAsync(id);
+            _context.Category.Remove(Category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BlogsExists(int id)
+        private bool CategoryExists(int id)
         {
-            return _context.Blogs.Any(e => e.BlogsId == id);
+            return _context.Category.Any(e => e.CategoryId == id);
         }
     }
 }

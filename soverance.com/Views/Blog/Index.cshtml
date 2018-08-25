@@ -1,4 +1,4 @@
-﻿@model IEnumerable<soverance.com.Models.Blogs>
+﻿@model IEnumerable<soverance.com.Models.Category>
 
 @{
     ViewData["Title"] = "Blog";
@@ -13,7 +13,6 @@
             </h1>
             <div class="breadcrumbs">
                 <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> /
-                <a href="#">Blog</a> /
                 <span class="color-1">Blog</span>
             </div>
         </div>
@@ -172,32 +171,7 @@
                             </div>
                         </div>
                     </div>
-                </article>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Url)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Url)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.BlogsId">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.BlogsId">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.BlogsId">Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                </article>                
                 <article class="vertical-item format-slider fsize-0 clearfix">
                     <div class="item-left-img col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="post-slider">
@@ -438,32 +412,6 @@
                 </div>
             </div>
             <div class="sidebar col-lg-4 col-md-4 col-sm-5 col-xs-12">
-                <div class="widget-bl insta-widget">
-                    <h5 class="fsize-20 text-center">Instagram Widget</h5>
-                    <div class="widget-wrapper clearfix">
-                        <a href="#" class="instagram-item col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <img src="~/images/blog/insta-img-1.jpg" alt="">
-                        </a>
-                        <a href="#" class="instagram-item col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <img src="~/images/blog/insta-img-2.jpg" alt="">
-                        </a>
-                        <a href="#" class="instagram-item col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <img src="~/images/blog/insta-img-3.jpg" alt="">
-                        </a>
-                        <a href="#" class="instagram-item col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <img src="~/images/blog/insta-img-4.jpg" alt="">
-                        </a>
-                        <a href="#" class="instagram-item col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <img src="~/images/blog/insta-img-5.jpg" alt="">
-                        </a>
-                        <a href="#" class="instagram-item col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            <img src="~/images/blog/insta-img-6.jpg" alt="">
-                        </a>
-                    </div>
-                </div>
-                <p>
-                    <a asp-action="Create">Create New Post</a>
-                </p>
                 <div class="widget-bl subscribe-widget">
                     <h5 class="fsize-20 text-center">Sign up newsletter</h5>
                     <div class="widget-wrapper">
@@ -478,49 +426,49 @@
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                             </button>
                         </form>
-                        <div class="text-left lheight-26 mt20">
-                            Get the latest updates from Soverance Studios.
-                        </div>
-                    </div>
-                </div>
-                <div class="widget-bl categories-widget">
-                    <h5 class="fsize-20 text-center">Categories</h5>
-                    <div class="widget-wrapper">
-                        <ul class="list-1">
-                            <li class="color1">
-                                <a href="#">
-                                    <span>All categories</span>
-                                    <span class="float-right">/375</span>
-                                </a>
-                            </li>
-                            <li class="color1">
-                                <a href="#">
-                                    <span>Pancetta landjeager</span>
-                                    <span class="float-right">/75</span>
-                                </a>
-                            </li>
-                            <li class="color1">
-                                <a href="#">
-                                    <span>Alcatra ground</span>
-                                    <span class="float-right">/142</span>
-                                </a>
-                            </li>
-                            <li class="color1">
-                                <a href="#">
-                                    <span>Round pork turkey</span>
-                                    <span class="float-right">/269</span>
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
                 <div class="widget-bl twitter-widget">
-                    <h5 class="fsize-20 text-center">Twitter</h5>
                     <div class="widget-wrapper">
                         <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/Soverance" data-widget-id="347887250270470144">Tweets by @@Soverance</a>
                         <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
                     </div>
                 </div>
+                <p>
+                    <a asp-action="CreateCategory" class="btn header-btn ml25 color-white hidden-sm hidden-xs">Create New Category</a>
+                </p>
+                <div class="widget-bl categories-widget">
+                    <h5 class="fsize-20 text-center">Categories</h5>
+                    <div class="widget-wrapper">
+                        <table class="table list-1">
+                            <thead>
+                                <tr>
+                                    <th class="color1">
+                                        @Html.DisplayNameFor(model => model.CategoryName)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="color1">
+                                            @Html.DisplayFor(modelItem => item.CategoryName)
+                                        </td>
+                                        <td>
+                                            <a asp-action="EditCategory" asp-route-id="@item.CategoryId">Edit</a> |
+                                            <a asp-action="DetailsCategory" asp-route-id="@item.CategoryId">Details</a> |
+                                            <a asp-action="DeleteCategory" asp-route-id="@item.CategoryId">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <p>
+                    <a asp-action="CreatePost" class="btn header-btn ml25 color-white hidden-sm hidden-xs">Create New Post</a>
+                </p>
                 <div class="widget-bl latest-widget">
                     <h5 class="fsize-20 text-center">Latest posts</h5>
                     <div class="widget-wrapper">

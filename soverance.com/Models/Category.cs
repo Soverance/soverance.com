@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace soverance.com.Models
 {
-    public partial class Blogs
+    public partial class Category
     {
-        public Blogs()
+        public Category()
         {
             Post = new HashSet<Post>();
         }
 
-        public int BlogsId { get; set; }
-        public string Url { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
 
         public ICollection<Post> Post { get; set; }
     }

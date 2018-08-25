@@ -1,4 +1,4 @@
-﻿@model soverance.com.Models.Blogs
+﻿@model soverance.com.Models.Category
 
 @{
     ViewData["Title"] = "Details";
@@ -14,7 +14,6 @@
             <div class="breadcrumbs">
                 <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> /
                 <a asp-area="" asp-controller="Blog" asp-action="Index">Blog</a> /
-                <a href="#">Details</a> /
                 <span class="color-1">Details</span>
             </div>
         </div>
@@ -28,19 +27,27 @@
             <div class="item-left col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="equal-height">
                     <div>
-                        <h4>Blog Details</h4>
+                        <h4>Category Details</h4>
                         <hr />
                         <dl class="dl-horizontal">
                             <dt>
-                                @Html.DisplayNameFor(model => model.Url)
+                                @Html.DisplayNameFor(model => model.CategoryId)
                             </dt>
                             <dd>
-                                @Html.DisplayFor(model => model.Url)
+                                @Html.DisplayFor(model => model.CategoryId)
+                            </dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CategoryName)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CategoryName)
                             </dd>
                         </dl>
                     </div>
                     <div>
-                        <a asp-action="Edit" asp-route-id="@Model.BlogsId">Edit</a> |
+                        <a asp-action="EditCategory" asp-route-id="@Model.CategoryId">Edit</a> |
                         <a asp-action="Index">Back to List</a>
                     </div>
                 </div>
