@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -48,6 +49,33 @@ namespace soverance.com.Controllers
             return View();
         }
 
+        // GET: /Blog/CreatePost
+        public IActionResult CreatePost()
+        {
+            //Post Post = new Post();
+            //var list = new List<Category>();
+
+            //using (SqlConnection connection = new SqlConnection(_context.Database.GetDbConnection().ConnectionString))
+            //using (SqlCommand command = new SqlCommand("SELECT CategoryId, CategoryName FROM Category", connection))
+            //{
+            //    using (SqlDataReader reader = command.ExecuteReader())
+            //    {
+            //        while (reader.Read())
+            //        {
+            //            list.Add(new Category
+            //            {
+            //                CategoryId = reader.GetInt32(0),
+            //                CategoryName = reader.GetString(1)
+            //            });
+            //        }
+            //    }
+            //}
+
+            //Post.CategoryDropDownList = new SelectList(list, "CategoryId", "CategoryName");
+
+            return View();
+        }
+
         // POST: /Blog/CreateCategory
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -62,6 +90,22 @@ namespace soverance.com.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(Category);
+        }
+
+        // POST: /Blog/CreatePost
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreatePost([Bind("PostId,CategoryId,Date,Title,Content,Author")] Post Post)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(Post);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(Post);
         }
 
         // GET: Blog/EditCategory/5

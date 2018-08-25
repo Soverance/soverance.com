@@ -12,7 +12,7 @@ namespace soverance.com.Models
         {
         }
 
-        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Category> Category { get; set; }        
         public virtual DbSet<Post> Post { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
