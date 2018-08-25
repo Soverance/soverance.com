@@ -1,0 +1,21 @@
+{
+  "name": "soverance.com",
+  "version": "1.0.0",
+  "authors": [
+    "Scott McCutchen <scott.mccutchen@soverance.com>"
+  ],
+  "description": "Soverance Studios Website",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "Apache 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewBag.Title</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="~/fonts/css/font-awesome.min.css" />
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <!-- Style -->
+    <link rel="stylesheet" href="~/css/style.css" />
+    <!-- Responsive Style -->
+    <link rel="stylesheet" href="~/css/responsive.css" />
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="~/lib/animate.css-master/animate.min.css">
+    <!-- Light Box -->
+    <link href="~/lib/lightbox2-master/dist/css/lightbox.css" rel="stylesheet">
+    <!-- Video js -->
+    <link href="~/css/video-js.css" rel="stylesheet">
+    <!-- Datapicker -->
+    <link href="~/lib/jquery-date-range-picker-master/dist/daterangepicker.min.css" rel="stylesheet">
+    <!-- Sliders -->
+    <link rel="stylesheet" type="text/css" href="~/lib/slick-1.8.0/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/slick-1.8.0/slick/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/slider/css/normalize.min.css" media="screen, print" />
+    <link rel="stylesheet" type="text/css" href="~/lib/slider/css/smartslider.min.css" media="screen, print" />
+    <!-- Styles -->
+    <style type="text/css">
+        .n2-ss-spinner-simple-white-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -20px;
+            background: #fff;
+            width: 20px;
+            height: 20px;
+            padding: 10px;
+            border-radius: 50%;
+            z-index: 1000;
+        }
+
+        .n2-ss-spinner-simple-white {
+            outline: 1px solid RGBA(0, 0, 0, 0);
+            width: 100%;
+            height: 100%;
+        }
+
+            .n2-ss-spinner-simple-white:before {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 20px;
+                height: 20px;
+                margin-top: -11px;
+                margin-left: -11px;
+            }
+
+            .n2-ss-spinner-simple-white:not(:required):before {
+                content: '';
+                border-radius: 50%;
+                border-top: 2px solid #333;
+                border-right: 2px solid transparent;
+                animation: n2SimpleWhite .6s linear infinite;
+                -webkit-animation: n2SimpleWhite .6s linear infinite;
+            }
+
+        @@keyframes n2SimpleWhite {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @@-webkit-keyframes n2SimpleWhite {
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+    </style>
+    <!-- SCRIPTS -->
+    <script type="text/javascript">
+        window.N2PRO = 1;
+        window.N2GSAP = 1;
+        window.N2PLATFORM = "wordpress";
+        (function () {
+            var N = this;
+            N.N2_ = N.N2_ || {
+                r: [],
+                d: []
+            }, N.N2R = N.N2R || function () {
+                N.N2_.r.push(arguments)
+            }, N.N2D = N.N2D || function () {
+                N.N2_.d.push(arguments)
+            }
+        }).call(window);
+        if (!window.n2jQuery) {
+            window.n2jQuery = {
+                ready: function (cb) {
+                    console.error('n2jQuery will be deprecated!');
+                    N2R(['$'], cb);
+                }
+            }
+        }
+        window.nextend = {
+            localization: {},
+            ready: function (cb) {
+                console.error('nextend.ready will be deprecated!');
+                N2R('documentReady', function ($) {
+                    cb.call(window, $)
+                })
+            }
+        };
+        window.N2SSPRO = 1;
+        window.N2SS3C = "smartslider3";
+        nextend.fontsLoaded = false;
+        nextend.fontsLoadedActive = function () {
+            nextend.fontsLoaded = true;
+        };
+        var fontData = {
+            google: {
+                families: ["Roboto:300,400:latin"]
+            },
+            active: function () {
+                nextend.fontsLoadedActive()
+            },
+            inactive: function () {
+                nextend.fontsLoadedActive()
+            }
+        };
+        if (typeof WebFontConfig !== 'undefined') {
+            var _WebFontConfig = WebFontConfig;
+            for (var k in WebFontConfig) {
+                if (k == 'active') {
+                    fontData.active = function () {
+                        nextend.fontsLoadedActive();
+                        _WebFontConfig.active();
+                    }
+                } else if (k == 'inactive') {
+                    fontData.inactive = function () {
+                        nextend.fontsLoadedActive();
+                        _WebFontConfig.inactive();
+                    }
+                } else if (k == 'google') {
+                    if (typeof WebFontConfig.google.families !== 'undefined') {
+                        for (var i = 0; i < WebFontConfig.google.families.length; i++) {
+                            fontData.google.families.push(WebFontConfig.google.families[i]);
+                        }
+                    }
+                } else {
+                    fontData[k] = WebFontConfig[k];
+                }
+            }
+        }
+        if (typeof WebFont === 'undefined') {
+            window.WebFontConfig = fontData;
+        } else {
+            WebFont.load(fontData);
+        }
+    </script>
+    <script type="text/javascript" src="~/lib/slider/js/n2-j.min.js"></script>
+    <script type="text/javascript" src="~/lib/slider/js/nextend-gsap.min.js"></script>
+    <script type="text/javascript" src="~/lib/slider/js/nextend-frontend.min.js"></script>
+    <script type="text/javascript" src="~/lib/slider/js/smartslider-frontend.min.js"></script>
+    <script type="text/javascript" src="~/lib/slider/js/smartslider-simple-type-frontend.min.js"></script>
+    <script type="text/javascript" src="~/lib/slider/js/nextend-webfontloader.min.js"></script>
+    <script type="text/javascript">
+        N2R('documentReady', function ($) {
+
+            nextend.fontsDeferred = $.Deferred();
+            if (nextend.fontsLoaded) {
+                nextend.fontsDeferred.resolve();
+            } else {
+                nextend.fontsLoadedActive = function () {
+                    nextend.fontsLoaded = true;
+                    nextend.fontsDeferred.resolve();
+                };
+                var intercalCounter = 0;
+                nextend.fontInterval = setInterval(function () {
+                    if (intercalCounter > 3 || document.documentElement.className.indexOf('wf-active') !==
+                        -1) {
+                        nextend.fontsLoadedActive();
+                        clearInterval(nextend.fontInterval);
+                    }
+                    intercalCounter++;
+                }, 1000);
+            }
+        });
+    </script>
+
+    @RenderSection("head", false)
+</head>
+<!-- PRELOADER START -->
+<div class="loader-wrapper">
+    <div class='cssload-loader'>
+        <div class='cssload-inner cssload-one'></div>
+        <div class='cssload-inner cssload-two'></div>
+        <div class='cssload-inner cssload-three'></div>
+    </div>
+</div>
+<!-- PRELOADER END -->
+<!-- HEADER START -->
+<div class="header-line-wrapper">
+    <header class="header-wrapper fixed-top plr100">
+        <div class="table">
+            <div class="table-row">
+                <div class="table-cell valign-middle text-left">
+                    <a href="index.html" class="logo">
+                        <img src="~/images/logo.png" alt="" class="img-responsive inline-block">
+                    </a>
+                </div>
+                <div class="table-cell valign-top text-center vm-sm">
+                    <div class="main-menu">
+                        <span class="toggle_menu">
+                            <span></span>
+                        </span>
+                        <ul class="menu clearfix">
+                            <li class="inline-block active">
+                                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="inline-block menu-item-has-children">
+                                <a asp-area="" asp-controller="Home" asp-action="Games">Games</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item-has-children">
+                                        <a asp-area="Ethereal" asp-controller="Ethereal" asp-action="Index">Ethereal Legends</a>
+                                        <ul class="sub-menu">
+                                            <li>
+                                                <a asp-area="Ethereal" asp-controller="Ethereal" asp-action="Guide">Guide</a>                                                
+                                            </li>
+                                            <li>
+                                                <a asp-area="Ethereal" asp-controller="Ethereal" asp-action="EULA">EULA</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a asp-area="" asp-controller="Home" asp-action="EndlessReach">Endless Reach</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="inline-block">
+                                <a asp-area="" asp-controller="Blog" asp-action="Index">Blog</a>
+                            </li>
+                            <li class="inline-block menu-item-has-children">
+                                <a href="#">
+                                    Studio
+                                </a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="" asp-controller="Home" asp-action="FAQ">FAQ</a>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a asp-area="Team" asp-controller="Team" asp-action="Index">Team</a>
+                                        <ul class="sub-menu">
+                                            <li>
+                                                <a asp-area="Team" asp-controller="Team" asp-action="ScottMcCutchen">Scott McCutchen</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a asp-area="" asp-controller="Home" asp-action="Gallery">Gallery</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="" asp-controller="Home" asp-action="Pricing">Pricing</a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="" asp-controller="Home" asp-action="Testimonials">Testimonials</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="inline-block">
+                                <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="table-cell valign-top text-right">
+                    <div class="right-bl">
+                        <div class="search-wrapper inline-block valign-middle">
+                            <i class="fa fa-search color-white fsize-28" aria-hidden="true"></i>
+                            <form class="search-content" action="#">
+                                <input type="text" placeholder="Search Keyword...">
+                                <button class="color-white">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <a href="#" class="btn header-btn ml25 color-white hidden-sm hidden-xs">
+                            Join us Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<!-- HEADER END -->
+<body>
+    @RenderBody()
+    @RenderSection("Scripts", false)
+    <!-- FOOTER BEGIN -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row mb110">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <a href="index.html">
+                        <img src="~/images/logo.png" alt="">
+                    </a>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right">
+                    <ul class="footer-menu">
+                        <li class="active">
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="Games">Games</a>
+                        </li>
+                        <li>
+                            <a asp-area="Blog" asp-controller="Blog" asp-action="Index">Blog</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="mt60">
+                        Soverance Studios is an independent game development company,
+                        <br /> dedicated to bringing great ideas to life.
+                    </div>
+                    <div class="social-content mt30">
+                        <div class="social-list">
+                            <a href="https://www.facebook.com/soverance">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="social-list">
+                            <a href="https://twitter.com/soverance">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="social-list">
+                            <a href="https://github.com/soverance">
+                                <i class="fa fa-github" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="social-list">
+                            <a href="https://www.youtube.com/user/soverancestudios">
+                                <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="copyright ptb30 col-lg-12">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        © Copyright @DateTime.Now.Year Soverance Studios, LLC
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right">
+                        All Rights Reserved
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+    <a href="#" id="toTop" class="color-white">
+        <i class="fa fa-angle-up fsize-14" aria-hidden="true"></i>
+    </a>
+    <!-- Scripts -->
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/lib/slick-1.8.0/slick/slick.min.js"></script>
+    <script src="~/lib/flex-menu/flexmenu.min.js"></script>
+    <script src="~/lib/jquery-match-height-master/dist/jquery.matchHeight.js"></script>
+    <script src="~/lib/muuri-master/muuri.js"></script>
+    <script src="~/lib/vide-0.5.1/dist/jquery.vide.min.js"></script>
+    <script src="~/lib/paroller.js-master/dist/jquery.paroller.min.js"></script>
+    <script src="~/js/video.js"></script>
+    <script src="~/lib/videojs-youtube-master/src/Youtube.js"></script>
+    <script src="~/js/jquery.inview.min.js"></script>
+    <script src="~/js/progressbar.min.js"></script>
+    <script src="~/lib/lightbox2-master/dist/js/lightbox.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/lib/jquery-date-range-picker-master/dist/jquery.daterangepicker.min.js"></script>
+    <script src="~/lib/wow-master/dist/wow.min.js"></script>
+    <script src="~/js/script.js"></script>
+</body>
+</html>

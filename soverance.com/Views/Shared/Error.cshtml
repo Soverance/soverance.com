@@ -1,0 +1,28 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<!-- SECTION START -->
+<section class="table page-404">
+    <div class="table-row">
+        <div class="table-cell valign-middle text-center">
+            <div>
+                <img src="~/images/404/404-img.png" alt="">
+            </div>
+            <div class="title-error mt30">
+                <h2 class="text-danger">An error occurred while processing your request.</h2>
+                <br />
+
+                @if (Model.ShowRequestId)
+                {
+                    <p>
+                        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                    </p>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SECTION END -->  

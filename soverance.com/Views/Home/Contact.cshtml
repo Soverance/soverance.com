@@ -1,0 +1,178 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+
+}
+
+@section head{
+    <!-- Azure Maps -->
+    <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/css/atlas.min.css?api-version=1.0" type="text/css" />
+    <script src="https://atlas.microsoft.com/sdk/js/atlas.min.js?api-version=1.0"></script>
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        #map {
+            width: 50%;
+            height: 50%;
+            margin: 0 auto;
+        }
+    </style>
+}
+
+<section class="page-name parallax" data-paroller-factor="0.1" data-paroller-type="background" data-paroller-direction="vertical">
+    <div class="container">
+        <div class="row">
+            <h1 class="page-title">
+                Contact
+            </h1>
+            <div class="breadcrumbs">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> /
+                <span class="color-1">Contact</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- PAGE NAME END -->
+<!-- SECTION START -->
+<section class="contact-page ptb150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h3 class="">
+                    Contact Information
+                </h3>
+                <div class="fsize-18 lheight-30 mt40">
+                    Need to connect with someone at Soverance? Maybe you want to help us build something great? Get in touch using the contact information and social links below, or send us an email using the form to the right.                    
+                </div>
+                <div class="mt60">
+                    <div class="contact-item table">
+                        <div class="table-row">
+                            <div class="icon-bl table-cell valign-top">
+                                <i class="fa fa-phone fsize-28 fweight-400 color-1" aria-hidden="true"></i>
+                            </div>
+                            <div class="table-cell valign-top">
+                                <div>
+                                    Phone Number
+                                </div>
+                                <div class="fsize-20 fweight-700 font-agency uppercase color-white">
+                                    678-205-7802 (screened)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-item table">
+                        <div class="table-row">
+                            <div class="icon-bl table-cell valign-top">
+                                <i class="fa fa-map-marker fsize-28 fweight-400 color-5" aria-hidden="true"></i>
+                            </div>
+                            <div class="table-cell valign-top">
+                                <div>
+                                    Location
+                                </div>
+                                <div class="fsize-20 fweight-700 font-agency uppercase color-white">
+                                    Atlanta, Georgia, USA
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-item table">
+                        <div class="table-row">
+                            <div class="icon-bl table-cell valign-top">
+                                <i class="fa fa-envelope fsize-28 fweight-400 color-6" aria-hidden="true"></i>
+                            </div>
+                            <div class="table-cell valign-top">
+                                <div>
+                                    E-mail Address
+                                </div>
+                                <div class="fsize-20 fweight-700 font-agency uppercase color-white">
+                                    info@soverance.com
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-content gradient mt60">
+                    <div class="social-list">
+                        <a href="https://www.facebook.com/soverance">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="social-list">
+                        <a href="https://twitter.com/soverance">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="social-list">
+                        <a href="https://github.com/soverance">
+                            <i class="fa fa-github" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="social-list">
+                        <a href="https://www.linkedin.com/in/soverance/">
+                            <i class="fa fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="social-list">
+                        <a href="https://www.youtube.com/user/soverancestudios">
+                            <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <form action="#" class="contact-us-form mt100">
+                    <div class="row">
+                        <div class="input-wrap col-md-6 col-sm-6">
+                            <input type="text" class="general_input italic" placeholder="Full name">
+                        </div>
+                        <div class="input-wrap col-md-6 col-sm-6">
+                            <input type="email" class="general_input italic" placeholder="Email address">
+                        </div>
+                        <div class="input-wrap col-md-6 col-sm-6">
+                            <input type="email" class="general_input italic" placeholder="Phone Number">
+                        </div>
+                        <div class="input-wrap col-md-6 col-sm-6">
+                            <input type="email" class="general_input italic" placeholder="Subject">
+                        </div>
+                        <div class="input-wrap col-md-12">
+                            <textarea class="general_input italic" placeholder="Your Message..."></textarea>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn gradient mt30 color-white color-white plr50 ptb19" value="Send message">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SECTION END -->
+<div id="map">
+    <script>
+        /* Instantiate map to the div with id "map" */
+        var mapCenterPosition = [-84.39111, 33.84831];
+        var map = new atlas.Map("map", {
+            "subscription-key": "@ViewBag.AzureMapsKey",
+            center: mapCenterPosition,
+            zoom: 10
+        });
+
+        /* Add a customized pin to the map */
+        var pin = new atlas.data.Feature(new atlas.data.Point(mapCenterPosition));
+        var pins = [pin];
+        map.addPins(pins, {
+            fontColor: "#000",
+            fontSize: 14,
+            icon: "pin-red",
+            iconSize: 1,
+            name: "default-pin-layer",
+            textFont: "SegoeUi-Bold",
+            textOffset: [0, 20],
+            title: "Atlanta"
+        });
+    </script>
+</div>

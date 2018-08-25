@@ -1,0 +1,51 @@
+﻿@model soverance.com.Models.Blogs
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!-- PAGE NAME START -->
+<section class="page-name parallax" data-paroller-factor="0.1" data-paroller-type="background" data-paroller-direction="vertical">
+    <div class="container">
+        <div class="row">
+            <h1 class="page-title">
+                Details
+            </h1>
+            <div class="breadcrumbs">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> /
+                <a asp-area="" asp-controller="Blog" asp-action="Index">Blog</a> /
+                <a href="#">Details</a> /
+                <span class="color-1">Details</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- PAGE NAME END -->
+<!-- SECTION START -->
+<section class="about-info ptb150">
+    <div class="container">
+        <div class="row">
+            <div class="item-left col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="equal-height">
+                    <div>
+                        <h4>Blog Details</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Url)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Url)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@Model.BlogsId">Edit</a> |
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SECTION END -->
