@@ -445,15 +445,24 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td class="title-top font-agency fweight-700 uppercase color-white">
-                                            @Html.DisplayFor(modelItem => item.CategoryName)
+                                        <td>
+                                            <a asp-action="ViewCategory" asp-route-id="@item.CategoryId" class="latest-item">
+                                                <div class="table table-nobackground">
+                                                    <div class="table-row">
+                                                        <div class="latest-title table-cell valign-middle pl20">
+                                                            <div class="title-top font-agency fweight-700 uppercase color-white">
+                                                                @item.CategoryName
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </td>
                                         <td>
                                             <a asp-action="EditCategory" asp-route-id="@item.CategoryId">Edit</a> |
-                                            <a asp-action="ViewCategory" asp-route-id="@item.CategoryId">View</a> |
                                             <a asp-action="DeleteCategory" asp-route-id="@item.CategoryId">Delete</a>
                                         </td>
-                                    </tr>
+                                    </tr>                                    
                                 }
                             </tbody>
                         </table>
@@ -471,7 +480,7 @@
                                 {
                                     <tr>
                                         <td>
-                                            <a href="post.html" class="latest-item">
+                                            <a asp-action="ViewPost" asp-route-id="@post.PostId" class="latest-item">
                                                 <div class="table table-nobackground">
                                                     <div class="table-row">
                                                         <div class="latest-img table-cell valign-middle">

@@ -47,6 +47,24 @@ namespace soverance.com.Controllers
             return View(Category);
         }
 
+        // GET: /Blog/ViewPost/5
+        public async Task<IActionResult> ViewPost(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var Post = await _context.Post
+                .FirstOrDefaultAsync(m => m.PostId == id);
+            if (Post == null)
+            {
+                return NotFound();
+            }
+
+            return View(Post);
+        }
+
         // GET: /Blog/CreateCategory
         public IActionResult CreateCategory()
         {
@@ -251,7 +269,7 @@ namespace soverance.com.Controllers
             }
 
             var Post = await _context.Post
-                .FirstOrDefaultAsync(p => p.PostId == id);
+                .FirstOrDefaultAsync(m => m.PostId == id);
             if (Post == null)
             {
                 return NotFound();
