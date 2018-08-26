@@ -37,8 +37,7 @@ namespace soverance.com.Controllers
                 return NotFound();
             }
 
-            var Category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            var Category = await _context.Category.FirstOrDefaultAsync(m => m.CategoryId == id);
             if (Category == null)
             {
                 return NotFound();
@@ -55,11 +54,15 @@ namespace soverance.com.Controllers
                 return NotFound();
             }
 
-            var Post = await _context.Post
-                .FirstOrDefaultAsync(m => m.PostId == id);
+            var Post = await _context.Post.FirstOrDefaultAsync(m => m.PostId == id);
             if (Post == null)
             {
                 return NotFound();
+            }
+            if (Post != null)
+            {
+                var Category = await _context.Category.FirstOrDefaultAsync(m => m.CategoryId == Post.CategoryId);  // get the post's category object
+                Post.Category = Category;  // store the category object in the model for later use
             }
 
             return View(Post);
@@ -132,7 +135,7 @@ namespace soverance.com.Controllers
                                     Enter a list item.
                                 </li>
                             </ul>";
-            Post.Content = DefaultPostContent;
+            Post.Content = DefaultPostContent;  // we set the default value of post content so as to make creating new posts far easier
             ViewBag.CategoryDropDownList = new SelectList(await _context.Category.ToListAsync(), "CategoryId", "CategoryName");
 
             // store current date - formatted as "2/27/2009"
@@ -287,8 +290,7 @@ namespace soverance.com.Controllers
                 return NotFound();
             }
 
-            var Category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            var Category = await _context.Category.FirstOrDefaultAsync(m => m.CategoryId == id);
             if (Category == null)
             {
                 return NotFound();
@@ -305,8 +307,7 @@ namespace soverance.com.Controllers
                 return NotFound();
             }
 
-            var Post = await _context.Post
-                .FirstOrDefaultAsync(m => m.PostId == id);
+            var Post = await _context.Post.FirstOrDefaultAsync(m => m.PostId == id);
             if (Post == null)
             {
                 return NotFound();
