@@ -74,6 +74,7 @@ namespace soverance.com.Controllers
         // GET: /Blog/CreatePost
         public async Task<IActionResult> CreatePost()
         {
+            Post Post = new Post();
             string DefaultPostContent = @"<div class=""mt20"">
                                 <p>This template contains some default text provided by Soverance Studios.  Replace this text with your own content in order to generate a new post. Be sure to keep the divs, classes, and other tagging in place in order to maintain visual formatting.</p>
                                 <p>This template contains some default text provided by Soverance Studios.  Replace this text with your own content in order to generate a new post. Be sure to keep the divs, classes, and other tagging in place in order to maintain visual formatting.</p>
@@ -131,7 +132,7 @@ namespace soverance.com.Controllers
                                     Enter a list item.
                                 </li>
                             </ul>";
-            ViewBag.DefaultPostContent = DefaultPostContent;
+            Post.Content = DefaultPostContent;
             ViewBag.CategoryDropDownList = new SelectList(await _context.Category.ToListAsync(), "CategoryId", "CategoryName");
 
             // store current date - formatted as "2/27/2009"
@@ -139,7 +140,7 @@ namespace soverance.com.Controllers
             DateTime time = DateTime.Now;
             ViewBag.CurrentDate = time.ToShortDateString();  
 
-            return View();
+            return View(Post);
         }
 
         // POST: /Blog/CreateCategory
