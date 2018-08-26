@@ -54,34 +54,37 @@ namespace soverance.com.Controllers
         }
 
         // GET: /Blog/CreatePost
-        public IActionResult CreatePost()
+        public async Task<IActionResult> CreatePost()
         {
-            var list = new List<Category>();
+            //var list = new List<Category>();
 
-            // this section collects all the categories from the database, and adds them to a list that can be used later as a dropdown menu in the CreatePost page
-            using (SqlConnection connection = new SqlConnection(_context.Database.GetDbConnection().ConnectionString))
-            using (SqlCommand command = new SqlCommand("SELECT CategoryId, CategoryName FROM Category", connection))
-            {
-                connection.Open();
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        list.Add(new Category
-                        {
-                            CategoryId = reader.GetInt32(0),
-                            CategoryName = reader.GetString(1)
-                        });
-                    }
-                }
-            }
+            //// this section collects all the categories from the database, and adds them to a list that can be used later as a dropdown menu in the CreatePost page
+            //using (SqlConnection connection = new SqlConnection(_context.Database.GetDbConnection().ConnectionString))
+            //using (SqlCommand command = new SqlCommand("SELECT CategoryId, CategoryName FROM Category", connection))
+            //{
+            //    connection.Open();
+            //    using (SqlDataReader reader = command.ExecuteReader())
+            //    {
+            //        while (reader.Read())
+            //        {
+            //            list.Add(new Category
+            //            {
+            //                CategoryId = reader.GetInt32(0),
+            //                CategoryName = reader.GetString(1)
+            //            });
+            //        }
+            //    }
+            //}
 
-            ViewBag.CategoryDropDownList = new SelectList(list, "CategoryId", "CategoryName");  // store a list of categories to use as dropdown list
+            //ViewBag.CategoryDropDownList = new SelectList(list, "CategoryId", "CategoryName");  // store a list of categories to use as dropdown list
 
+            ViewBag.CategoryDropDownList = new SelectList(await _context.Category.ToListAsync(), "CategoryId", "CategoryName");
+
+            // store current date - formatted as "2/27/2009"
+            // it's important that we store the date in this format so that we can easily sort the posts by date
             DateTime time = DateTime.Now;
-            string format = "MMM d yyyy";
-            ViewBag.CurrentDate = time.ToString(format);  // store formatted current date
-            
+            ViewBag.CurrentDate = time.ToShortDateString();  
+
             return View();
         }
 
