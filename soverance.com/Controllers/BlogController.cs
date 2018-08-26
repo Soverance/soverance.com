@@ -74,28 +74,64 @@ namespace soverance.com.Controllers
         // GET: /Blog/CreatePost
         public async Task<IActionResult> CreatePost()
         {
-            //var list = new List<Category>();
-
-            //// this section collects all the categories from the database, and adds them to a list that can be used later as a dropdown menu in the CreatePost page
-            //using (SqlConnection connection = new SqlConnection(_context.Database.GetDbConnection().ConnectionString))
-            //using (SqlCommand command = new SqlCommand("SELECT CategoryId, CategoryName FROM Category", connection))
-            //{
-            //    connection.Open();
-            //    using (SqlDataReader reader = command.ExecuteReader())
-            //    {
-            //        while (reader.Read())
-            //        {
-            //            list.Add(new Category
-            //            {
-            //                CategoryId = reader.GetInt32(0),
-            //                CategoryName = reader.GetString(1)
-            //            });
-            //        }
-            //    }
-            //}
-
-            //ViewBag.CategoryDropDownList = new SelectList(list, "CategoryId", "CategoryName");  // store a list of categories to use as dropdown list
-
+            string DefaultPostContent = @"<div class=""mt20"">
+                                <p>This template contains some default text provided by Soverance Studios.  Replace this text with your own content in order to generate a new post. Be sure to keep the divs, classes, and other tagging in place in order to maintain visual formatting.</p>
+                                <p>This template contains some default text provided by Soverance Studios.  Replace this text with your own content in order to generate a new post. Be sure to keep the divs, classes, and other tagging in place in order to maintain visual formatting.</p>
+                            </div>
+                            <div class=""post-quote mt120"">
+                                <blockquote class=""p40 text-center"">
+                                    <div class=""author-avatar"">
+                                        <img src=""~/images/blog/status-author.jpg"" alt="""">
+                                    </div>
+                                    <div class=""table mb0 pb30 mt40"">
+                                        <div class=""table-row"">
+                                            <div class=""table-cell valign-middle"">
+                                                <a href=""post.html"" class=""post-title fsize-24 fweight-700 font-agency color-white uppercase"">
+                                                    Scott McCutchen
+                                                </a>
+                                                <div class=""fsize-14 fweight-700 uppercase color-1"">
+                                                    Founder
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=""text-container fsize-18 italic ptb30"">
+                                        «Enter some quote text from the article.»
+                                    </div>
+                                </blockquote>
+                            </div>
+                            <p class=""mt60"">
+                                This template contains some default text provided by Soverance Studios.  Replace this text with your own content in order to generate a new post. Be sure to keep the divs, classes, and other tagging in place in order to maintain visual formatting.
+                            </p>
+                            <div class=""clearfix"">
+                                <p class=""col-lg-4 col-md-4 col-sm-12 col-sm-12 m0"">
+                                    <img src=""~/images/post/post-small-1.jpg"" alt="""" class=""img-responsive mlr-auto mb20"">
+                                </p>
+                                <p class=""col-lg-4 col-md-4 col-sm-12 col-sm-12 m0"">
+                                    <img src=""~/images/post/post-small-2.jpg"" alt="""" class=""img-responsive mlr-auto mb20"">
+                                </p>
+                                <p class=""col-lg-4 col-md-4 col-sm-12 col-sm-12 m0"">
+                                    <img src=""~/images/post/post-small-3.jpg"" alt="""" class=""img-responsive mlr-auto mb20"">
+                                </p>
+                            </div>
+                            <p class=""mt30"">
+                                This template contains some default text provided by Soverance Studios.  Replace this text with your own content in order to generate a new post. Be sure to keep the divs, classes, and other tagging in place in order to maintain visual formatting.
+                            </p>
+                            <p>
+                                This template contains some default text provided by Soverance Studios.  Replace this text with your own content in order to generate a new post. Be sure to keep the divs, classes, and other tagging in place in order to maintain visual formatting.
+                            </p>
+                            <ul class=""list-1"">
+                                <li class=""color5"">
+                                    Enter a list item.
+                                </li>
+                                <li class=""color5"">
+                                    Enter a list item.
+                                </li>
+                                <li class=""color5"">
+                                    Enter a list item.
+                                </li>
+                            </ul>";
+            ViewBag.DefaultPostContent = DefaultPostContent;
             ViewBag.CategoryDropDownList = new SelectList(await _context.Category.ToListAsync(), "CategoryId", "CategoryName");
 
             // store current date - formatted as "2/27/2009"
@@ -127,7 +163,7 @@ namespace soverance.com.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreatePost([Bind("PostId,CategoryId,Date,Title,Content,Author")] Post Post)
+        public async Task<IActionResult> CreatePost([Bind("PostId,CategoryId,Date,Image,Title,Content,Author")] Post Post)
         {
             if (ModelState.IsValid)
             {
@@ -163,7 +199,7 @@ namespace soverance.com.Controllers
             }
 
             ViewBag.CategoryDropDownList = new SelectList(await _context.Category.ToListAsync(), "CategoryId", "CategoryName");
-
+            
             var Post = await _context.Post.FindAsync(id);
             if (Post == null)
             {
@@ -212,7 +248,7 @@ namespace soverance.com.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int id, [Bind("PostId,CategoryId,Date,Title,Content,Author")] Post Post)
+        public async Task<IActionResult> EditPost(int id, [Bind("PostId,CategoryId,Date,Image,Title,Content,Author")] Post Post)
         {
             if (id != Post.PostId)
             {

@@ -8,6 +8,7 @@ namespace soverance.com.Models
         public int PostId { get; set; }
         public int CategoryId { get; set; }
         public string Date { get; set; }
+        public string Image { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public string Author { get; set; }
