@@ -24,11 +24,13 @@ namespace soverance.com.Controllers
         // GET: /Blog
         public async Task<IActionResult> Index()
         {
+            ViewBag.AllPosts = await _context.Post.ToListAsync();
+
             return View(await _context.Category.ToListAsync());
         }
 
-        // GET: /Blog/DetailsCategory/5
-        public async Task<IActionResult> DetailsCategory(int? id)
+        // GET: /Blog/ViewCategory/5
+        public async Task<IActionResult> ViewCategory(int? id)
         {
             if (id == null)
             {
@@ -54,9 +56,9 @@ namespace soverance.com.Controllers
         // GET: /Blog/CreatePost
         public IActionResult CreatePost()
         {
-            Post Post = new Post();
             var list = new List<Category>();
 
+            // this section collects all the categories from the database, and adds them to a list that can be used later as a dropdown menu in the CreatePost page
             using (SqlConnection connection = new SqlConnection(_context.Database.GetDbConnection().ConnectionString))
             using (SqlCommand command = new SqlCommand("SELECT CategoryId, CategoryName FROM Category", connection))
             {
@@ -73,9 +75,13 @@ namespace soverance.com.Controllers
                     }
                 }
             }
-            
-            ViewBag.CategoryDropDownList = new SelectList(list, "CategoryId", "CategoryName");
 
+            ViewBag.CategoryDropDownList = new SelectList(list, "CategoryId", "CategoryName");  // store a list of categories to use as dropdown list
+
+            DateTime time = DateTime.Now;
+            string format = "MMM d yyyy";
+            ViewBag.CurrentDate = time.ToString(format);  // store formatted current date
+            
             return View();
         }
 
@@ -127,6 +133,22 @@ namespace soverance.com.Controllers
             return View(Category);
         }
 
+        // GET: Blog/EditPost/5
+        public async Task<IActionResult> EditPost(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var Post = await _context.Post.FindAsync(id);
+            if (Post == null)
+            {
+                return NotFound();
+            }
+            return View(Post);
+        }
+
         // POST: Blog/EditCategory/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -162,6 +184,41 @@ namespace soverance.com.Controllers
             return View(Category);
         }
 
+        // POST: Blog/EditPost/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPost(int id, [Bind("PostId,CategoryId,Date,Title,Content,Author")] Post Post)
+        {
+            if (id != Post.PostId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(Post);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!PostExists(Post.PostId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(Post);
+        }
+
         // GET: Blog/DeleteCategory/5
         public async Task<IActionResult> DeleteCategory(int? id)
         {
@@ -180,6 +237,24 @@ namespace soverance.com.Controllers
             return View(Category);
         }
 
+        // GET: Blog/DeletePost/5
+        public async Task<IActionResult> DeletePost(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var Post = await _context.Post
+                .FirstOrDefaultAsync(p => p.PostId == id);
+            if (Post == null)
+            {
+                return NotFound();
+            }
+
+            return View(Post);
+        }
+
         // POST: Blog/DeleteCategory/5
         [HttpPost, ActionName("DeleteCategory")]
         [ValidateAntiForgeryToken]
@@ -191,9 +266,25 @@ namespace soverance.com.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // POST: Blog/DeletePost/5
+        [HttpPost, ActionName("DeletePost")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeletePostConfirmed(int id)
+        {
+            var Post = await _context.Post.FindAsync(id);
+            _context.Post.Remove(Post);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
         private bool CategoryExists(int id)
         {
             return _context.Category.Any(e => e.CategoryId == id);
+        }
+
+        private bool PostExists(int id)
+        {
+            return _context.Post.Any(e => e.PostId == id);
         }
     }
 }

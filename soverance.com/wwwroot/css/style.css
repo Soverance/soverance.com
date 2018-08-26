@@ -281,6 +281,9 @@ img {
   display: table;
   margin-bottom: 0; }
 
+.table-nobackground {
+  background-color: transparent !important; }
+
 .table-row {
   display: table-row; }
 

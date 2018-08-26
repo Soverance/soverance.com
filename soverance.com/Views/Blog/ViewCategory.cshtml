@@ -1,7 +1,7 @@
 ﻿@model soverance.com.Models.Category
 
 @{
-    ViewData["Title"] = "Delete Category";
+    ViewData["Title"] = "View Category";
 }
 
 <!-- PAGE NAME START -->
@@ -9,12 +9,12 @@
     <div class="container">
         <div class="row">
             <h1 class="page-title">
-                Delete Category
+                View Category
             </h1>
             <div class="breadcrumbs">
                 <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> /
                 <a asp-area="" asp-controller="Blog" asp-action="Index">Blog</a> /
-                <span class="color-1">Delete Category</span>
+                <span class="color-1">View Category</span>
             </div>
         </div>
     </div>
@@ -26,8 +26,17 @@
         <div class="row">
             <div class="item-left col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="equal-height">
-                    <h3>Are you sure you want to delete this?</h3>
                     <div>
+                        <h4>Category Details</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CategoryId)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CategoryId)
+                            </dd>
+                        </dl>
                         <dl class="dl-horizontal">
                             <dt>
                                 @Html.DisplayNameFor(model => model.CategoryName)
@@ -36,12 +45,10 @@
                                 @Html.DisplayFor(model => model.CategoryName)
                             </dd>
                         </dl>
-
-                        <form asp-action="DeleteCategory">
-                            <input type="hidden" asp-for="CategoryId" />
-                            <input type="submit" value="Delete" class="btn border-btn plr50 ptb19 color-white" /> |
-                            <a asp-action="Index">Back to List</a>
-                        </form>
+                    </div>
+                    <div>
+                        <a asp-action="EditCategory" asp-route-id="@Model.CategoryId">Edit</a> |
+                        <a asp-action="Index">Back to List</a>
                     </div>
                 </div>
             </div>

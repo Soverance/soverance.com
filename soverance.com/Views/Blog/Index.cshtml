@@ -171,7 +171,7 @@
                             </div>
                         </div>
                     </div>
-                </article>                
+                </article>
                 <article class="vertical-item format-slider fsize-0 clearfix">
                     <div class="item-left-img col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="post-slider">
@@ -441,23 +441,16 @@
                     <h5 class="fsize-20 text-center">Categories</h5>
                     <div class="widget-wrapper">
                         <table class="table list-1">
-                            <thead>
-                                <tr>
-                                    <th class="color1">
-                                        @Html.DisplayNameFor(model => model.CategoryName)
-                                    </th>
-                                </tr>
-                            </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td class="color1">
+                                        <td class="title-top font-agency fweight-700 uppercase color-white">
                                             @Html.DisplayFor(modelItem => item.CategoryName)
                                         </td>
                                         <td>
                                             <a asp-action="EditCategory" asp-route-id="@item.CategoryId">Edit</a> |
-                                            <a asp-action="DetailsCategory" asp-route-id="@item.CategoryId">Details</a> |
+                                            <a asp-action="ViewCategory" asp-route-id="@item.CategoryId">View</a> |
                                             <a asp-action="DeleteCategory" asp-route-id="@item.CategoryId">Delete</a>
                                         </td>
                                     </tr>
@@ -472,57 +465,38 @@
                 <div class="widget-bl latest-widget">
                     <h5 class="fsize-20 text-center">Latest posts</h5>
                     <div class="widget-wrapper">
-                        <a href="post.html" class="latest-item">
-                            <div class="table">
-                                <div class="table-row">
-                                    <div class="latest-img table-cell valign-middle">
-                                        <img src="~/images/blog/latest-img-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-title table-cell valign-middle pl20">
-                                        <div class="title-top font-agency fweight-700 uppercase color-white">
-                                            Pancetta cow filet mignon shoulder bacon sausage meatloaf
-                                        </div>
-                                        <div class="color-2 uppercase fsize-12 fweight-700">
-                                            Mar 20, 2018
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="post.html" class="latest-item">
-                            <div class="table">
-                                <div class="table-row">
-                                    <div class="latest-img table-cell valign-middle">
-                                        <img src="~/images/blog/latest-img-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-title table-cell valign-middle pl20">
-                                        <div class="title-top font-agency fweight-700 uppercase color-white">
-                                            Alcatra rump tenderloin, capicola kielbasa
-                                        </div>
-                                        <div class="color-2 uppercase fsize-12 fweight-700">
-                                            Mar 21, 2018
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="post.html" class="latest-item">
-                            <div class="table">
-                                <div class="table-row">
-                                    <div class="latest-img table-cell valign-middle">
-                                        <img src="~/images/blog/latest-img-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-title table-cell valign-middle pl20">
-                                        <div class="title-top font-agency fweight-700 uppercase color-white">
-                                            Porchetta venison pork loin tri-tip shank spare ribs
-                                        </div>
-                                        <div class="color-2 uppercase fsize-12 fweight-700">
-                                            Mar 22, 2018
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
+                        <table class="table list-1">
+                            <tbody>
+                                @foreach (var post in ViewBag.AllPosts)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="post.html" class="latest-item">
+                                                <div class="table table-nobackground">
+                                                    <div class="table-row">
+                                                        <div class="latest-img table-cell valign-middle">
+                                                            <img src="~/images/blog/latest-img-1.jpg" alt="">
+                                                        </div>
+                                                        <div class="latest-title table-cell valign-middle pl20">
+                                                            <div class="title-top font-agency fweight-700 uppercase color-white">
+                                                                @post.Title
+                                                            </div>
+                                                            <div class="color-2 uppercase fsize-12 fweight-700">
+                                                                @post.Date
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a asp-action="EditPost" asp-route-id="@post.PostId">Edit</a> |
+                                            <a asp-action="DeletePost" asp-route-id="@post.PostId">Delete</a>
+                                        </td>
+                                    </tr>                                    
+                                }
+                            </tbody>
+                        </table>                        
                     </div>
                 </div>
                 <div class="widget-bl calendar-widget">

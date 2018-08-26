@@ -1,7 +1,7 @@
 ﻿@model soverance.com.Models.Post
 
 @{
-    ViewData["Title"] = "Create Post";
+    ViewData["Title"] = "Edit Post";
 }
 
 <!-- PAGE NAME START -->
@@ -9,24 +9,25 @@
     <div class="container">
         <div class="row">
             <h1 class="page-title">
-                Create Post
+                Edit Post
             </h1>
             <div class="breadcrumbs">
                 <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> /
                 <a asp-area="" asp-controller="Blog" asp-action="Index">Blog</a> /
-                <span class="color-1">Create Post</span>
+                <span class="color-1">Edit Post</span>
             </div>
         </div>
     </div>
 </section>
 <!-- PAGE NAME END -->
 <!-- SECTION START -->
-<section class="blog-content ptb150 each-element">
+<section class="about-info ptb150">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
-                <form asp-action="CreatePost">
+            <div class="item-left col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <form asp-action="EditPost">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="PostId" />
                     <div class="form-group">
                         <select asp-for="CategoryId" asp-items="ViewBag.CategoryDropDownList" class="dropdown border-dropdown plr50 ptb19 color-white" style="width:37.5%">
                             <option selected="selected" value="">Select Category</option>
@@ -34,7 +35,7 @@
                         <span asp-validation-for="CategoryId" class="text-danger"></span>
                         <p></p>
                         <label asp-for="Date" class="control-label"></label>
-                        <input asp-for="Date" class="form-control width-30" value="@ViewBag.CurrentDate" />
+                        <input asp-for="Date" class="form-control width-30" value="@DateTime.Now" />
                         <span asp-validation-for="Date" class="text-danger"></span>
                         <label asp-for="Title" class="control-label"></label>
                         <input asp-for="Title" class="form-control" />
@@ -47,13 +48,13 @@
                         <span asp-validation-for="Author" class="text-danger width-50"></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn border-btn plr50 ptb19 color-white" />
+                        <input type="submit" value="Save" class="btn border-btn plr50 ptb19 color-white" />
                     </div>
                 </form>
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
             </div>
-        </div>
-        <div>
-            <a asp-action="Index">Back to List</a>
         </div>
     </div>
 </section>
