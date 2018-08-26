@@ -269,6 +269,15 @@ img {
 .width-100 {
   width: 100%; }
 
+.width-50 {
+  width: 50%; }
+
+.width-30 {
+  width: 30%; }
+
+.height-450 {
+  height: 450px; }
+
 .height-600 {
   height: 600px; }
 
@@ -515,6 +524,22 @@ img {
       background: #38c7ff;
       color: #fff;
       transition: all 0.3s ease-out; }
+
+.dropdown {
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  border: 0; }
+  .dropdown.border-dropdown {
+    border: 2px solid #fff;
+    background: transparent;
+    transition: all 0.3s ease-out; }
+    .dropdown.border-dropdown:hover {
+      background: #000614;
+      border: 2px solid #38c7ff;
+      color: #fff;
+      transition: all 0.3s ease-out; } 
 
 .title-bl {
   position: relative;

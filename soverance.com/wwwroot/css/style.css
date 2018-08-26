@@ -299,6 +299,15 @@ img {
 .width-100 {
   width: 100%; }
 
+.width-50 {
+  width: 50%; }
+
+.width-30 {
+  width: 30%; }
+
+.height-450 {
+  height: 450px; }
+
 .height-600 {
   height: 600px; }
 
@@ -537,12 +546,28 @@ img {
     .btn.header-btn:hover {
       border: 2px solid #38c7ff;
       background: #38c7ff !important;
-      transition: all 0.3s ease-out; }
+      transition: all 0.3s ease-out; }  
   .btn.gradient {
     background: linear-gradient(to right, #38c7ff 0%, rgba(146, 82, 234, 0.64) 100%);
     transition: all 0.3s ease-out; }
     .btn.gradient:hover {
       background: #38c7ff;
+      color: #fff;
+      transition: all 0.3s ease-out; }
+
+.dropdown {
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  border: 0; }
+  .dropdown.border-dropdown {
+    border: 2px solid #fff;
+    background: transparent;
+    transition: all 0.3s ease-out; }
+    .dropdown.border-dropdown:hover {
+      background: #000614;
+      border: 2px solid #38c7ff;
       color: #fff;
       transition: all 0.3s ease-out; }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
 namespace soverance.com.Models
@@ -13,8 +12,6 @@ namespace soverance.com.Models
         public string Content { get; set; }
         public string Author { get; set; }
 
-        public Category Category { get; set; }
-
-        //public SelectList CategoryDropDownList { get; set; }
+        public Category Category { get; set; }        
     }
 }

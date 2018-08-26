@@ -14,6 +14,8 @@ namespace soverance.com.Controllers
     {
         private readonly DatabaseContext _context;
 
+        public SelectList CategoryDropDownList { get; set; }
+
         public BlogController(DatabaseContext context)
         {
             _context = context;
@@ -52,26 +54,27 @@ namespace soverance.com.Controllers
         // GET: /Blog/CreatePost
         public IActionResult CreatePost()
         {
-            //Post Post = new Post();
-            //var list = new List<Category>();
+            Post Post = new Post();
+            var list = new List<Category>();
 
-            //using (SqlConnection connection = new SqlConnection(_context.Database.GetDbConnection().ConnectionString))
-            //using (SqlCommand command = new SqlCommand("SELECT CategoryId, CategoryName FROM Category", connection))
-            //{
-            //    using (SqlDataReader reader = command.ExecuteReader())
-            //    {
-            //        while (reader.Read())
-            //        {
-            //            list.Add(new Category
-            //            {
-            //                CategoryId = reader.GetInt32(0),
-            //                CategoryName = reader.GetString(1)
-            //            });
-            //        }
-            //    }
-            //}
-
-            //Post.CategoryDropDownList = new SelectList(list, "CategoryId", "CategoryName");
+            using (SqlConnection connection = new SqlConnection(_context.Database.GetDbConnection().ConnectionString))
+            using (SqlCommand command = new SqlCommand("SELECT CategoryId, CategoryName FROM Category", connection))
+            {
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Category
+                        {
+                            CategoryId = reader.GetInt32(0),
+                            CategoryName = reader.GetString(1)
+                        });
+                    }
+                }
+            }
+            
+            ViewBag.CategoryDropDownList = new SelectList(list, "CategoryId", "CategoryName");
 
             return View();
         }

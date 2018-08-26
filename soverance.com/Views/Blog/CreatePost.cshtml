@@ -28,12 +28,26 @@
                 <form asp-action="CreatePost">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label asp-for="CategoryId" class="control-label"></label>
-                        <input asp-for="CategoryId" class="form-control" />
-                        <span asp-validation-for="CategoryId" class="text-danger">@Html.DisplayFor(modelItem => Model.Category)</span>
+                        <select asp-for="CategoryId" asp-items="ViewBag.CategoryDropDownList" class="dropdown border-dropdown plr50 ptb19 color-white" style="width:37.5%">
+                            <option selected="selected" value="">Select Category</option>
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        <p></p>
+                        <label asp-for="Date" class="control-label"></label>
+                        <input asp-for="Date" class="form-control width-30" value="@DateTime.Now" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                        <label asp-for="Content" class="control-label"></label>
+                        <textarea asp-for="Content" class="form-control" rows="25"></textarea>
+                        <span asp-validation-for="Content" class="text-danger"></span>
+                        <label asp-for="Author" class="control-label"></label>
+                        <input asp-for="Author" class="form-control" />
+                        <span asp-validation-for="Author" class="text-danger width-50"></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn header-btn ml25 color-white hidden-sm hidden-xs" />
+                        <input type="submit" value="Create" class="btn border-btn plr50 ptb19 color-white" />
                     </div>
                 </form>
             </div>
