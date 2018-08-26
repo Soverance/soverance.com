@@ -29,13 +29,13 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="PostId" />
                     <div class="form-group">
-                        <select asp-for="CategoryId" asp-items="ViewBag.CategoryDropDownList" class="dropdown border-dropdown plr50 ptb19 color-white" style="width:37.5%">
-                            <option selected="selected" value="">Select Category</option>
+                        <select asp-for="CategoryId" asp-items="ViewBag.CategoryDropDownList" class="dropdown border-dropdown plr50 ptb19 color-white" style="width:55.5%">
+                            <option selected="selected" value="CategoryId">Select Category</option>
                         </select>
                         <span asp-validation-for="CategoryId" class="text-danger"></span>
                         <p></p>
                         <label asp-for="Date" class="control-label"></label>
-                        <input asp-for="Date" class="form-control width-30" value="@DateTime.Now" />
+                        <input asp-for="Date" class="form-control width-50" value="@DateTime.Now" />
                         <span asp-validation-for="Date" class="text-danger"></span>
                         <label asp-for="Title" class="control-label"></label>
                         <input asp-for="Title" class="form-control" />

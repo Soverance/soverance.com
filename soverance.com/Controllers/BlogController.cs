@@ -144,6 +144,8 @@ namespace soverance.com.Controllers
                 return NotFound();
             }
 
+            ViewBag.CategoryDropDownList = new SelectList(await _context.Category.ToListAsync(), "CategoryId", "CategoryName");
+
             var Post = await _context.Post.FindAsync(id);
             if (Post == null)
             {
