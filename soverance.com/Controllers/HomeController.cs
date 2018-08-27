@@ -66,7 +66,7 @@ namespace soverance.com.Controllers
             return View();
         }
 
-        public IActionResult Pricing()
+        public IActionResult Consulting()
         {
             return View();
         }
