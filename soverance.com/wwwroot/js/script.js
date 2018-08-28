@@ -473,24 +473,5 @@
 				$(this).addClass(classes[index % 3]);
 			});
 		});
-	}
-
-	/*----------------------------------------------------*/
-	/* Calendar Settings
-	/*----------------------------------------------------*/
-
-	var calendarBl = $( '.calendar-bl' );
-	if( calendarBl.length )
-	{
-		calendarBl.dateRangePicker( {
-			inline: true,
-			container: '.calendar-container',
-			alwaysOpen: true,
-			singleDate: true,
-			singleMonth: true,
-			showTopbar: false,
-			customArrowPrevSymbol: '<i class="fa fa-angle-left fsize-14"></i>',
-			customArrowNextSymbol: '<i class="fa fa-angle-right fsize-14"></i>'
-		} );
-	}    
+	}  
 }(jQuery));

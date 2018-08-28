@@ -11,9 +11,13 @@
 
   <ItemGroup>
     <Compile Remove="Areas\Blog\**" />
+    <Compile Remove="Areas\Ethereal\Data\**" />
     <Content Remove="Areas\Blog\**" />
+    <Content Remove="Areas\Ethereal\Data\**" />
     <EmbeddedResource Remove="Areas\Blog\**" />
+    <EmbeddedResource Remove="Areas\Ethereal\Data\**" />
     <None Remove="Areas\Blog\**" />
+    <None Remove="Areas\Ethereal\Data\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,7 +41,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
     <Folder Include="Areas\Ethereal\Controllers\" />
-    <Folder Include="Areas\Ethereal\Data\" />
     <Folder Include="Areas\Ethereal\Models\" />
     <Folder Include="Areas\Ethereal\Views\" />
     <Folder Include="Areas\Team\App_Start\" />

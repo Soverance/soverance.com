@@ -25,7 +25,7 @@ namespace soverance.com.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.AllPosts = await _context.Post.ToListAsync();
-
+            
             return View(await _context.Category.ToListAsync());
         }
 
@@ -47,7 +47,7 @@ namespace soverance.com.Controllers
         }
 
         // GET: /Blog/ViewPost/5
-        public async Task<IActionResult> ViewPost(int? id)
+        public async Task<IActionResult> ViewPost(int? id, string title)
         {
             if (id == null)
             {
@@ -61,8 +61,11 @@ namespace soverance.com.Controllers
             }
             if (Post != null)
             {
-                var Category = await _context.Category.FirstOrDefaultAsync(m => m.CategoryId == Post.CategoryId);  // get the post's category object
+                var Category = await _context.Category.FirstOrDefaultAsync(m => m.CategoryId == Post.CategoryId);  // get the post's category object                
                 Post.Category = Category;  // store the category object in the model for later use
+                title = UrlEncoder.SanitizeUrl(Post.Title);
+                string url = "/blog/" + title;
+                return new RedirectResult(url, true, true);
             }
 
             return View(Post);

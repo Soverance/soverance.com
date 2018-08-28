@@ -73,7 +73,12 @@ namespace soverance.com
                 template: "blog/{action}/{id?}",
                 defaults: new { controller = "Blog", action = "Index" });
 
-            routes.MapRoute(
+            //routes.MapRoute(
+            //    name: "ViewPost",
+            //    template: "blog/{id?}/{title}",
+            //    defaults: new { controller = "Blog", action = "ViewPost", id = "", title = "" });
+
+                routes.MapRoute(
                 name: "Ethereal",
                 template: "{area:exists}/{action}/{id?}",
                 defaults: new { controller = "Ethereal", action = "Index" });
