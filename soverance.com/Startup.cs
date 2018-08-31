@@ -51,37 +51,38 @@ namespace soverance.com
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-
+                        
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
-            routes.MapRoute(
-                name: "default",
-                template: "{action}/{id?}",
-                defaults: new { controller = "Home", action = "Index" });
-
-            routes.MapRoute(
-                name: "Team",
-                template: "{area:exists}/{action}/{id?}",
-                defaults: new { controller = "Team", action = "Index" });
-
-            routes.MapRoute(
-                name: "Blog",
-                template: "blog/{action}/{id?}",
-                defaults: new { controller = "Blog", action = "Index" });
 
             //routes.MapRoute(
-            //    name: "ViewPost",
-            //    template: "blog/{id?}/{title}",
-            //    defaults: new { controller = "Blog", action = "ViewPost", id = "", title = "" });
+            //    name: "default",
+            //    template: "{action}/{id?}",
+            //    defaults: new { controller = "Home", action = "Index" });
 
-                routes.MapRoute(
-                name: "Ethereal",
-                template: "{area:exists}/{action}/{id?}",
-                defaults: new { controller = "Ethereal", action = "Index" });
+            //routes.MapRoute(
+            //    name: "Team",
+            //    template: "{area:exists}/{action}/{id?}",
+            //    defaults: new { controller = "Team", action = "Index" });
+
+            //routes.MapRoute(
+            //    name: "Post",
+            //    template: "blog/{slug?}",
+            //    defaults: new { controller = "Blog", action = "ViewPost" });
+
+            //routes.MapRoute(
+            //    name: "Blog",
+            //    template: "blog/{action}/{id?}",
+            //    defaults: new { controller = "Blog", action = "Index" });
+
+            //routes.MapRoute(
+            //    name: "Ethereal",
+            //    template: "{area:exists}/{action}/{id?}",
+            //    defaults: new { controller = "Ethereal", action = "Index" });
             });
         }
     }

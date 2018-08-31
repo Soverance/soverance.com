@@ -25,57 +25,70 @@ namespace soverance.com.Controllers
             SovAzureConfig = _SovAzureConfig;
         }
 
+        [Route("")]
+        [Route("home")]
+        [Route("home/index")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Route("about")]
         public IActionResult About()
         {
             return View();
         }
 
+        [Route("contact")]
         public IActionResult Contact()
         {
             ViewBag.AzureMapsKey = SovAzureConfig.Value.AzureMapsKey;
             return View(SovAzureConfig);
         }
 
+        [Route("privacy")]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [Route("faq")]
         public IActionResult FAQ()
         {
             return View();
         }
 
+        [Route("games")]
         public IActionResult Games()
         {
             return View();
         }
 
+        [Route("endlessreach")]
         public IActionResult EndlessReach()
         {
             return View();
         }
 
+        [Route("testimonials")]
         public IActionResult Testimonials()
         {
             return View();
         }
 
+        [Route("consulting")]
         public IActionResult Consulting()
         {
             return View();
         }
 
+        [Route("gallery")]
         public IActionResult Gallery()
         {
             return View();
         }
 
+        [Route("error")]
         public IActionResult Error()
         {
             var feature = HttpContext.Features.Get<IExceptionHandlerFeature>();

@@ -22,6 +22,7 @@ namespace soverance.com.Controllers
         }
 
         // GET: /Blog
+        [Route("blog")]        
         public async Task<IActionResult> Index()
         {
             ViewBag.AllPosts = await _context.Post.ToListAsync();
@@ -30,6 +31,7 @@ namespace soverance.com.Controllers
         }
 
         // GET: /Blog/ViewCategory/5
+        [Route("blog/viewcategory/{id}")]
         public async Task<IActionResult> ViewCategory(int? id)
         {
             if (id == null)
@@ -47,7 +49,8 @@ namespace soverance.com.Controllers
         }
 
         // GET: /Blog/ViewPost/5
-        public async Task<IActionResult> ViewPost(int? id, string title)
+        [Route("blog/{slug}")]
+        public async Task<IActionResult> ViewPost(int? id, string slug)
         {
             if (id == null)
             {
@@ -62,22 +65,23 @@ namespace soverance.com.Controllers
             if (Post != null)
             {
                 var Category = await _context.Category.FirstOrDefaultAsync(m => m.CategoryId == Post.CategoryId);  // get the post's category object                
-                Post.Category = Category;  // store the category object in the model for later use
-                title = UrlEncoder.SanitizeUrl(Post.Title);
-                string url = "/blog/" + title;
+                Post.Category = Category;  // store the category object in the model for later use                
+                string url = "/blog/" + slug;
                 return new RedirectResult(url, true, true);
             }
-
+            
             return View(Post);
         }
 
         // GET: /Blog/CreateCategory
+        [Route("blog/createcategory")]
         public IActionResult CreateCategory()
         {
             return View();
         }
 
         // GET: /Blog/CreatePost
+        [Route("blog/createpost")]
         public async Task<IActionResult> CreatePost()
         {
             Post Post = new Post();
@@ -154,6 +158,7 @@ namespace soverance.com.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("blog/createcategory")]
         public async Task<IActionResult> CreateCategory([Bind("CategoryId,CategoryName")] Category Category)
         {
             if (ModelState.IsValid)
@@ -170,11 +175,14 @@ namespace soverance.com.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreatePost([Bind("PostId,CategoryId,Date,Image,Title,Content,Author")] Post Post)
+        [Route("blog/createpost")]
+        public async Task<IActionResult> CreatePost([Bind("PostId,CategoryId,Slug,Date,Image,Title,Content,Author")] Post Post)
         {
             if (ModelState.IsValid)
             {
+                Post.Slug = UrlEncoder.SanitizeUrl(Post.Title);  // update slug
                 _context.Add(Post);
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -182,6 +190,7 @@ namespace soverance.com.Controllers
         }
 
         // GET: Blog/EditCategory/5
+        [Route("blog/editcategory/{id}")]
         public async Task<IActionResult> EditCategory(int? id)
         {
             if (id == null)
@@ -198,6 +207,7 @@ namespace soverance.com.Controllers
         }
 
         // GET: Blog/EditPost/5
+        [Route("blog/editpost/{id}")]
         public async Task<IActionResult> EditPost(int? id)
         {
             if (id == null)
@@ -220,6 +230,7 @@ namespace soverance.com.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("blog/editcategory/{id}")]
         public async Task<IActionResult> EditCategory(int id, [Bind("CategoryId,CategoryName")] Category Category)
         {
             if (id != Category.CategoryId)
@@ -255,7 +266,8 @@ namespace soverance.com.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int id, [Bind("PostId,CategoryId,Date,Image,Title,Content,Author")] Post Post)
+        [Route("blog/editpost/{id}")]
+        public async Task<IActionResult> EditPost(int id, [Bind("PostId,CategoryId,Slug,Date,Image,Title,Content,Author")] Post Post)
         {
             if (id != Post.PostId)
             {
@@ -266,6 +278,7 @@ namespace soverance.com.Controllers
             {
                 try
                 {
+                    Post.Slug = UrlEncoder.SanitizeUrl(Post.Title);  // update slug
                     _context.Update(Post);
                     await _context.SaveChangesAsync();
                 }
@@ -286,6 +299,7 @@ namespace soverance.com.Controllers
         }
 
         // GET: Blog/DeleteCategory/5
+        [Route("blog/deletecategory/{id}")]
         public async Task<IActionResult> DeleteCategory(int? id)
         {
             if (id == null)
@@ -303,6 +317,7 @@ namespace soverance.com.Controllers
         }
 
         // GET: Blog/DeletePost/5
+        [Route("blog/deletepost/{id}")]
         public async Task<IActionResult> DeletePost(int? id)
         {
             if (id == null)
@@ -322,6 +337,7 @@ namespace soverance.com.Controllers
         // POST: Blog/DeleteCategory/5
         [HttpPost, ActionName("DeleteCategory")]
         [ValidateAntiForgeryToken]
+        [Route("blog/deletecategoryconfirmed/{id}")]
         public async Task<IActionResult> DeleteCategoryConfirmed(int id)
         {
             var Category = await _context.Category.FindAsync(id);
@@ -333,6 +349,7 @@ namespace soverance.com.Controllers
         // POST: Blog/DeletePost/5
         [HttpPost, ActionName("DeletePost")]
         [ValidateAntiForgeryToken]
+        [Route("blog/deletepostconfirmed/{id}")]
         public async Task<IActionResult> DeletePostConfirmed(int id)
         {
             var Post = await _context.Post.FindAsync(id);
