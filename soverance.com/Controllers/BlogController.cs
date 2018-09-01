@@ -50,14 +50,14 @@ namespace soverance.com.Controllers
 
         // GET: /Blog/ViewPost/5
         [Route("blog/{slug}")]
-        public async Task<IActionResult> ViewPost(int? id, string slug)
+        public async Task<IActionResult> ViewPost(string slug)
         {
-            if (id == null)
+            if (slug == null)
             {
                 return NotFound();
             }
 
-            var Post = await _context.Post.FirstOrDefaultAsync(m => m.PostId == id);
+            var Post = await _context.Post.FirstOrDefaultAsync(m => m.Slug == slug);
             if (Post == null)
             {
                 return NotFound();
@@ -66,8 +66,8 @@ namespace soverance.com.Controllers
             {
                 var Category = await _context.Category.FirstOrDefaultAsync(m => m.CategoryId == Post.CategoryId);  // get the post's category object                
                 Post.Category = Category;  // store the category object in the model for later use                
-                string url = "/blog/" + slug;
-                return new RedirectResult(url, true, true);
+                //string url = "/blog/" + slug;
+                //return new RedirectResult(url, true, true);
             }
             
             return View(Post);
