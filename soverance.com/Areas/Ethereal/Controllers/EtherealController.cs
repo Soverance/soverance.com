@@ -14,16 +14,19 @@ namespace soverance.com.Ethereal.Controllers
     [Area("Ethereal")]
     public class EtherealController : Controller
     {
+        [Route("ethereal")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Route("ethereal/guide")]
         public IActionResult Guide()
         {
             return View();
         }
 
+        [Route("ethereal/eula")]
         public IActionResult EULA()
         {
             return View();

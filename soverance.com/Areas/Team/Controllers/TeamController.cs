@@ -14,11 +14,13 @@ namespace soverance.com.Team.Controllers
     [Area("Team")]
     public class TeamController : Controller
     {
+        [Route("team")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Route("team/scott-mccutchen")]
         public IActionResult ScottMcCutchen()
         {
             return View();
