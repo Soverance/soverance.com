@@ -26,8 +26,26 @@ namespace soverance.com.Ethereal.Controllers
             return View();
         }
 
+        [Route("ethereal/versions")]
+        public IActionResult Versions()
+        {
+            return View();
+        }
+
         [Route("ethereal/guide")]
         public IActionResult Guide()
+        {
+            return View();
+        }
+
+        [Route("ethereal/guide/world")]
+        public IActionResult World()
+        {
+            return View();
+        }
+
+        [Route("ethereal/guide/systems")]
+        public IActionResult Systems()
         {
             return View();
         }
