@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Ethereal Guide";
+    ViewData["Title"] = "Ethereal Loot Table";
 }
 
 <!-- PAGE NAME START -->
@@ -7,13 +7,14 @@
     <div class="container">
         <div class="row">
             <h1 class="page-title">
-                Ethereal Guide
+                Ethereal Loot Table
             </h1>
             <div class="breadcrumbs">
                 <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> /
                 <a asp-area="" asp-controller="Home" asp-action="Games">Games</a> /
                 <a asp-area="Ethereal" asp-controller="Ethereal" asp-action="Index">Ethereal Legends</a> /
-                <span class="color-1">Guide</span>
+                <a asp-area="Ethereal" asp-controller="Ethereal" asp-action="Guide">Guide</a> /
+                <span class="color-1">Loot Table</span>
             </div>
         </div>
     </div>
@@ -27,7 +28,7 @@
                 <div class="posts-nav">
                     <div class="row">
                         <div class="col-md-6">
-                            <a href="/ethereal/guide/loot" class="nav_prev nav-btn td-none" style="background-image: url('/images/games/ethereal/loot-pre-header.jpg');">
+                            <a href="/ethereal/eula" class="nav_prev nav-btn td-none" style="background-image: url('/images/games/ethereal/eula-pre-header.jpg');">
                                 <div class="nav_content">
                                     <div class="fsize-14 fweight-700 uppercase color-1">Ethereal Loot Table</div>
                                     <div class="nav-title font-agency fsize-24 fweight-700 color-white uppercase">Find out where all the best spells, weapons, and armor can be found!</div>
@@ -46,7 +47,7 @@
                 </div>
                 <div class="post-content mt60">
                     <div class="post-image">
-                        <img src="~/images/games/ethereal/guide-header.jpg" alt="">
+                        <img src="~/images/games/ethereal/loot-header.jpg" alt="">
                     </div>
                     <div class="post-bottom background-4">
                         <div class="p60">

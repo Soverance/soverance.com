@@ -1,0 +1,237 @@
+﻿@{
+    ViewData["Title"] = "Nvidia Ansel Guide";
+}
+
+<!-- PAGE NAME START -->
+<section class="page-name parallax" data-paroller-factor="0.1" data-paroller-type="background" data-paroller-direction="vertical">
+    <div class="container">
+        <div class="row">
+            <h1 class="page-title">
+                Nvidia Ansel Guide
+            </h1>
+            <div class="breadcrumbs">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> /
+                <a asp-area="" asp-controller="Home" asp-action="Games">Games</a> /
+                <a asp-area="Ethereal" asp-controller="Ethereal" asp-action="Index">Ethereal Legends</a> /
+                <a asp-area="Ethereal" asp-controller="Ethereal" asp-action="Guide">Guide</a> /
+                <span class="color-1">Nvidia Ansel</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- PAGE NAME END -->
+<!-- SECTION START -->
+<section class="ptb150">
+    <div class="container">
+        <div class="row">
+            <div class="full-col col-lg-10 col-md-10 col-md-push-1">
+                <div class="posts-nav">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="/ethereal/guide/loot" class="nav_prev nav-btn td-none" style="background-image: url('/images/games/ethereal/loot-pre-header.jpg');">
+                                <div class="nav_content">
+                                    <div class="fsize-14 fweight-700 uppercase color-1">Ethereal Loot Table</div>
+                                    <div class="nav-title font-agency fsize-24 fweight-700 color-white uppercase">Find out where all the best spells, weapons, and armor can be found!</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="#" class="nav_next nav-btn td-none" style="background-image: url('/images/games/ethereal/ansel-pre-header.jpg');">
+                                <div class="nav_content">
+                                    <div class="fsize-14 fweight-700 uppercase color-1">Screenshots with Ansel</div>
+                                    <div class="nav-title font-agency fsize-24 fweight-700 color-white uppercase">Learn how to take beautiful high quality screenshots with Nvidia Ansel.</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-content mt60">
+                    <div class="post-image">
+                        <img src="~/images/games/ethereal/ansel-header.jpg" alt="">
+                    </div>
+                    <div class="post-bottom background-4">
+                        <div class="p60">
+                            <div class="table">
+                                <div class="table-row">
+                                    <div class="table-cell valign-top">
+                                        <div class="fsize-14 fweight-700 uppercase color-1">
+                                            Nvidia Ansel Guide
+                                        </div>
+                                    </div>
+                                    <div class="table-cell valign-top text-right">
+                                        <div class="fsize-14 fweight-700 uppercase">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt20">
+                                <p>Nvidia Ansel is a new photography feature added to Ethereal Legends in the version 1.2.1 update.  Ansel allows players with Nvidia GeForce GTX 650 or better graphics cards to take beautiful high resolution or 360 degree screenshots while in game.</p>
+                                <h2>How to use Ansel</h2>
+                                <p>While in game, press Alt-F2 to access Ansel.</p>
+                                <p>After opening Ansel, the combat HUD will disable and the Ansel menu will appear, with various options.  Simply choose the ones you like and click Snap to take the screenshot.</p>
+                                <hr />
+                                <img class="img-responsive mlr-auto mb20" src="http://soverance.com/ethereal/wp-content/uploads/sites/2/2017/04/Ansel1-1024x576.png" alt="" width="499" height="281" />
+                                <h1>Ansel Prerequisites</h1>
+                                <p>Using Ansel requires the use of a modern Nvidia GeForce GPU with the latest driver installed.  To see a list of Ansel-supported GPUs, visit <a href="http://www.geforce.com/hardware/technology/ansel/supported-gpus">geforce.com</a>.</p>
+                                <h1>First Run</h1>
+                                <p>If you have never used Ansel before with any other game, you should first open the <strong>Ansel Configuration Utility</strong> GUI application, which you will find installed here:</p>
+                                <pre class="prettyprint prettyprinted"><code><span class="pln">C</span><span class="pun">:</span><span class="pln">\Program </span><span class="typ">Files</span><span class="pln">\NVIDIA </span><span class="typ">Corporation</span><span class="pln">\Ansel\Tools\NvCameraConfiguration</span><span class="pun">.</span><span class="pln">exe</span></code></pre>
+                                <p>With the Ansel Configuration Utility open, configure the following settings:</p>
+                                <ul class="list-1">
+                                    <li class="color5">NvCamera Status - <strong>Enabled</strong></li>
+                                    <li class="color5">Temp Directory for Intermediate Shots - <strong>User Defined</strong></li>
+                                    <li class="color5">Snapshots Directory - <strong>User Defined</strong></li>
+                                </ul>
+                                <br />
+                                <p>You can leave all the other options at their defaults, or configure them to your liking.</p>
+                                <p>Additionally, you will need to run the <strong>NvCameraEnable.exe</strong> application from a command prompt, passing it the <code><span class="pln">whitelisting-everything</span></code> parameter to allow <em>Ethereal Legends</em> to use Ansel. This change persists across reboots, and may be reset by typing <code><span class="pln">whitelisting-default</span></code> in place of <code><span class="pln">whitelisting-everything</span></code>.</p>
+                                <p>Simply open a command prompt and enter the following command:</p>
+                                <pre class="prettyprint prettyprinted"><code><span class="str">"C:\Program Files\NVIDIA Corporation\Ansel\Tools\NvCameraEnable.exe"</span><span class="pln"> whitelisting</span><span class="pun">-</span><span class="pln">everything</span></code></pre>
+                                <p>With Ansel configured and all applications whitelisted for use, you can start <em>Ethereal Legends</em> and use the Ansel tool in game by pressing <strong>Alt-F2.</strong></p>
+                                <hr />
+                                <img class="img-responsive mlr-auto mb20" src="http://soverance.com/ethereal/wp-content/uploads/sites/2/2017/04/Ansel3-1024x576.png" alt="" width="499" height="281" />
+                                <h2>Ansel Usage Options</h2>
+                                <h1><span id="Filter" class="mw-headline">Filter</span></h1>
+                                <ul class="list-1">
+                                    <li class="color5">
+                                        Filter type
+                                        <ul class="list-1">
+                                            <li class="color5">None</li>
+                                            <li class="color5">Black &amp; White</li>
+                                            <li class="color5">Half-Tone</li>
+                                            <li class="color5">Retro</li>
+                                            <li class="color5">Sepia</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br />
+                                <p>Intensity of the filters can be regulated as you wish.</p>
+                                <h1><span id="Adjustments" class="mw-headline">Adjustments</span></h1>
+                                <ul class="list-1">
+                                    <li class="color5">Brightness</li>
+                                    <li class="color5">Contrast</li>
+                                    <li class="color5">Vibrance</li>
+                                </ul>
+                                <h1><span id="FX" class="mw-headline">FX</span></h1>
+                                <ul class="list-1">
+                                    <li class="color5">Sketch</li>
+                                    <li class="color5">Color enhancer</li>
+                                    <li class="color5">Vignette</li>
+                                    <li class="color5">Grid of thirds (On/Off)</li>
+                                </ul>
+                                <h1><span id="Camera_.26_Capture" class="mw-headline">Camera &amp; Capture</span></h1>
+                                <ul class="list-1">
+                                    <li class="color5">Field of view (from 10° to 140°</li>
+                                    <li class="color5">Roll (from -180° to 180°)</li>
+                                    <li class="color5">Raw HDR (On/Off)</li>
+                                </ul>
+                                <h1><span id="Camera_Types" class="mw-headline">Camera Types</span></h1>
+                                <ul class="list-1">
+                                    <li class="color5">Screenshot</li>
+                                    <li class="color5">Super Resolution (from 3,840 x 2,160 x2 to 63,360 x 35,640 x33)</li>
+                                    <li class="color5">360° (from 4,096 x 2,048 to 8,192 x 4,096)</li>
+                                    <li class="color5">Stereo</li>
+                                    <li class="color5">360° Stereo (from 4,096 x 4,096 to 8,192 x 8,192)</li>
+                                </ul>
+                                <h1><span id="How_to_view_Ansel_360" class="mw-headline">How to view Ansel 360</span></h1>
+                                <p>There are many ways to view 360-degree images captured with Ansel, including smartphones, a desktop browser, Google Cardboard, or HTC Vive and Oculus Rift VR headsets. Choose one of the options below and explore the selection of "Shot with GeForce®" Ansel screenshots.</p>
+                                <h1><span id="NVIDIA_VR_Viewer_-_Google_Cardboard" class="mw-headline">NVIDIA VR Viewer - Google Cardboard</span></h1>
+                                <ol class="list-2">
+                                    <li class="color5">Install the Cardboard app from the Google Play Store.</li>
+                                    <li class="color5">Install the NVIDIA VR Viewer app from the Google Play Store.</li>
+                                    <li class="color5">Launch the NVIDIA VR Viewer Cardboard app and install your phone* into the Cardboard holder.</li>
+                                </ol>
+                                <br />
+                                <p>Phone requirements: Android™ Lollipop or newer OS, 2 GB RAM</p>
+                                <h1><span id="Upload_your_360_Stereo_Ansel_images_to_NVIDIA_VR_Viewer" class="mw-headline">Upload your 360 Stereo Ansel images to NVIDIA VR Viewer</span></h1>
+                                <ol class="list-2">
+                                    <li class="color5">Open Ansel enabled game</li>
+                                    <li class="color5">Capture 360 Stereo in 4096 x 4096 resolution</li>
+                                    <li class="color5">Log in to Google Photos on your PC</li>
+                                    <li class="color5">Upload to "NVIDIA VR Viewer" Album</li>
+                                </ol>
+                                <h1><span id="View_with_your_VR_Headset" class="mw-headline">View with your VR Headset</span></h1>
+                                <p>Download Ansel 360 images and view through Virtual Desktop.</p>
+                                <ol class="list-2">
+                                    <li class="color5">Download Ansel 360 images to your PC</li>
+                                    <li class="color5">Download Virtual Desktop <a href="https://store.steampowered.com/app/382110/Virtual_Desktop/">here</a>.</li>
+                                    <li class="color5">Launch Virtual Desktop and select the appropriate option to "Launch Virtual Desktop in…" either "Steam VR Mode" for HTC Vive devices, or "Other Mode" for Oculus Rift devices.</li>
+                                    <li class="color5">Virtual Desktop will default to the SETTINGS screen</li>
+                                    <li class="color5">Put on your VR headset</li>
+                                    <li class="color5">Adjust Virtual Desktop's settings to your comfort</li>
+                                    <li class="color5">Within Virtual Desktop, click on PHOTOS</li>
+                                    <li class="color5">Drag and drop photos into the empty space.  Within the VR headset, you will now be placed into the center of your 360° photo</li>
+                                    <li class="color5">After a few moments the Virtual Desktop window within your headset will disappear</li>
+                                    <li class="color5">Use the arrow keys on the keyboard to cycle through your photos</li>
+                                </ol>
+                                <hr />
+                                <img class="img-responsive mlr-auto mb20" src="~/images/logos/ansel_logo.png" alt="" width="506" height="145" />
+                            </div>
+                            <div class="clearfix">
+                                <p class="col-lg-4 col-md-4 col-sm-12 col-sm-12 m0">
+                                    <img src="~/images/post/post-small-1.jpg" alt="" class="img-responsive mlr-auto mb20">
+                                </p>
+                                <p class="col-lg-4 col-md-4 col-sm-12 col-sm-12 m0">
+                                    <img src="~/images/post/post-small-2.jpg" alt="" class="img-responsive mlr-auto mb20">
+                                </p>
+                                <p class="col-lg-4 col-md-4 col-sm-12 col-sm-12 m0">
+                                    <img src="~/images/post/post-small-3.jpg" alt="" class="img-responsive mlr-auto mb20">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bottom-info-bl">
+                            <div class="table">
+                                <div class="table-cell valign-middle">
+                                    <i class="fa fa-user color-6 fsize-14" aria-hidden="true"></i>
+                                    <span class="color-2 fsize-14 ml5">by Scott</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt60 wow fadeInLeft">
+                    <div class="related-post">
+                        <div class="related-item col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <a href="post.html" class="related-wrapper">
+                                <div class="related-img">
+                                    <img src="~/images/post/related-1.jpg" alt="">
+                                </div>
+                                <div class="related-title">
+                                    <div class="font-agency fsize-24 fweight-700 color-white uppercase">
+                                        Alcatra venison salsmi
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="related-item col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <a href="post.html" class="related-wrapper">
+                                <div class="related-img">
+                                    <img src="~/images/post/related-2.jpg" alt="">
+                                </div>
+                                <div class="related-title">
+                                    <div class="font-agency fsize-24 fweight-700 color-white uppercase">
+                                        Shoulder meatbal
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="related-item col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <a href="post.html" class="related-wrapper">
+                                <div class="related-img">
+                                    <img src="~/images/post/related-3.jpg" alt="">
+                                </div>
+                                <div class="related-title">
+                                    <div class="font-agency fsize-24 fweight-700 color-white uppercase">
+                                        Sousage pork chuck
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SECTION END -->

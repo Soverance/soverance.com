@@ -20,14 +20,26 @@ namespace soverance.com.Ethereal.Controllers
             return View();
         }
 
+        [Route("ethereal/eula")]
+        public IActionResult EULA()
+        {
+            return View();
+        }
+
         [Route("ethereal/guide")]
         public IActionResult Guide()
         {
             return View();
         }
 
-        [Route("ethereal/eula")]
-        public IActionResult EULA()
+        [Route("ethereal/guide/loot")]
+        public IActionResult Loot()
+        {
+            return View();
+        }
+
+        [Route("ethereal/guide/ansel")]
+        public IActionResult Ansel()
         {
             return View();
         }
