@@ -16,13 +16,13 @@ namespace soverance.com.Controllers
     public class HomeController : Controller
     {
         private readonly DatabaseContext SovDatabaseContext;
-        private readonly IOptions<AzureConfig> SovAzureConfig;
+        private readonly IOptions<SecretConfig> SovSecretConfig;
 
-        public HomeController(DatabaseContext _SovDatabaseContext, IOptions<AzureConfig> _SovAzureConfig)
+        public HomeController(DatabaseContext _SovDatabaseContext, IOptions<SecretConfig> _SovSecretConfig)
         {
             // construct the configuration objects for this controller
             SovDatabaseContext = _SovDatabaseContext;
-            SovAzureConfig = _SovAzureConfig;
+            SovSecretConfig = _SovSecretConfig;
         }
 
         [Route("")]
@@ -30,7 +30,10 @@ namespace soverance.com.Controllers
         [Route("home/index")]
         public IActionResult Index()
         {
-            return View();
+            string GoogleApiKey = SovSecretConfig.Value.GoogleApiKey;
+            List<YouTubeData> VideoList = YouTubeModel.GetVideos(GoogleApiKey);
+            ViewBag.LatestVideos = VideoList.Take(4);
+            return View(VideoList);
         }
 
         [Route("about")]
@@ -42,8 +45,8 @@ namespace soverance.com.Controllers
         [Route("contact")]
         public IActionResult Contact()
         {
-            ViewBag.AzureMapsKey = SovAzureConfig.Value.AzureMapsKey;
-            return View(SovAzureConfig);
+            ViewBag.AzureMapsKey = SovSecretConfig.Value.AzureMapsKey;
+            return View(SovSecretConfig);
         }
 
         [Route("privacy")]

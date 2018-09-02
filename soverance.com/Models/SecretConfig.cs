@@ -5,8 +5,10 @@ using Microsoft.Extensions.Configuration;
 
 namespace soverance.com.Models
 {
-    public partial class AzureConfig
+    public partial class SecretConfig
     {
         public string AzureMapsKey { get; set; }
+
+        public string GoogleApiKey { get; set; }
     }
 }

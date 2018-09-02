@@ -7,6 +7,7 @@
     <Description>Soverance Studios Main Website</Description>
     <Copyright>© 2018 Soverance Studios, LLS</Copyright>
     <PackageProjectUrl>https://soverance.com</PackageProjectUrl>
+    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.35.1.1226" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>

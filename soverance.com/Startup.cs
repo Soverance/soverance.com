@@ -33,7 +33,7 @@ namespace soverance.com
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.Configure<AzureConfig>(Configuration.GetSection("AzureConfig"));
+            services.Configure<SecretConfig>(Configuration.GetSection("SecretConfig"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Database")));

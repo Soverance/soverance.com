@@ -1,4 +1,4 @@
-﻿
+﻿@model List<YouTubeData>
 @{
     ViewData["Title"] = "Soverance Studios Home";
 }
@@ -1662,14 +1662,14 @@
                         <li class="active col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <a href="#stream-1" data-toggle="tab">
                                 <div class="tab-title">
-                                    Most popular streams
+                                    Soverance YouTube Channel
                                 </div>
                             </a>
                         </li>
                         <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <a href="#stream-2" data-toggle="tab">
                                 <div class="tab-title">
-                                    Upcoming Competitions
+                                    Latest Videos
                                 </div>
                             </a>
                         </li>
@@ -1685,30 +1685,14 @@
                 <div class="tab-content stream-bl relative">
                     <div class="tab-pane fade active in text-left clearfix" id="stream-1">
                         <div class="left-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="video-bl equal-height" data-vide-bg="mp4: https://denysthemes.com/html/riliant/assets/video/earth.mp4, webm: https://denysthemes.com/html/riliant/assets/video/earth.webm, ogv: https://denysthemes.com/html/riliant/assets/video/earth.ogv, poster: /images/585x550.jpg"
-                                 data-vide-options="className: 'video-main', posterType: jpg, loop: false, muted: false, position: center center, autoplay: false">
-                                <div class="buttonbar mt75">
-                                    <div id="play" class="play-show play relative fsize-24 inline-block">
-                                        <div class="pp-wrapper">
-                                            <i class="fa fa-play color-white" aria-hidden="true"></i>
-                                            <i class="fa fa-pause color-white" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="video-bl equal-height" >
+                                <video id="LatestVideo" class="equal-height vjs-big-play-centered video-js vjs-default-skin vjs-16-9 game-full-img" controls preload="auto" poster="@Model[0].ImageUrl"
+                                       data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "@Model[0].VideoWatchLink"}}'></video>                                
                                 <div class="video-bottom">
                                     <div class="video-title">
-                                        Tenderloin shoulder picanha rump
+                                        @Model[0].Title
                                     </div>
                                     <div class="mt15">
-                                        <div class="stream-img">
-                                            <img src="~/images/stream-img-1.jpg" alt="">
-                                        </div>
-                                        <div class="stream-img">
-                                            <img src="~/images/stream-img-2.jpg" alt="">
-                                        </div>
-                                        <div class="stream-img">
-                                            <img src="~/images/stream-img-3.jpg" alt="">
-                                        </div>
                                         <div class="inline-block valign-middle color-white ml15">
                                             2569 watching now
                                         </div>
@@ -1719,15 +1703,14 @@
                         <div class="right-col col-lg-6 col-md-6 col-sm-12 col-xs-12 equal-height">
                             <div class="top-wrapp">
                                 <div class="fsize-24 fweight-700 font-agency color-white uppercase lheight-28">
-                                    Create Your own channel and Start to Stream games now
+                                    Check out the Soverance YouTube channel for the latest video content!
                                 </div>
                                 <div class="mt40 lheight-26">
-                                    Drumstick meatloaf capicola short ribs, pork chop cupim kielbasa jerky porchetta pancetta chicken pastrami turkey tenderloin
-                                    sausage. Pig buffalo alcatra meatball. T-bone hamburger bresaola kevin shank porchetta
-                                    ground. Round beef tail tri-tip. Short loin pork strip steak venison.
+                                    We post all of our best video content on our YouTube channel, including the latest trailers and previews for our games,
+                                    as well as game design tutorials and other special video content. Be sure to check back often!
                                 </div>
-                                <a href="#" class="btn gradient color-white plr40 ptb19 mt30">
-                                    Get started now
+                                <a href="https://www.youtube.com/user/soverancestudios/" class="btn gradient color-white plr40 ptb19 mt30">
+                                    Visit our Channel
                                 </a>
                             </div>
                             <div class="bottom-wrapp mt40">
@@ -1747,42 +1730,18 @@
                             </div>
                         </div>
                         <div class="right-col col-lg-6 col-md-6 col-sm-12 col-xs-12 equal-height">
-                            <div class="item-g">
-                                <div class="img-com inline-block valign-middle">
-                                    <img src="~/images/competition-1.jpg" alt="">
+                            @foreach (var video in ViewBag.LatestVideos)
+                            {
+                                <div class="item-g">
+                                    <div class="img-com inline-block valign-middle">
+                                        <img src="@video.ImageUrl" alt="" height="80" width="80">
+                                    </div>
+                                    <div class="info-bl inline-block valign-middle ml25">
+                                        <div class="fsize-24 fweight-700 font-agency uppercase color-white" data-trim="35">@video.Title</div>
+                                        <div>267 347 participants</div>
+                                    </div>
                                 </div>
-                                <div class="info-bl inline-block valign-middle ml25">
-                                    <div class="fsize-24 fweight-700 font-agency uppercase color-white" data-trim="35">Shankle ribeye bacon</div>
-                                    <div>267 347 participants</div>
-                                </div>
-                            </div>
-                            <div class="item-g">
-                                <div class="img-com inline-block valign-middle">
-                                    <img src="~/images/competition-2.jpg" alt="">
-                                </div>
-                                <div class="info-bl inline-block valign-middle ml25">
-                                    <div class="fsize-24 fweight-700 font-agency uppercase color-white" data-trim="35">Doner bresaola pork Kielbasa</div>
-                                    <div>267 347 participants</div>
-                                </div>
-                            </div>
-                            <div class="item-g">
-                                <div class="img-com inline-block valign-middle">
-                                    <img src="~/images/competition-3.jpg" alt="">
-                                </div>
-                                <div class="info-bl inline-block valign-middle ml25">
-                                    <div class="fsize-24 fweight-700 font-agency uppercase color-white" data-trim="35">Kielbasa fatback alcatr</div>
-                                    <div>267 347 participants</div>
-                                </div>
-                            </div>
-                            <div class="item-g">
-                                <div class="img-com inline-block valign-middle">
-                                    <img src="~/images/competition-4.jpg" alt="">
-                                </div>
-                                <div class="info-bl inline-block valign-middle ml25">
-                                    <div class="fsize-24 fweight-700 font-agency uppercase color-white" data-trim="35">Bacon tenderloin drumstick meatball</div>
-                                    <div>267 347 participants</div>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                     <div class="tab-pane fade in competition text-left clearfix" id="stream-3">
