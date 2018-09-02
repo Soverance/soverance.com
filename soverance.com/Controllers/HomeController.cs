@@ -31,8 +31,13 @@ namespace soverance.com.Controllers
         public IActionResult Index()
         {
             string GoogleApiKey = SovSecretConfig.Value.GoogleApiKey;
-            List<YouTubeData> VideoList = YouTubeModel.GetVideos(GoogleApiKey);
+            List<YouTubeData> VideoList = YouTubeModel.GetVideos(GoogleApiKey, true);
             ViewBag.LatestVideos = VideoList.Take(4);
+            ViewBag.TotalChannelViews = YouTubeModel.GetChannelTotalViews(GoogleApiKey);
+            ViewBag.TotalSubscribers = YouTubeModel.GetChannelSubscriberCount(GoogleApiKey);            
+            List<YouTubeData> TutorialList = YouTubeModel.GetVideos(GoogleApiKey, false, "PLXZQqd9R-mFHH3cBvJIffMUUWQjl9h1Kh");
+            ViewBag.TutorialPlaylist = TutorialList.Take(4);
+            ViewBag.LatestTutorial = TutorialList[0];
             return View(VideoList);
         }
 

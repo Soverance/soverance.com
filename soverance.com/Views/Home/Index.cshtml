@@ -1676,7 +1676,7 @@
                         <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <a href="#stream-3" data-toggle="tab">
                                 <div class="tab-title">
-                                    Prosciutto meatball flank
+                                    Tutorial Playlist
                                 </div>
                             </a>
                         </li>
@@ -1686,15 +1686,15 @@
                     <div class="tab-pane fade active in text-left clearfix" id="stream-1">
                         <div class="left-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="video-bl equal-height" >
-                                <video id="LatestVideo" class="equal-height vjs-big-play-centered video-js vjs-default-skin vjs-16-9 game-full-img" controls preload="auto" poster="@Model[0].ImageUrl"
-                                       data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "@Model[0].VideoWatchLink"}}'></video>                                
+                                <video id="LatestVideo" class="equal-height vjs-big-play-centered video-js vjs-default-skin vjs-16-9 game-full-img" controls preload="auto"
+                                       data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "@Model[7].VideoWatchLink"}}'></video>                                
                                 <div class="video-bottom">
                                     <div class="video-title">
-                                        @Model[0].Title
+                                        @Model[7].Title
                                     </div>
                                     <div class="mt15">
                                         <div class="inline-block valign-middle color-white ml15">
-                                            2569 watching now
+                                            @Model[7].ViewCount views
                                         </div>
                                     </div>
                                 </div>
@@ -1714,18 +1714,25 @@
                                 </a>
                             </div>
                             <div class="bottom-wrapp mt40">
-                                <div class="fsize-24 fweight-700 font-agency uppercase color-white">9 136 streams from most recent games</div>
-                                <div>267 347 watching now</div>
+                                <div class="fsize-24 fweight-700 font-agency uppercase color-white">@ViewBag.TotalChannelViews total channel views</div>
+                                <div>@ViewBag.TotalSubscribers total subscribers</div>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade in competition text-left clearfix" id="stream-2">
                         <div class="left-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="image_bg equal-height" style="background-image: url('/images/competition-full.jpg');">
-                                <div class="bottom-bar">
-                                    <a href="#" class="btn gradient color-white plr50 ptb19">
-                                        Contact us now
-                                    </a>
+                            <div class="video-bl equal-height">
+                                <video id="LatestVideo" class="equal-height vjs-big-play-centered video-js vjs-default-skin vjs-16-9 game-full-img" controls preload="auto"
+                                       data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "@Model[0].VideoWatchLink"}}'></video>
+                                <div class="video-bottom">
+                                    <div class="video-title">
+                                        @Model[0].Title
+                                    </div>
+                                    <div class="mt15">
+                                        <div class="inline-block valign-middle color-white ml15">
+                                            @Model[0].ViewCount views
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1733,12 +1740,12 @@
                             @foreach (var video in ViewBag.LatestVideos)
                             {
                                 <div class="item-g">
-                                    <div class="img-com inline-block valign-middle">
+                                    <div class="img-com inline-block valign-middle equal-height">
                                         <img src="@video.ImageUrl" alt="" height="80" width="80">
                                     </div>
                                     <div class="info-bl inline-block valign-middle ml25">
                                         <div class="fsize-24 fweight-700 font-agency uppercase color-white" data-trim="35">@video.Title</div>
-                                        <div>267 347 participants</div>
+                                        <div>@video.ViewCount views</div>
                                     </div>
                                 </div>
                             }
@@ -1746,51 +1753,34 @@
                     </div>
                     <div class="tab-pane fade in competition text-left clearfix" id="stream-3">
                         <div class="left-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <div class="image_bg equal-height" style="background-image: url('/images/competition-full.jpg');">
-                                <div class="bottom-bar">
-                                    <a href="#" class="btn gradient color-white plr50 ptb19">
-                                        Contact us now
-                                    </a>
+                            <div class="video-bl equal-height">
+                                <video id="LatestVideo" class="equal-height vjs-big-play-centered video-js vjs-default-skin vjs-16-9 game-full-img" controls preload="auto"
+                                       data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "@ViewBag.LatestTutorial.VideoWatchLink"}}'></video>
+                                <div class="video-bottom">
+                                    <div class="video-title">
+                                        @ViewBag.LatestTutorial.Title
+                                    </div>
+                                    <div class="mt15">
+                                        <div class="inline-block valign-middle color-white ml15">
+                                            @ViewBag.LatestTutorial.ViewCount views
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="right-col col-lg-6 col-md-6 col-sm-12 col-xs-12 equal-height">
-                            <div class="item-g">
-                                <div class="img-com inline-block valign-middle">
-                                    <img src="~/images/competition-1.jpg" alt="">
+                            @foreach (var video in ViewBag.TutorialPlaylist)
+                            {
+                                <div class="item-g">
+                                    <div class="img-com inline-block valign-middle equal-height">
+                                        <img src="@video.ImageUrl" alt="" height="80" width="80">
+                                    </div>
+                                    <div class="info-bl inline-block valign-middle ml25">
+                                        <div class="fsize-24 fweight-700 font-agency uppercase color-white" data-trim="35">@video.Title</div>
+                                        <div>@video.ViewCount views</div>
+                                    </div>
                                 </div>
-                                <div class="info-bl inline-block valign-middle ml25">
-                                    <div class="fsize-24 fweight-700 font-agency uppercase color-white" data-trim="35">Shankle ribeye bacon</div>
-                                    <div>267 347 participants</div>
-                                </div>
-                            </div>
-                            <div class="item-g">
-                                <div class="img-com inline-block valign-middle">
-                                    <img src="~/images/competition-2.jpg" alt="">
-                                </div>
-                                <div class="info-bl inline-block valign-middle ml25">
-                                    <div class="fsize-24 fweight-700 font-agency uppercase color-white" data-trim="35">Doner bresaola pork Kielbasa</div>
-                                    <div>267 347 participants</div>
-                                </div>
-                            </div>
-                            <div class="item-g">
-                                <div class="img-com inline-block valign-middle">
-                                    <img src="~/images/competition-3.jpg" alt="">
-                                </div>
-                                <div class="info-bl inline-block valign-middle ml25">
-                                    <div class="fsize-24 fweight-700 font-agency uppercase color-white" data-trim="35">Kielbasa fatback alcatr</div>
-                                    <div>267 347 participants</div>
-                                </div>
-                            </div>
-                            <div class="item-g">
-                                <div class="img-com inline-block valign-middle">
-                                    <img src="~/images/competition-4.jpg" alt="">
-                                </div>
-                                <div class="info-bl inline-block valign-middle ml25">
-                                    <div class="fsize-24 fweight-700 font-agency uppercase color-white" data-trim="35">Bacon tenderloin drumstick meatball</div>
-                                    <div>267 347 participants</div>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>

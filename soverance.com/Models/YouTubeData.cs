@@ -13,5 +13,6 @@ namespace soverance.com.Models
         public bool IsValid { get; set; }
         public string VideoEmbedLink { get; set; }
         public string VideoWatchLink { get; set; }
+        public ulong ViewCount { get; set; }
     }
 }

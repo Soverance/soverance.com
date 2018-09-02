@@ -9,7 +9,7 @@ namespace soverance.com.Models
 {
     public static class YouTubeModel
     {
-        public static List<YouTubeData> GetVideos(string GoogleApiKey)
+        public static List<YouTubeData> GetVideos(string GoogleApiKey, bool bAllUploads, string PlaylistId = "")
         {
             int MaxResults = 50;
             List<YouTubeData> VideoList = new List<YouTubeData>();
@@ -22,8 +22,16 @@ namespace soverance.com.Models
                 var channelsListResponse = channelsListRequest.Execute();
                 foreach (var channel in channelsListResponse.Items)
                 {
-                    // of videos uploaded to the channel.
-                    var uploadsListId = channel.ContentDetails.RelatedPlaylists.Uploads;
+                    var uploadsListId = "";
+                    // get videos uploaded to the channel from specified playlist.
+                    if (bAllUploads)
+                    {
+                        uploadsListId = channel.ContentDetails.RelatedPlaylists.Uploads;
+                    }
+                    else
+                    {
+                        uploadsListId = PlaylistId;
+                    }                    
                     var nextPageToken = "";
                     while (nextPageToken != null)
                     {
@@ -47,6 +55,12 @@ namespace soverance.com.Models
                                 VideoDataObject.Descriptions = playlistItem.Snippet.Description;
                                 VideoDataObject.ImageUrl = playlistItem.Snippet.Thumbnails.High.Url;
                                 VideoDataObject.IsValid = true;
+
+                                var VideoStatObjectRequest = yt.Videos.List("statistics");
+                                VideoStatObjectRequest.Id = playlistItem.Snippet.ResourceId.VideoId;
+                                var VideoStatObjectResponse = VideoStatObjectRequest.Execute();
+                                VideoDataObject.ViewCount = VideoStatObjectResponse.Items[0].Statistics.ViewCount.Value;
+
                                 VideoList.Add(VideoDataObject);
 
                             }
@@ -63,5 +77,54 @@ namespace soverance.com.Models
 
             return VideoList;
         }
+
+        public static string GetChannelTotalViews(string GoogleApiKey)
+        {
+            ulong TotalViews = new ulong();
+
+            try
+            {
+                var yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = GoogleApiKey });
+                var channelsListRequest = yt.Channels.List("statistics");                
+                channelsListRequest.ForUsername = "soverancestudios";  // youtube channel name
+                var channelsListResponse = channelsListRequest.Execute();
+                foreach (var channel in channelsListResponse.Items)
+                {
+                    TotalViews = channel.Statistics.ViewCount.Value;
+                }
+            }
+            catch (Exception e)
+            {
+                string ErrorMessage = "Some exception occured" + e;
+            }
+
+            string TotalViewsString = TotalViews.ToString("N0");  // formats the number string with commas every 3 places - i.e. 10,000,000
+            return TotalViewsString;
+        }
+
+        public static string GetChannelSubscriberCount(string GoogleApiKey)
+        {
+            ulong TotalSubs = new ulong();
+
+            try
+            {
+                var yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = GoogleApiKey });
+                var channelsListRequest = yt.Channels.List("statistics");
+                channelsListRequest.ForUsername = "soverancestudios";  // youtube channel name
+                var channelsListResponse = channelsListRequest.Execute();
+                foreach (var channel in channelsListResponse.Items)
+                {
+                    TotalSubs = channel.Statistics.SubscriberCount.Value;
+                }
+            }
+            catch (Exception e)
+            {
+                string ErrorMessage = "Some exception occured" + e;
+            }
+
+            string TotalSubsString = TotalSubs.ToString("N0");  // formats the number string with commas every 3 places - i.e. 10,000,000
+            return TotalSubsString;
+        }
+        
     }
 }
