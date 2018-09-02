@@ -64,12 +64,6 @@ namespace soverance.com.Controllers
             return View();
         }
 
-        [Route("endlessreach")]
-        public IActionResult EndlessReach()
-        {
-            return View();
-        }
-
         [Route("testimonials")]
         public IActionResult Testimonials()
         {
