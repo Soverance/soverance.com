@@ -106,7 +106,8 @@ namespace soverance.com.Controllers
         public IActionResult Error()
         {
             var feature = HttpContext.Features.Get<IExceptionHandlerFeature>();
-            var error = feature?.Error;
+            ErrorViewModel error = new ErrorViewModel();
+            error.RequestId = feature?.Error.Message;
             return View("~/Views/Shared/Error.cshtml", error);
         }
     }

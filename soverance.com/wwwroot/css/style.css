@@ -1964,7 +1964,7 @@ footer.footer {
   height: 100vh;
   padding-top: 140px;
   min-height: 700px;
-  background: url("../images/404/404-bg.jpg");
+  background: url("../images/error/bg-error.jpg");
   background-size: cover; }
   .page-404 .title-error {
     color: #fff;

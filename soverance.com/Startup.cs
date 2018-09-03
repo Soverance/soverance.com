@@ -45,6 +45,7 @@ namespace soverance.com
             {
                 sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                
             })
             .AddAzureAd(options => Configuration.Bind("AzureAd", options))
             .AddCookie();
@@ -59,10 +60,11 @@ namespace soverance.com
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/error");
                 app.UseHsts();
             }
-                        
+
+            app.UseStatusCodePagesWithRedirects("~/error");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
