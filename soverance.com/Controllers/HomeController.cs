@@ -81,6 +81,13 @@ namespace soverance.com.Controllers
         }
 
         [AllowAnonymous]
+        [Route("portfolio")]
+        public IActionResult Portfolio()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
         [Route("testimonials")]
         public IActionResult Testimonials()
         {
