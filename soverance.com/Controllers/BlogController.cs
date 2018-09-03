@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using soverance.com.Models;
 
 namespace soverance.com.Controllers
 {
+    [Authorize]
     public class BlogController : Controller
     {
         private readonly DatabaseContext _context;

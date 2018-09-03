@@ -9,10 +9,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
 using soverance.com.Models;
 
 namespace soverance.com.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly DatabaseContext SovDatabaseContext;
@@ -25,6 +27,7 @@ namespace soverance.com.Controllers
             SovSecretConfig = _SovSecretConfig;
         }
 
+        [AllowAnonymous]
         [Route("")]
         [Route("home")]
         [Route("home/index")]
@@ -41,12 +44,14 @@ namespace soverance.com.Controllers
             return View(VideoList);
         }
 
+        [AllowAnonymous]
         [Route("about")]
         public IActionResult About()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [Route("contact")]
         public IActionResult Contact()
         {
@@ -54,42 +59,49 @@ namespace soverance.com.Controllers
             return View(SovSecretConfig);
         }
 
+        [AllowAnonymous]
         [Route("privacy")]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [Route("faq")]
         public IActionResult FAQ()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [Route("games")]
         public IActionResult Games()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [Route("testimonials")]
         public IActionResult Testimonials()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [Route("consulting")]
         public IActionResult Consulting()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [Route("gallery")]
         public IActionResult Gallery()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [Route("error")]
         public IActionResult Error()
         {

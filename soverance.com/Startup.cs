@@ -7,9 +7,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using soverance.com.Models;
 
 namespace soverance.com
@@ -34,11 +38,18 @@ namespace soverance.com
             });
 
             services.Configure<SecretConfig>(Configuration.GetSection("SecretConfig"));
+            services.Configure<AzureAdOptions>(Configuration.GetSection("Authentication:AzureAd"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContext<DatabaseContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("Database")));
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Database")));
+            services.AddAuthentication(sharedOptions =>
+            {
+                sharedOptions.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                sharedOptions.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            })
+            .AddAzureAd(options => Configuration.Bind("AzureAd", options))
+            .AddCookie();
         }
-
+    
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -55,34 +66,11 @@ namespace soverance.com
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
 
-            //routes.MapRoute(
-            //    name: "default",
-            //    template: "{action}/{id?}",
-            //    defaults: new { controller = "Home", action = "Index" });
-
-            //routes.MapRoute(
-            //    name: "Team",
-            //    template: "{area:exists}/{action}/{id?}",
-            //    defaults: new { controller = "Team", action = "Index" });
-
-            //routes.MapRoute(
-            //    name: "Post",
-            //    template: "blog/{slug?}",
-            //    defaults: new { controller = "Blog", action = "ViewPost" });
-
-            //routes.MapRoute(
-            //    name: "Blog",
-            //    template: "blog/{action}/{id?}",
-            //    defaults: new { controller = "Blog", action = "Index" });
-
-            //routes.MapRoute(
-            //    name: "Ethereal",
-            //    template: "{area:exists}/{action}/{id?}",
-            //    defaults: new { controller = "Ethereal", action = "Index" });
             });
         }
     }
