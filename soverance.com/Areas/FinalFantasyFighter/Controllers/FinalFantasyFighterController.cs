@@ -23,5 +23,12 @@ namespace soverance.com.FinalFantasyFighter.Controllers
         {
             return View();
         }
+
+        [AllowAnonymous]
+        [Route("ffxi-fighter/documentation")]
+        public IActionResult Documentation()
+        {
+            return View();
+        }
     }
 }
