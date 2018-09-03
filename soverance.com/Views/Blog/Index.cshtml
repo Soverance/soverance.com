@@ -434,9 +434,12 @@
                         <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
                     </div>
                 </div>
-                <p>
-                    <a asp-action="CreateCategory" class="btn header-btn ml25 color-white hidden-sm hidden-xs">Create New Category</a>
-                </p>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p>
+                        <a asp-action="CreateCategory" class="btn header-btn ml25 color-white hidden-sm hidden-xs">Create New Category</a>
+                    </p>
+                }
                 <div class="widget-bl categories-widget">
                     <h5 class="fsize-20 text-center">Categories</h5>
                     <div class="widget-wrapper">
@@ -444,33 +447,39 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr>
-                                        <td>
-                                            <a asp-action="ViewCategory" asp-route-id="@item.CategoryId" class="latest-item">
-                                                <div class="table table-nobackground">
-                                                    <div class="table-row">
-                                                        <div class="latest-title table-cell valign-middle pl20">
-                                                            <div class="title-top font-agency fweight-700 uppercase color-white">
-                                                                @item.CategoryName
-                                                            </div>
+                                <tr>
+                                    <td>
+                                        <a asp-action="ViewCategory" asp-route-id="@item.CategoryId" class="latest-item">
+                                            <div class="table table-nobackground">
+                                                <div class="table-row">
+                                                    <div class="latest-title table-cell valign-middle pl20">
+                                                        <div class="title-top font-agency fweight-700 uppercase color-white">
+                                                            @item.CategoryName
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </a>
-                                        </td>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
                                         <td>
                                             <a asp-action="EditCategory" asp-route-id="@item.CategoryId">Edit</a> |
                                             <a asp-action="DeleteCategory" asp-route-id="@item.CategoryId">Delete</a>
                                         </td>
-                                    </tr>                                    
+                                    }                                    
+                                </tr>
                                 }
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <p>
-                    <a asp-action="CreatePost" class="btn header-btn ml25 color-white hidden-sm hidden-xs">Create New Post</a>
-                </p>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <p>
+                        <a asp-action="CreatePost" class="btn header-btn ml25 color-white hidden-sm hidden-xs">Create New Post</a>
+                    </p>
+                }
                 <div class="widget-bl latest-widget">
                     <h5 class="fsize-20 text-center">Latest posts</h5>
                     <div class="widget-wrapper">
@@ -478,34 +487,37 @@
                             <tbody>
                                 @foreach (var post in ViewBag.AllPosts)
                                 {
-                                    <tr>
-                                        <td>
-                                            <a asp-action="ViewPost" asp-route-slug="@post.Slug" class="latest-item">
-                                                <div class="table table-nobackground">
-                                                    <div class="table-row">
-                                                        <div class="latest-img table-cell valign-middle">
-                                                            <img src="~/images/blog/latest-img-1.jpg" alt="">
+                                <tr>
+                                    <td>
+                                        <a asp-action="ViewPost" asp-route-slug="@post.Slug" class="latest-item">
+                                            <div class="table table-nobackground">
+                                                <div class="table-row">
+                                                    <div class="latest-img table-cell valign-middle">
+                                                        <img src="~/images/blog/latest-img-1.jpg" alt="">
+                                                    </div>
+                                                    <div class="latest-title table-cell valign-middle pl20">
+                                                        <div class="title-top font-agency fweight-700 uppercase color-white">
+                                                            @post.Title
                                                         </div>
-                                                        <div class="latest-title table-cell valign-middle pl20">
-                                                            <div class="title-top font-agency fweight-700 uppercase color-white">
-                                                                @post.Title
-                                                            </div>
-                                                            <div class="color-2 uppercase fsize-12 fweight-700">
-                                                                @post.Date
-                                                            </div>
+                                                        <div class="color-2 uppercase fsize-12 fweight-700">
+                                                            @post.Date
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </a>
-                                        </td>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
                                         <td>
                                             <a asp-action="EditPost" asp-route-id="@post.PostId">Edit</a> |
                                             <a asp-action="DeletePost" asp-route-id="@post.PostId">Delete</a>
                                         </td>
-                                    </tr>                                    
+                                    }                                    
+                                </tr>
                                 }
                             </tbody>
-                        </table>                        
+                        </table>
                     </div>
                 </div>
                 <div class="widget-bl archive-widget">

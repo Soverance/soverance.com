@@ -22,8 +22,9 @@ namespace soverance.com.Controllers
         {
             _context = context;
         }
-
+        
         // GET: /Blog
+        [AllowAnonymous]
         [Route("blog")]        
         public async Task<IActionResult> Index()
         {
@@ -33,6 +34,7 @@ namespace soverance.com.Controllers
         }
 
         // GET: /Blog/ViewCategory/5
+        [AllowAnonymous]
         [Route("blog/viewcategory/{id}")]
         public async Task<IActionResult> ViewCategory(int? id)
         {
@@ -51,6 +53,7 @@ namespace soverance.com.Controllers
         }
 
         // GET: /Blog/ViewPost/5
+        [AllowAnonymous]
         [Route("blog/{slug}")]
         public async Task<IActionResult> ViewPost(string slug)
         {
