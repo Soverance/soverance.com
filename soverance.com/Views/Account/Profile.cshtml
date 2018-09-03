@@ -1,0 +1,35 @@
+﻿@using System.Security.Principal
+
+@{
+    ViewData["Title"] = "Account Profile";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <!-- SECTION START -->
+    <section class="table page-404">
+        <div class="table-row">
+            <div class="table-cell valign-middle text-center">
+                <div>
+
+                </div>
+                <div class="title-error mt30">
+                    <h2 class="text-danger">Soverance Azure AD Account Profile</h2>
+                    <br />
+                    <ul class="list-1 pt10">
+                        <li class="color5">
+                            @User.FindFirst("name").Value
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- SECTION END -->
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-controller="Account" asp-action="Signin">Sign in</a></li>
+    </ul>
+}

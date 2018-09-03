@@ -105,10 +105,9 @@ namespace soverance.com.Controllers
         [Route("error")]
         public IActionResult Error()
         {
-            var feature = HttpContext.Features.Get<IExceptionHandlerFeature>();
-            ErrorViewModel error = new ErrorViewModel();
-            error.RequestId = feature?.Error.Message;
-            return View("~/Views/Shared/Error.cshtml", error);
+            ViewData["statusCode"] = HttpContext.Response.StatusCode;
+            //ViewData["message"] = HttpContext.Features.Get<IExceptionHandlerFeature>().Error.Message;
+            return View();
         }
     }
 }

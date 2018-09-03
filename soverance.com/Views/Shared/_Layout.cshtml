@@ -304,9 +304,18 @@
                                 </button>
                             </form>
                         </div>
-                        <a href="/account/signin" class="btn header-btn ml25 color-white hidden-sm hidden-xs">
-                            Sign In
-                        </a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a href="/account/profile" class="btn header-btn ml25 color-white hidden-sm hidden-xs">
+                                @User.FindFirst("name").Value
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="/account/signin" class="btn header-btn ml25 color-white hidden-sm hidden-xs">
+                                Sign In
+                            </a>
+                        }
                     </div>
                 </div>
             </div>

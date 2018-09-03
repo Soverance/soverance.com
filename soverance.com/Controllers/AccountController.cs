@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -16,9 +17,16 @@ using soverance.com.Models;
 
 namespace soverance.com.Controllers
 {
+    [Authorize]
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult SignIn()
         {
@@ -26,6 +34,7 @@ namespace soverance.com.Controllers
 
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult SignOut()
         {
@@ -33,6 +42,7 @@ namespace soverance.com.Controllers
             return SignOut(new AuthenticationProperties { RedirectUri = callbackUrl }, CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult SignedOut()
         {
@@ -43,6 +53,7 @@ namespace soverance.com.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult AccessDenied()
         {
