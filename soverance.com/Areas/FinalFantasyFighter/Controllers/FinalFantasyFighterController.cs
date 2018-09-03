@@ -13,9 +13,11 @@ using soverance.com.Models;
 
 namespace soverance.com.FinalFantasyFighter.Controllers
 {
+    [Authorize]
     [Area("FinalFantasyFighter")]
     public class FinalFantasyFighterController : Controller
     {
+        [AllowAnonymous]
         [Route("ffxi-fighter")]
         public IActionResult Index()
         {

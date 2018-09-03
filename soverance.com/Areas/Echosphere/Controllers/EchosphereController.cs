@@ -13,6 +13,7 @@ using soverance.com.Models;
 
 namespace soverance.com.Echopshere.Controllers
 {
+    [Authorize]
     [Area("Echosphere")]
     public class EchosphereController : Controller
     {
@@ -24,6 +25,7 @@ namespace soverance.com.Echopshere.Controllers
             SovSecretConfig = _SovSecretConfig;
         }
 
+        [AllowAnonymous]
         [Route("echosphere")]
         public IActionResult Index()
         {
