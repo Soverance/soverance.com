@@ -33,21 +33,28 @@
                         </select>
                         <span asp-validation-for="CategoryId" class="text-danger"></span>
                         <p></p>
+                        <br />
                         <label asp-for="Date" class="control-label"></label>
                         <input asp-for="Date" class="form-control width-30" value="@ViewBag.CurrentDate" />
+                        <p>Always enter the date in "<strong>MM/DD/YYYY</strong>" format.</p>
                         <span asp-validation-for="Date" class="text-danger"></span>
-                        <label asp-for="Image" class="control-label"></label>
+                        <br />
+                        <label asp-for="Image" class="control-label">IMAGE - 270 x 282</label>
                         <input asp-for="Image" class="form-control" />
+                        <p>Images must be manually uploaded to the root image dir and then here you will specify the local syntax "<strong>../images/</strong>whatever/your/file/path/is.jpg" (no quotes).</p>
                         <span asp-validation-for="Image" class="text-danger"></span>
                         <label asp-for="Title" class="control-label"></label>
                         <input asp-for="Title" class="form-control" />
+                        <p>Enter a title in plain text - spaces and invalid characters will be removed to create the post's URL slug.</p>
                         <span asp-validation-for="Title" class="text-danger"></span>
                         <label asp-for="Content" class="control-label"></label>
                         <textarea asp-for="Content" class="form-control" rows="25"></textarea>
+                        <p>You may enter pure HTML into this text area.</p>
                         <span asp-validation-for="Content" class="text-danger"></span>
                         <label asp-for="Author" class="control-label"></label>
-                        <input asp-for="Author" class="form-control" />
+                        <input asp-for="Author" class="form-control" value="@User.FindFirst("name").Value" />
                         <span asp-validation-for="Author" class="text-danger width-50"></span>
+                        <br />
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn border-btn plr50 ptb19 color-white" />
