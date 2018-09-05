@@ -338,7 +338,7 @@ namespace soverance.com.Controllers
         }
 
         // POST: Blog/DeleteCategory/5
-        [HttpPost, ActionName("DeleteCategory")]
+        [HttpPost, ActionName("ConfirmDeleteCategory")]
         [ValidateAntiForgeryToken]
         [Route("blog/deletecategoryconfirmed/{id}")]
         public async Task<IActionResult> DeleteCategoryConfirmed(int id)
@@ -350,7 +350,7 @@ namespace soverance.com.Controllers
         }
 
         // POST: Blog/DeletePost/5
-        [HttpPost, ActionName("DeletePost")]
+        [HttpPost, ActionName("ConfirmDeletePost")]
         [ValidateAntiForgeryToken]
         [Route("blog/deletepostconfirmed/{id}")]
         public async Task<IActionResult> DeletePostConfirmed(int id)
