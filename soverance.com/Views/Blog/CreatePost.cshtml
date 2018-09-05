@@ -34,27 +34,27 @@
                                     <div class="tabs-nav">
                                         <ul class="list-inline nav nav-tabs fsize-0">
                                             <li class="active">
-                                                <a href="#single" data-toggle="tab" class="fsize-14 fweight-700 uppercase" aria-expanded="true">
-                                                    Post Config
+                                                <a href="#details" data-toggle="tab" class="fsize-14 fweight-700 uppercase" aria-expanded="true">
+                                                    Details Config
                                                 </a>
                                             </li>
                                             <li class="">
-                                                <a href="#video" data-toggle="tab" class="fsize-14 fweight-700 uppercase" aria-expanded="false">
-                                                    Video Config
+                                                <a href="#content" data-toggle="tab" class="fsize-14 fweight-700 uppercase" aria-expanded="false">
+                                                    Content Config
                                                 </a>
                                             </li>
                                             <li class="">
-                                                <a href="#slider" data-toggle="tab" class="fsize-14 fweight-700 uppercase" aria-expanded="false">
-                                                    Images Config
+                                                <a href="#media" data-toggle="tab" class="fsize-14 fweight-700 uppercase" aria-expanded="false">
+                                                    Media Config
                                                 </a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="tab-content relative">
-                                        <div class="tab-pane fade text-left clearfix active in" id="single">
+                                        <div class="tab-pane fade text-left clearfix active in" id="details">
                                             <div class="main-text p60">
                                                 <h5 class="fsize-32 fweight-700 font-agency uppercase">New Post Configuration:</h5>
-                                                <p class="lheight-26 mt20">                                                    
+                                                <p class="lheight-26 mt20">
                                                     Enter some default post configuration data here.
                                                 </p>
                                                 <ul class="list-1 pt10">
@@ -65,10 +65,12 @@
                                                         Always enter the date in "<strong>MM/DD/YYYY</strong>" format.
                                                     </li>
                                                     <li class="color5">
-                                                        Titles should be entered in plain text.
+                                                        Titles and Descriptions should be both short and entered in plain text.
                                                     </li>
                                                 </ul>
                                                 <p class="lheight-26 mt20">
+                                                    Post Type determines what media the post is advertised with when it appears in the main blog list.
+                                                    Static type will use the image specified for Slider1.
                                                     Once saved, the title will be automatically sanitized and formatted to be used as the post's URL slug.
                                                 </p>
                                                 <p>
@@ -78,20 +80,27 @@
                                                     <span asp-validation-for="CategoryId" class="text-danger"></span>
                                                 </p>
                                                 <p>
+                                                    <select asp-for="PostType" asp-items="ViewBag.PostTypes" class="dropdown border-dropdown plr50 ptb19 color-white" style="width:50%">
+                                                        <option selected="selected" value="">Select Post Type</option>
+                                                    </select>
+                                                    <span asp-validation-for="PostType" class="text-danger"></span>
+                                                </p>
+                                                <p>
                                                     <label asp-for="Date" class="control-label"></label>
                                                     <input asp-for="Date" class="form-control width-30" value="@ViewBag.CurrentDate" />
                                                     <span asp-validation-for="Date" class="text-danger"></span>
                                                 </p>
-                                                <p class="lheight-30 mt20">
+                                                <p>
                                                     <label asp-for="Title" class="control-label"></label>
                                                     <input asp-for="Title" class="form-control" />
                                                     <span asp-validation-for="Title" class="text-danger"></span>
                                                 </p>
                                                 <p>
-                                                    <label asp-for="Content" class="control-label"></label>
-                                                    <textarea asp-for="Content" class="form-control" rows="25"></textarea>
-                                                    <span asp-validation-for="Content" class="text-danger"></span>
+                                                    <label asp-for="Description" class="control-label"></label>
+                                                    <input asp-for="Description" class="form-control" />
+                                                    <span asp-validation-for="Description" class="text-danger"></span>
                                                 </p>
+                                                
                                                 <p>
                                                     <label asp-for="Author" class="control-label"></label>
                                                     <input asp-for="Author" class="form-control" value="@User.FindFirst("name").Value" />
@@ -99,33 +108,46 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade text-left clearfix" id="video">
+                                        <div class="tab-pane fade text-left clearfix" id="content">
                                             <div class="main-text p60">
-                                                <h5 class="fsize-32 fweight-700 font-agency uppercase">Video Post Type:</h5>
+                                                <h5 class="fsize-32 fweight-700 font-agency uppercase">Body Content:</h5>
+                                                <p class="lheight-26 mt20">
+                                                    Enter some post content HTML data here.
+                                                </p>
+                                                <ul class="list-1 pt10">
+                                                    <li class="color5">
+                                                        Body content must be pure HTML.
+                                                    </li>
+                                                    <li class="color5">
+                                                        It is recommended to simply edit the provided template, leaving the HTML framework intact
+                                                    </li>
+                                                </ul>
                                                 <p class="lheight-30 mt20">
-                                                    Occasionally the post may be advertised on various pages of the site using a YouTube video preview.
-                                                    Specify a YouTube "watch" URL, i.e.
+                                                    <label asp-for="Content" class="control-label"></label>
+                                                    <textarea asp-for="Content" class="form-control" rows="25"></textarea>
+                                                    <span asp-validation-for="Content" class="text-danger"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade text-left clearfix" id="media">
+                                            <div class="main-text p60">
+                                                <h5 class="fsize-32 fweight-700 font-agency uppercase">Media Config:</h5>
+                                                <p class="lheight-30 mt20">
+                                                    Occasionally the post may be advertised on various pages of the site using either a static image or a slider preview.
+                                                    The images should all be 270 x 282.  Slider previews will use all three images, while static previews will just use the first one.
+                                                    For a preview video, specify a YouTube "watch" URL, i.e.
                                                 </p>
                                                 <p>
                                                     https://www.youtube.com/watch?v=8dH-CnwhWC4
                                                 </p>
+                                                <p>
+                                                    Images should be uploaded locally and then specified with the "<strong>../images/</strong>" prefix syntax.
+                                                </p>
                                                 <h5 class="fsize-32 fweight-700 font-agency uppercase">YouTube Video</h5>
                                                 <p class="lheight-30 mt20">
                                                     <label asp-for="VideoUrl" class="control-label"></label>
-                                                    <input asp-for="VideoUrl" class="form-control" />                                                    
+                                                    <input asp-for="VideoUrl" class="form-control" />
                                                     <span asp-validation-for="VideoUrl" class="text-danger"></span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade text-left clearfix" id="slider">
-                                            <div class="main-text p60">
-                                                <h5 class="fsize-32 fweight-700 font-agency uppercase">Images:</h5>
-                                                <p class="lheight-30 mt20">
-                                                    Occasionally the post may be advertised on various pages of the site using either a static image or a slider preview.
-                                                    The images should all be 270 x 282.  Slider previews will use all three images, while static previews will just use the first one.                                                  
-                                                </p>
-                                                <p>
-                                                    Images should be uploaded locally and then specified with the "<strong>../images/</strong>" syntax.
                                                 </p>
                                                 <h5 class="fsize-32 fweight-700 font-agency uppercase">SLIDER IMAGES - 270 x 282</h5>
                                                 <p class="lheight-30 mt20">

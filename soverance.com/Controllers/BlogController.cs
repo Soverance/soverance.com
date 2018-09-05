@@ -146,7 +146,18 @@ namespace soverance.com.Controllers
                                 </li>
                             </ul>";
             Post.Content = DefaultPostContent;  // we set the default value of post content so as to make creating new posts far easier
+
+            // category dropdown array
             ViewBag.CategoryDropDownList = new SelectList(await _context.Category.ToListAsync(), "CategoryId", "CategoryName");
+
+            // PostTypes dropdown array
+            var PostTypes = new Dictionary<int, string>
+            {
+                { 1, "Static" },
+                { 2, "Video" },
+                { 3, "Slider" }
+            };
+            ViewBag.PostTypes = new SelectList(PostTypes, "Key", "Value");
 
             // store current date - formatted as "2/27/2009"
             // it's important that we store the date in this format so that we can easily sort the posts by date
@@ -179,7 +190,7 @@ namespace soverance.com.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("blog/createpost")]
-        public async Task<IActionResult> CreatePost([Bind("PostId,CategoryId,Slug,Date,Title,Content,Author,VideoUrl,Slider1,Slider2,Slider3")] Post Post)
+        public async Task<IActionResult> CreatePost([Bind("PostId,CategoryId,PostType,Slug,Date,Title,Description,Content,Author,VideoUrl,Slider1,Slider2,Slider3")] Post Post)
         {
             if (ModelState.IsValid)
             {
@@ -270,7 +281,7 @@ namespace soverance.com.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("blog/editpost/{id}")]
-        public async Task<IActionResult> EditPost(int id, [Bind("PostId,CategoryId,Slug,Date,Title,Content,Author,VideoUrl,Slider1,Slider2,Slider3")] Post Post)
+        public async Task<IActionResult> EditPost(int id, [Bind("PostId,CategoryId,PostType,Slug,Date,Title,Description,Content,Author,VideoUrl,Slider1,Slider2,Slider3")] Post Post)
         {
             if (id != Post.PostId)
             {
