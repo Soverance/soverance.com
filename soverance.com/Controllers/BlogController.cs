@@ -70,9 +70,7 @@ namespace soverance.com.Controllers
             if (Post != null)
             {
                 var Category = await _context.Category.FirstOrDefaultAsync(m => m.CategoryId == Post.CategoryId);  // get the post's category object                
-                Post.Category = Category;  // store the category object in the model for later use                
-                //string url = "/blog/" + slug;
-                //return new RedirectResult(url, true, true);
+                Post.Category = Category;  // store the category object in the model for later use  
             }
             
             return View(Post);
@@ -181,7 +179,7 @@ namespace soverance.com.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("blog/createpost")]
-        public async Task<IActionResult> CreatePost([Bind("PostId,CategoryId,Slug,Date,Image,Title,Content,Author")] Post Post)
+        public async Task<IActionResult> CreatePost([Bind("PostId,CategoryId,Slug,Date,Title,Content,Author,VideoUrl,Slider1,Slider2,Slider3")] Post Post)
         {
             if (ModelState.IsValid)
             {
@@ -272,7 +270,7 @@ namespace soverance.com.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("blog/editpost/{id}")]
-        public async Task<IActionResult> EditPost(int id, [Bind("PostId,CategoryId,Slug,Date,Image,Title,Content,Author")] Post Post)
+        public async Task<IActionResult> EditPost(int id, [Bind("PostId,CategoryId,Slug,Date,Title,Content,Author,VideoUrl,Slider1,Slider2,Slider3")] Post Post)
         {
             if (id != Post.PostId)
             {
