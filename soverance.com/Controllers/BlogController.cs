@@ -28,8 +28,11 @@ namespace soverance.com.Controllers
         [Route("blog")]        
         public async Task<IActionResult> Index()
         {
-            ViewBag.AllPosts = await _context.Post.ToListAsync();
-            
+            List<Post> AllPosts = await _context.Post.ToListAsync();
+            int PostCount = AllPosts.Count();
+            ViewBag.AllPosts = AllPosts;
+            ViewBag.LatestFive = AllPosts.Skip(PostCount - 5).OrderByDescending(o=>o.PostId);
+
             return View(await _context.Category.ToListAsync());
         }
 
@@ -229,8 +232,18 @@ namespace soverance.com.Controllers
                 return NotFound();
             }
 
+            // Category dropdown array
             ViewBag.CategoryDropDownList = new SelectList(await _context.Category.ToListAsync(), "CategoryId", "CategoryName");
-            
+
+            // PostTypes dropdown array
+            var PostTypes = new Dictionary<int, string>
+            {
+                { 1, "Static" },
+                { 2, "Video" },
+                { 3, "Slider" }
+            };
+            ViewBag.PostTypes = new SelectList(PostTypes, "Key", "Value");
+
             var Post = await _context.Post.FindAsync(id);
             if (Post == null)
             {
