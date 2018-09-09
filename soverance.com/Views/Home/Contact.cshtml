@@ -1,10 +1,12 @@
-﻿@{
+﻿@model soverance.com.Models.MailConfig
+
+@{
     ViewData["Title"] = "Contact";
 
 }
 
 @section head{
-    <!-- Azure Maps -->
+    <!-- AZURE MAPS CSS START -->
     <link rel="stylesheet" href="https://atlas.microsoft.com/sdk/css/atlas.min.css?api-version=1.0" type="text/css" />
     <script src="https://atlas.microsoft.com/sdk/js/atlas.min.js?api-version=1.0"></script>
 
@@ -23,6 +25,7 @@
             margin: 0 auto;
         }
     </style>
+    <!-- AZURE MAPS CSS END -->
 }
 
 <section class="page-name parallax" data-paroller-factor="0.1" data-paroller-type="background" data-paroller-direction="vertical">
@@ -48,7 +51,7 @@
                     Contact Information
                 </h3>
                 <div class="fsize-18 lheight-30 mt40">
-                    Need to connect with someone at Soverance? Maybe you want to help us build something great? Get in touch using the contact information and social links below, or send us an email using the form to the right.                    
+                    Need to connect with someone at Soverance? Maybe you want to help us build something great? Get in touch using the contact information and social links below, or send us an email using the form to the right.
                 </div>
                 <div class="mt60">
                     <div class="contact-item table">
@@ -126,22 +129,28 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <form action="#" class="contact-us-form mt100">
+                <form asp-action="ContactResults">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row">
                         <div class="input-wrap col-md-6 col-sm-6">
-                            <input type="text" class="general_input italic" placeholder="Full name">
+                            <input asp-for="ContactName" type="text" class="general_input italic" placeholder="Full name">
+                            <span asp-validation-for="ContactName" class="text-danger"></span>
                         </div>
                         <div class="input-wrap col-md-6 col-sm-6">
-                            <input type="email" class="general_input italic" placeholder="Email address">
+                            <input asp-for="ContactEmail" type="email" class="general_input italic" placeholder="Email address">
+                            <span asp-validation-for="ContactEmail" class="text-danger"></span>
                         </div>
                         <div class="input-wrap col-md-6 col-sm-6">
-                            <input type="email" class="general_input italic" placeholder="Phone Number">
+                            <input asp-for="ContactPhone" type="text" class="general_input italic" placeholder="Phone Number">
+                            <span asp-validation-for="ContactPhone" class="text-danger"></span>
                         </div>
                         <div class="input-wrap col-md-6 col-sm-6">
-                            <input type="email" class="general_input italic" placeholder="Subject">
+                            <input asp-for="Subject" type="text" class="general_input italic" placeholder="Subject">
+                            <span asp-validation-for="Subject" class="text-danger"></span>
                         </div>
                         <div class="input-wrap col-md-12">
-                            <textarea class="general_input italic" placeholder="Your Message..."></textarea>
+                            <textarea asp-for="Message" class="general_input italic" placeholder="Your Message..."></textarea>
+                            <span asp-validation-for="Message" class="text-danger"></span>
                         </div>
                     </div>
                     <input type="submit" class="btn gradient mt30 color-white color-white plr50 ptb19" value="Send message">
@@ -151,6 +160,7 @@
     </div>
 </section>
 <!-- SECTION END -->
+<!-- AZURE MAPS START -->
 <div id="map">
     <script>
         /* Instantiate map to the div with id "map" */
@@ -176,3 +186,9 @@
         });
     </script>
 </div>
+<!-- AZURE MAPS END -->
+<!-- VALIDATION START -->
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<!-- VALIDATION END -->

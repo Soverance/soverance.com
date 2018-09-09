@@ -1,4 +1,6 @@
-﻿@{
+﻿@model soverance.com.Models.MailConfig
+
+@{
     ViewData["Title"] = "FAQ";
 }
 
@@ -50,7 +52,7 @@
                             <div class="collapse spoiler-hidden plr20" id="spoiler-2">
                                 <div class="open-bl">
                                     <p>
-                                        We use Unreal Engine to bring our ideas to life in the form of new, original intellectual properties.  
+                                        We use Unreal Engine to bring our ideas to life in the form of new, original intellectual properties.
                                         Our designs tend to hover around the Action-RPG genre, with a focus on gameplay and systems.
                                     </p>
                                 </div>
@@ -141,8 +143,8 @@
                             <div class="collapse spoiler-hidden plr20" id="spoiler-8">
                                 <div class="open-bl">
                                     <p>
-                                        Yes! Soverance primarily offers remote working opportunities. Nearly all of our business is conducted via online services 
-                                        which can be accessed securely from any home network.  In certain cases, a Soverance-provided VPN will be necessary to gain access to the resource.  
+                                        Yes! Soverance primarily offers remote working opportunities. Nearly all of our business is conducted via online services
+                                        which can be accessed securely from any home network.  In certain cases, a Soverance-provided VPN will be necessary to gain access to the resource.
                                     </p>
                                     <p>
                                         We do have access to a co-location facility in Atlanta, Georgia which we can use for physical, in-person meetings.
@@ -162,7 +164,7 @@
                                         Additionally, we provide certain contractors with an Office 365 subscription and @@soverance.com email address, as well as access to company internal resources in Azure.
                                     </p>
                                     <p>
-                                        Our games are all built with the full source version of Unreal Engine. Our source repositories are held in GitHub (<i>for open-source projects</i>) 
+                                        Our games are all built with the full source version of Unreal Engine. Our source repositories are held in GitHub (<i>for open-source projects</i>)
                                         or Perforce (<i>for private repos stored in Azure</i>), and our teams communicate over email and Discord.
                                     </p>
                                 </div>
@@ -177,14 +179,14 @@
                                 <div class="open-bl">
                                     <p>
                                         In general, Soverance Studios does not provide software or hardware to contractors. We expect contractors to supply their own hardware devices,
-                                        as well as any applications they require. 
+                                        as well as any applications they require.
                                     </p>
                                     <p>
                                         We also expect contractors to maintain their own development environments and application installs,
                                         though we do provide technical support for all contractors on Windows environments.
                                     </p>
                                     <p>
-                                        For certain key roles in the Soverance organization, the person serving in this role will be provided with an @@soverance.com email address 
+                                        For certain key roles in the Soverance organization, the person serving in this role will be provided with an @@soverance.com email address
                                         and an Office 365 E3 subscription (<i>which includes full desktop versions of Word, Excel, etc</i>).
                                         This Office 365 subscription also includes access to various online applications hosted in Microsoft Azure.
                                     </p>
@@ -206,8 +208,8 @@
                             <div class="collapse spoiler-hidden plr20" id="spoiler-11">
                                 <div class="open-bl">
                                     <p>
-                                        Yes. Soverance Studios is available for custom game and application development, and we offer these services to select clients for a fee.                                        
-                                    </p>                                    
+                                        Yes. Soverance Studios is available for custom game and application development, and we offer these services to select clients for a fee.
+                                    </p>
                                     <p>
                                         If you are interested in discussing what it would take to bring your project to life, please don&#39;t hesitate to reach out to sales@@soverance.com.
                                     </p>
@@ -222,7 +224,7 @@
                             <div class="collapse spoiler-hidden plr20" id="spoiler-12">
                                 <div class="open-bl">
                                     <p>
-                                        As a member of the Microsoft Partner Network, Soverance Studios is proud to offer high-quality DevOps consulting for Microsoft environments to improve the efficiency of your business. 
+                                        As a member of the Microsoft Partner Network, Soverance Studios is proud to offer high-quality DevOps consulting for Microsoft environments to improve the efficiency of your business.
                                         Our skills include custom application development, process automation, systems integration, service migration, network architecture, disaster recovery, and much more.
                                     </p>
                                     <p>
@@ -257,7 +259,7 @@
                                     </ul>
                                     <p></p>
                                     <p>
-                                        Soverance Studios charges consulting and development fees at a variable rate, based on the project’s scope, term, and complexity.  Initial consultations (via email) and price quotes are free. 
+                                        Soverance Studios charges consulting and development fees at a variable rate, based on the project’s scope, term, and complexity.  Initial consultations (via email) and price quotes are free.
                                         To obtain an initial consultation or to price quote a specific project, please contact sales@soverance.com.
                                     </p>
                                 </div>
@@ -296,23 +298,39 @@
                 <div class="fsize-32 fweight-700 lheight-32 font-agency uppercase color-white">
                     Ask Any Question
                 </div>
-                <form action="#" class="ask-form mt40">
-                    <div class="input-wrap">
-                        <input type="text" placeholder="Your name">
+                <form asp-action="ContactResults" class="ask-form mt40">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="input-wrap col-md-6 col-sm-6">
+                            <input asp-for="ContactName" type="text" class="general_input italic" placeholder="Full name">
+                            <span asp-validation-for="ContactName" class="text-danger"></span>
+                        </div>
+                        <div class="input-wrap col-md-6 col-sm-6">
+                            <input asp-for="ContactEmail" type="email" class="general_input italic" placeholder="Email address">
+                            <span asp-validation-for="ContactEmail" class="text-danger"></span>
+                        </div>
+                        <div class="input-wrap col-md-6 col-sm-6">
+                            <input asp-for="ContactPhone" type="text" class="general_input italic" placeholder="Phone Number">
+                            <span asp-validation-for="ContactPhone" class="text-danger"></span>
+                        </div>
+                        <div class="input-wrap col-md-6 col-sm-6">
+                            <input asp-for="Subject" type="text" class="general_input italic" placeholder="Subject">
+                            <span asp-validation-for="Subject" class="text-danger"></span>
+                        </div>
+                        <div class="input-wrap col-md-12">
+                            <textarea asp-for="Message" class="general_input italic" placeholder="Your Message..."></textarea>
+                            <span asp-validation-for="Message" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="input-wrap">
-                        <input type="email" placeholder="Email address">
-                    </div>
-                    <div class="input-wrap">
-                        <input type="text" placeholder="Subject">
-                    </div>
-                    <div class="input-wrap">
-                        <textarea placeholder="Your question"></textarea>
-                    </div>
-                    <input type="submit" class="btn gradient color-white color-white plr50 ptb19" value="Ask Question">
+                    <input type="submit" class="btn gradient mt30 color-white color-white plr50 ptb19" value="Ask Question">
                 </form>
             </div>
         </div>
     </div>
 </section>
 <!-- SECTION END -->
+<!-- VALIDATION START -->
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<!-- VALIDATION END -->

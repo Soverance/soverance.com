@@ -431,11 +431,11 @@
                     progressBarCreator(progressline13, 0.95);  // Gameplay Programming
                     progressBarCreator(progressline14, 0.95);  // Systems / Combat Design
                     progressBarCreator(progressline15, 0.75);  // Level Design
-                    progressBarCreator(progressline16, 0.65);  // UI / UX Design
+                    progressBarCreator(progressline16, 0.55);  // UI / UX Design
                     progressBarCreator(progressline17, 0.75);  // A.I. Pathfinding and Collision
-                    progressBarCreator(progressline18, 0.75);  // Effects, Particles, and Materials
-                    progressBarCreator(progressline19, 0.60);  // Sound Design
-                    progressBarCreator(progressline20, 0.50);  // 3D Modeling, Rigging, and Animation
+                    progressBarCreator(progressline18, 0.65);  // Effects, Particles, and Materials
+                    progressBarCreator(progressline19, 0.40);  // Sound Design
+                    progressBarCreator(progressline20, 0.40);  // 3D Modeling, Rigging, and Animation
                 }
             }
         });

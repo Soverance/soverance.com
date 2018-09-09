@@ -39,6 +39,7 @@ namespace soverance.com
 
             services.Configure<SecretConfig>(Configuration.GetSection("SecretConfig"));
             services.Configure<AzureAdOptions>(Configuration.GetSection("Authentication:AzureAd"));
+            services.Configure<MailConfig>(Configuration.GetSection("SMTP"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Database")));
             services.AddAuthentication(sharedOptions =>

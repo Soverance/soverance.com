@@ -27,7 +27,7 @@
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
                 <form asp-action="CreatePost">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">                        
+                    <div class="form-group">
                         <div class="col-sm-12 col-xs-12">
                             <div class="mt50">
                                 <div class="tabs info-tabs default-tabs text-center mt60">
@@ -100,7 +100,7 @@
                                                     <input asp-for="Description" class="form-control" />
                                                     <span asp-validation-for="Description" class="text-danger"></span>
                                                 </p>
-                                                
+
                                                 <p>
                                                     <label asp-for="Author" class="control-label"></label>
                                                     <input asp-for="Author" class="form-control" value="@User.FindFirst("name").Value" />
@@ -172,7 +172,7 @@
                         <input type="submit" value="Create" class="btn border-btn plr50 ptb19 color-white" />
                     </div>
                 </form>
-            </div>            
+            </div>
         </div>
         <div>
             <a asp-action="Index">Back to List</a>
@@ -180,7 +180,8 @@
     </div>
 </section>
 <!-- SECTION END -->
-
+<!-- VALIDATION START -->
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<!-- VALIDATION END -->
