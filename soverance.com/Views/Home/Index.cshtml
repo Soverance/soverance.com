@@ -1468,88 +1468,36 @@
     <div class="bg-wrapper each-element mt90 clearfix">
         <div class="container">
             <div class="row">
-                <div class="item col-lg-4 col-md-4 col-sm-12 col-sx-12">
-                    <a href="/" class="item-wrap">
-                        <div class="image">
-                            <img src="~/images/blog-img-1.jpg" alt="" class="img-responsive">
-                        </div>
-                        <div class="item-info equal-height">
-                            <div class="item-header table fsize-14 fweight-700 uppercase">
-                                <div class="table-cell platform">xbox</div>
-                                <div class="table-cell color-2 text-right">mar 14, 2018</div>
+                @foreach (var post in ViewBag.LatestThree)
+                {
+                    <div class="item col-lg-4 col-md-4 col-sm-12 col-sx-12">
+                        <a asp-action="ViewPost" asp-controller="Blog" asp-route-slug="@post.Slug" class="item-wrap">
+                            <div class="image">
+                                <img src="@post.Slider1" alt="" class="img-responsive">
                             </div>
-                            <div class="item-title mt20" data-trim="40">Cow biltong pork belly kielbasa shankle</div>
-                            <div class="item-text mt25 lheight-26" data-trim="130">
-                                Turducken cupim hamburger beef ribs picanha, drumstick buffalo tri-tip cow. Turducken prosciutto shank pork chop.
+                            <div class="item-info equal-height">
+                                <div class="item-header table fsize-14 fweight-700 uppercase">
+                                    <div class="table-cell platform">@post.Category.CategoryName</div>
+                                    <div class="table-cell color-2 text-right">@post.Date</div>
+                                </div>
+                                <div class="item-title mt20" data-trim="40">@post.Title</div>
+                                <div class="item-text mt25 lheight-26" data-trim="130">
+                                    @post.Description
+                                </div>
                             </div>
-                        </div>
-                        <div class="author-comment table">
-                            <div class="table-cell valign-middle">
-                                <i class="fa fa-user color-1 fsize-14" aria-hidden="true"></i>
-                                <span class="color-2 ml5">by Admin</span>
+                            <div class="author-comment table">
+                                <div class="table-cell valign-middle">
+                                    <i class="fa fa-user color-1 fsize-14" aria-hidden="true"></i>
+                                    <span class="color-2 ml5">by @post.Author</span>
+                                </div>
+                                <div class="table-cell valign-middle text-right">
+                                    <i class="fa fa-cube color-1 fsize-14" aria-hidden="true"></i>
+                                    <span class="color-2 ml5"></span>
+                                </div>
                             </div>
-                            <div class="table-cell valign-middle text-right">
-                                <i class="fa fa-comment color-1 fsize-14" aria-hidden="true"></i>
-                                <span class="color-2 ml5">126</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="item col-lg-4 col-md-4 col-sm-12 col-sx-12">
-                    <a href="/" class="item-wrap">
-                        <div class="image">
-                            <img src="~/images/blog-img-2.jpg" alt="" class="img-responsive">
-                        </div>
-                        <div class="item-info equal-height">
-                            <div class="item-header table fsize-14 fweight-700 uppercase">
-                                <div class="table-cell platform">ps 3</div>
-                                <div class="table-cell color-2 text-right">mar 18, 2018</div>
-                            </div>
-                            <div class="item-title mt20" data-trim="40">Cow short ribs beef strip steak jowl</div>
-                            <div class="item-text mt25 lheight-26" data-trim="130">
-                                Capicola beef ribs pastrami biltong pork chop corned beef alcatra tail landjaeger. Spare ribs t-bone buffalo capicola, pork
-                                belly.
-                            </div>
-                        </div>
-                        <div class="author-comment table">
-                            <div class="table-cell valign-middle">
-                                <i class="fa fa-user color-1 fsize-14" aria-hidden="true"></i>
-                                <span class="color-2 ml5">by Admin</span>
-                            </div>
-                            <div class="table-cell valign-middle text-right">
-                                <i class="fa fa-comment color-1 fsize-14" aria-hidden="true"></i>
-                                <span class="color-2 ml5">452</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="item col-lg-4 col-md-4 col-sm-12 col-sx-12">
-                    <a href="/" class="item-wrap">
-                        <div class="image">
-                            <img src="~/images/blog-img-3.jpg" alt="" class="img-responsive">
-                        </div>
-                        <div class="item-info equal-height">
-                            <div class="item-header table fsize-14 fweight-700 uppercase">
-                                <div class="table-cell platform">ps vita</div>
-                                <div class="table-cell color-2 text-right">mar 23, 2018</div>
-                            </div>
-                            <div class="item-title mt20" data-trim="40">Boudin shankle pork belly turducken spare rib</div>
-                            <div class="item-text mt25 lheight-26" data-trim="130">
-                                Capicola chicken rump biltong boudin corned beef prosciutto short loin pork chop fatback flank beef porchetta tenderloin.
-                            </div>
-                        </div>
-                        <div class="author-comment table">
-                            <div class="table-cell valign-middle">
-                                <i class="fa fa-user color-1 fsize-14" aria-hidden="true"></i>
-                                <span class="color-2 ml5">by Admin</span>
-                            </div>
-                            <div class="table-cell valign-middle text-right">
-                                <i class="fa fa-comment color-1 fsize-14" aria-hidden="true"></i>
-                                <span class="color-2 ml5">364</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                }
             </div>
         </div>
     </div>

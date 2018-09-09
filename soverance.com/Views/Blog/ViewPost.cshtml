@@ -76,50 +76,21 @@
                                     <i class="fa fa-user color-6 fsize-14" aria-hidden="true"></i>
                                     <span class="color-2 fsize-14 ml5">by @Html.DisplayFor(model => model.Author)</span>
                                 </div>
+                                <div class="table-cell valign-middle text-right">
+                                    <i class="fa fa-cube color-6 fsize-14" aria-hidden="true"></i>
+                                    <span class="color-2 fsize-14 ml5">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-action="EditPost" asp-controller="Blog" asp-route-id="@Model.PostId">Edit</a>
+                                            <a asp-action="DeletePost" asp-controller="Blog" asp-route-id="@Model.PostId">Delete</a>                                            
+                                        }
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row mt60 wow fadeInLeft">
-                    <div class="related-post">
-                        <div class="related-item col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <a href="/ethereal" class="related-wrapper">
-                                <div class="related-img">
-                                    <img src="~/images/post/related-1.jpg" alt="">
-                                </div>
-                                <div class="related-title">
-                                    <div class="font-agency fsize-24 fweight-700 color-white uppercase">
-                                        Ethereal Legends
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="related-item col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <a href="/endlessreach" class="related-wrapper">
-                                <div class="related-img">
-                                    <img src="~/images/post/related-2.jpg" alt="">
-                                </div>
-                                <div class="related-title">
-                                    <div class="font-agency fsize-24 fweight-700 color-white uppercase">
-                                        Endless Reach
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="related-item col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <a href="/echosphere" class="related-wrapper">
-                                <div class="related-img">
-                                    <img src="~/images/post/related-3.jpg" alt="">
-                                </div>
-                                <div class="related-title">
-                                    <div class="font-agency fsize-24 fweight-700 color-white uppercase">
-                                        Echosphere
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <partial name="_GamePreviewInsert" />
             </div>
         </div>
     </div>

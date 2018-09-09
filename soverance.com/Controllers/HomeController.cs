@@ -4,13 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+
 using Microsoft.AspNetCore.Authorization;
 using soverance.com.Models;
+
 
 namespace soverance.com.Controllers
 {
@@ -33,8 +32,18 @@ namespace soverance.com.Controllers
         [Route("")]
         [Route("home")]
         [Route("home/index")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            // BLOG POSTS
+            List<Post> LatestThree = await SovDatabaseContext.Post.OrderByDescending(o => o.PostId).Take(3).ToListAsync();
+            ViewBag.LatestThree = LatestThree;
+            foreach (Post post in LatestThree)
+            {
+                var Category = await SovDatabaseContext.Category.FirstOrDefaultAsync(m => m.CategoryId == post.CategoryId);  // get the post's category object                
+                post.Category = Category;  // store the category values in the post's model so we can display the name
+            }
+
+            // YOUTUBE VIDEOS
             string GoogleApiKey = SovSecretConfig.Value.GoogleApiKey;
             List<YouTubeData> VideoList = YouTubeModel.GetVideos(GoogleApiKey, true);
             ViewBag.LatestVideos = VideoList.Take(4);
@@ -43,6 +52,7 @@ namespace soverance.com.Controllers
             List<YouTubeData> TutorialList = YouTubeModel.GetVideos(GoogleApiKey, false, "PLXZQqd9R-mFHH3cBvJIffMUUWQjl9h1Kh");
             ViewBag.TutorialPlaylist = TutorialList.Take(4);
             ViewBag.LatestTutorial = TutorialList[0];
+
             return View(VideoList);
         }
 

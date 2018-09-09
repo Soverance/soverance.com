@@ -30,6 +30,7 @@ namespace soverance.com.Controllers
         {
             List<Post> AllPosts = await _context.Post.ToListAsync();
             List<Post> LatestFive = await _context.Post.OrderByDescending(o => o.PostId).Take(5).ToListAsync();
+            
             ViewBag.AllPosts = AllPosts;
             ViewBag.LatestFive = LatestFive;
 
