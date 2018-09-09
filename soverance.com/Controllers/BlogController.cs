@@ -29,9 +29,9 @@ namespace soverance.com.Controllers
         public async Task<IActionResult> Index()
         {
             List<Post> AllPosts = await _context.Post.ToListAsync();
-            int PostCount = AllPosts.Count();
+            List<Post> LatestFive = await _context.Post.OrderByDescending(o => o.PostId).Take(5).ToListAsync();
             ViewBag.AllPosts = AllPosts;
-            ViewBag.LatestFive = AllPosts.Skip(PostCount - 5).OrderByDescending(o=>o.PostId);
+            ViewBag.LatestFive = LatestFive;
 
             return View(await _context.Category.ToListAsync());
         }
