@@ -1,6 +1,4 @@
-﻿@model IEnumerable<soverance.com.Models.Category>
-
-@{
+﻿@{
     ViewData["Title"] = "Blog";
 }
 
@@ -24,7 +22,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
-                @foreach (var post in ViewBag.AllPosts)
+                @foreach (var post in ViewBag.Pagination.Posts)
                 {
                     @if (post.PostType == 1)
                     {
@@ -185,22 +183,25 @@
                 }
                 <div class="col-lg-12 text-center mt60">
                     <div class="pagination-page">
-                        <a href="#" class="page-numbers prev">
+                        <a href="/blog/@ViewBag.PreviousPage" class="page-numbers prev">
                             <i class="fa fa-angle-left" aria-hidden="true"></i>
                         </a>
                         <span class="page-numbers active">
-                            1
+                            @ViewBag.Pagination.CurrentPageIndex
                         </span>
-                        <a href="#" class="page-numbers">
-                            2
-                        </a>
+                        @if (ViewBag.NextPage < ViewBag.Pagination.PageCount)
+                        {
+                            <a href="/blog/@ViewBag.NextPage" class="page-numbers">
+                                @ViewBag.NextPage
+                            </a>
+                        }
                         <span class="page-numbers dots">
                             ...
                         </span>
-                        <a href="#" class="page-numbers">
-                            12
+                        <a href="/blog/@ViewBag.LastPage" class="page-numbers">
+                            @ViewBag.Pagination.PageCount
                         </a>
-                        <a href="#" class="page-numbers next">
+                        <a href="/blog/@ViewBag.NextPage" class="page-numbers next">
                             <i class="fa fa-angle-right" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -240,7 +241,7 @@
                     <div class="widget-wrapper">
                         <table class="table list-1">
                             <tbody>
-                                @foreach (var item in Model)
+                                @foreach (var item in ViewBag.AllCategories)
                                 {
                                 <tr>
                                     <td>

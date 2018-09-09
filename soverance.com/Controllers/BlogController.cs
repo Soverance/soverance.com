@@ -25,16 +25,53 @@ namespace soverance.com.Controllers
         
         // GET: /Blog
         [AllowAnonymous]
-        [Route("blog")]        
-        public async Task<IActionResult> Index()
+        [Route("blog/{id?}")]        
+        public async Task<IActionResult> Index(int? id)
         {
-            List<Post> AllPosts = await _context.Post.ToListAsync();
+            if (id == null)
+            {
+                id = 0;
+            }
+
+            List<Category> AllCategories = await _context.Category.ToListAsync();
             List<Post> LatestFive = await _context.Post.OrderByDescending(o => o.PostId).Take(5).ToListAsync();
+            int PageCount = (int)Math.Ceiling((double)_context.Post.Count() / 10);
+            int SkipPages = id.Value * 10;
+
+            Pagination Pagination = new Pagination();
+            Pagination.Posts = await _context.Post.OrderByDescending(o => o.PostId).Skip(SkipPages).Take(10).ToListAsync();
+            Pagination.CurrentPageIndex = id.Value;
+            Pagination.PageCount = PageCount;
             
-            ViewBag.AllPosts = AllPosts;
+            ViewBag.Pagination = Pagination;
+            ViewBag.AllCategories = AllCategories;
             ViewBag.LatestFive = LatestFive;
 
-            return View(await _context.Category.ToListAsync());
+            // an offset for the last page pagination link, since the blog index starts at zero, 
+            // the last page icon will display as "2" to the user but would need to pass /blog/1/ to get routing to the last page
+            ViewBag.LastPage = PageCount - 1;  
+
+            // set and cap previous page value - consider refactoring.
+            if (id.Value > 0)
+            {
+                ViewBag.PreviousPage = id.Value - 1;
+            }
+            else
+            {
+                ViewBag.PreviousPage = 0;
+            }
+            // set and cap next page value - consider refactoring.
+            if (id.Value < PageCount)
+            {
+                ViewBag.NextPage = id.Value + 1;
+            }
+            else
+            {
+                ViewBag.NextPage = PageCount;
+            }
+            
+
+            return View();
         }
 
         // GET: /Blog/ViewCategory/5
