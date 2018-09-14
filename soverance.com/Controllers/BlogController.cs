@@ -95,7 +95,7 @@ namespace soverance.com.Controllers
 
         // GET: /Blog/ViewPost/5
         [AllowAnonymous]
-        [Route("blog/{slug}")]
+        [Route("blog/post/{slug}")]
         public async Task<IActionResult> ViewPost(string slug)
         {
             if (slug == null)
