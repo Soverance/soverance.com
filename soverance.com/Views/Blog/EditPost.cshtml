@@ -142,7 +142,7 @@
                                                     https://www.youtube.com/watch?v=8dH-CnwhWC4
                                                 </p>
                                                 <p>
-                                                    Images should be uploaded locally and then specified with the "<strong>../images/</strong>" prefix syntax.
+                                                    Images should be uploaded locally and then specified with the "<strong>/images/</strong>" prefix syntax.
                                                 </p>
                                                 <h5 class="fsize-32 fweight-700 font-agency uppercase">YouTube Video</h5>
                                                 <p class="lheight-30 mt20">
@@ -176,7 +176,7 @@
             </div>
         </div>
         <div>
-            <a asp-action="Index">Back to List</a>
+            <a asp-controller="Blog" asp-action="ViewPost" asp-route-slug="@Model.Slug">Return to Post</a>
         </div>
     </div>
 </section>

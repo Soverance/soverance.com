@@ -104,6 +104,13 @@ namespace soverance.com.Controllers
             }
 
             var Post = await _context.Post.FirstOrDefaultAsync(m => m.Slug == slug);
+
+            // there is almost certainly a better way to get the previous and next post than what I'm doing here
+            // I'm pretty sure this won't work when the PostId's become non-incremental
+            // and it already has issues with the first and last blog post, where it's indexing becomes faulty
+            List<Post> SurroundingPosts = await _context.Post.OrderBy(o => o.PostId).Skip(Math.Max(0, Post.PostId - 2)).Take(3).ToListAsync();
+            ViewBag.SurroundingPosts = SurroundingPosts;
+
             if (Post == null)
             {
                 return NotFound();
@@ -358,7 +365,7 @@ namespace soverance.com.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("ViewPost", "Blog", new { slug = Post.Slug });
             }
             return View(Post);
         }

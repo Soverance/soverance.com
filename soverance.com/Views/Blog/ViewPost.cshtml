@@ -29,21 +29,24 @@
                 <div class="posts-nav">
                     <div class="row">
                         <div class="col-md-6">
-                            <a href="#" class="nav_prev nav-btn td-none" style="background-image: url('/images/blog/blog-img-1.jpg');">
+                            <a asp-action="ViewPost" asp-route-slug="@ViewBag.SurroundingPosts[0].Slug" class="nav_prev nav-btn td-none" style="background-image: url(@ViewBag.SurroundingPosts[0].Slider2);">
                                 <div class="nav_content">
                                     <div class="fsize-14 fweight-700 uppercase color-1">Previous Post</div>
-                                    <div class="nav-title font-agency fsize-24 fweight-700 color-white uppercase">Shirloin leberkas pig, rump ham hock tail shank burgdogen</div>
+                                    <div class="nav-title font-agency fsize-24 fweight-700 color-white uppercase">@ViewBag.SurroundingPosts[0].Title</div>
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-6 text-right">
-                            <a href="#" class="nav_next nav-btn td-none" style="background-image: url('/images/blog/blog-img-2.jpg');">
-                                <div class="nav_content">
-                                    <div class="fsize-14 fweight-700 uppercase color-1">Next Post</div>
-                                    <div class="nav-title font-agency fsize-24 fweight-700 color-white uppercase">Meatlof strip steak ball tip venison prosciuto shankle</div>
-                                </div>
-                            </a>
-                        </div>
+                        @if (ViewBag.SurroundingPosts.Count > 2)
+                        {
+                            <div class="col-md-6 text-right">
+                                <a asp-action="ViewPost" asp-route-slug="@ViewBag.SurroundingPosts[2].Slug" class="nav_next nav-btn td-none" style="background-image: url(@ViewBag.SurroundingPosts[2].Slider1);">
+                                    <div class="nav_content">
+                                        <div class="fsize-14 fweight-700 uppercase color-1">Next Post</div>
+                                        <div class="nav-title font-agency fsize-24 fweight-700 color-white uppercase">@ViewBag.SurroundingPosts[2].Title</div>
+                                    </div>
+                                </a>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div class="post-content mt60">
