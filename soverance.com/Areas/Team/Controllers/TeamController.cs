@@ -29,5 +29,12 @@ namespace soverance.com.Team.Controllers
         {
             return View();
         }
+
+        [AllowAnonymous]
+        [Route("team/CBR600RA")]
+        public IActionResult CBR600RA()
+        {
+            return View();
+        }
     }
 }

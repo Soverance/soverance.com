@@ -440,7 +440,7 @@
             }
         });
     }
-
+  
 	var gamesChar = $( '.game-char' );
 	if( gamesChar.length )
 	{
