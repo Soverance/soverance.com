@@ -1,4 +1,5 @@
 ﻿@using System.Net
+@using System.Web.Mvc.Html
 @model soverance.com.Models.Post
 
 @{
@@ -14,7 +15,7 @@
             </h1>
             <div class="breadcrumbs">
                 <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> /
-                <a asp-area="" asp-controller="Blog" asp-action="Index">Blog</a> /
+                <a asp-area="" asp-controller="Blog" asp-action="Index" asp-route-id="">Blog</a> /
                 <span class="color-1">@Html.DisplayFor(model => model.Title)</span>
             </div>
         </div>
@@ -50,9 +51,6 @@
                     </div>
                 </div>
                 <div class="post-content mt60">
-                    <div class="post-image">
-                        <img src="~/images/post/post-full.jpg" alt="">
-                    </div>
                     <div class="post-bottom background-4">
                         <div class="p60">
                             <div class="table">
@@ -72,6 +70,11 @@
                             <!-- START DATABASE BLOG CONTENT -->
                             @Html.Raw(@WebUtility.HtmlDecode(Model.Content))
                             <!-- END DATABASE BLOG CONTENT -->
+
+                            @if (Model.PlaylistId != null)
+                            {
+                                @await Component.InvokeAsync("VideoPlaylist", new { PlaylistId = Model.PlaylistId })
+                            }
                         </div>
                         <div class="bottom-info-bl">
                             <div class="table">
@@ -79,13 +82,15 @@
                                     <i class="fa fa-user color-6 fsize-14" aria-hidden="true"></i>
                                     <span class="color-2 fsize-14 ml5">by @Html.DisplayFor(model => model.Author)</span>
                                 </div>
-                                <div class="table-cell valign-middle text-right">
-                                    <i class="fa fa-cube color-6 fsize-14" aria-hidden="true"></i>
+                                <div class="table-cell valign-middle text-right">                                    
                                     <span class="color-2 fsize-14 ml5">
                                         @if (User.Identity.IsAuthenticated)
                                         {
-                                            <a asp-action="EditPost" asp-controller="Blog" asp-route-id="@Model.PostId">Edit</a>
-                                            <a asp-action="DeletePost" asp-controller="Blog" asp-route-id="@Model.PostId">Delete</a>                                            
+                                        <p>
+                                            <i class="fa fa-cube color-6 fsize-14" aria-hidden="true"></i>
+                                            <a asp-action="EditPost" asp-controller="Blog" asp-route-id="@Model.PostId">Edit</a> |
+                                            <a asp-action="DeletePost" asp-controller="Blog" asp-route-id="@Model.PostId">Delete</a>
+                                        </p>
                                         }
                                     </span>
                                 </div>

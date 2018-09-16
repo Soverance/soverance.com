@@ -19,6 +19,7 @@ namespace soverance.com.Models
         public string Slider1 { get; set; }
         public string Slider2 { get; set; }
         public string Slider3 { get; set; }
+        public string PlaylistId { get; set; }
 
         public Category Category { get; set; }
     }

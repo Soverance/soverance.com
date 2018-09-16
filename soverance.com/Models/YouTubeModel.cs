@@ -19,8 +19,8 @@ namespace soverance.com.Models
                 var yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = GoogleApiKey });
                 var channelsListRequest = yt.Channels.List("contentDetails");
                 channelsListRequest.ForUsername = "soverancestudios";  // youtube channel name
-                var channelsListResponse = channelsListRequest.Execute();
-                foreach (var channel in channelsListResponse.Items)
+                var channelsListResponse = channelsListRequest.ExecuteAsync();
+                foreach (var channel in channelsListResponse.Result.Items)
                 {
                     var uploadsListId = "";
                     // get videos uploaded to the channel from specified playlist.

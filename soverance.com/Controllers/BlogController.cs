@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using soverance.com.Models;
 
 namespace soverance.com.Controllers
@@ -15,12 +17,14 @@ namespace soverance.com.Controllers
     public class BlogController : Controller
     {
         private readonly DatabaseContext _context;
+        private readonly IOptions<SecretConfig> SovSecretConfig;
 
         public SelectList CategoryDropDownList { get; set; }
 
-        public BlogController(DatabaseContext context)
+        public BlogController(DatabaseContext context, IOptions<SecretConfig> _SovSecretConfig)
         {
             _context = context;
+            SovSecretConfig = _SovSecretConfig;
         }
         
         // GET: /Blog
@@ -238,7 +242,7 @@ namespace soverance.com.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("blog/createpost")]
-        public async Task<IActionResult> CreatePost([Bind("PostId,CategoryId,PostType,Slug,Date,Title,Description,Content,Author,VideoUrl,Slider1,Slider2,Slider3")] Post Post)
+        public async Task<IActionResult> CreatePost([Bind("PostId,CategoryId,PostType,Slug,Date,Title,Description,Content,Author,VideoUrl,Slider1,Slider2,Slider3,PlaylistId")] Post Post)
         {
             if (ModelState.IsValid)
             {
@@ -339,7 +343,7 @@ namespace soverance.com.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("blog/editpost/{id}")]
-        public async Task<IActionResult> EditPost(int id, [Bind("PostId,CategoryId,PostType,Slug,Date,Title,Description,Content,Author,VideoUrl,Slider1,Slider2,Slider3")] Post Post)
+        public async Task<IActionResult> EditPost(int id, [Bind("PostId,CategoryId,PostType,Slug,Date,Title,Description,Content,Author,VideoUrl,Slider1,Slider2,Slider3,PlaylistId")] Post Post)
         {
             if (id != Post.PostId)
             {
