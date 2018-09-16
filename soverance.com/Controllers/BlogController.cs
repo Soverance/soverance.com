@@ -171,13 +171,19 @@ namespace soverance.com.Controllers
                             </p>
                             <div class=""clearfix"">
                                 <p class=""col-lg-4 col-md-4 col-sm-12 col-sm-12 m0"">
-                                    <img src=""~/images/post/post-small-1.jpg"" alt="""" class=""img-responsive mlr-auto mb20"">
+                                    <a href=""/images/blog/ffxi/khim.jpg"" data-lightbox=""game - slides"">
+                                               < img src = ""/images/blog/ffxi/fafnir.jpg"" alt = """" class=""img-responsive mlr-auto mb20"">
+                                    </a>
                                 </p>
                                 <p class=""col-lg-4 col-md-4 col-sm-12 col-sm-12 m0"">
-                                    <img src=""~/images/post/post-small-2.jpg"" alt="""" class=""img-responsive mlr-auto mb20"">
+                                    <a href=""/images/blog/ffxi/khim.jpg"" data-lightbox=""game - slides"">
+                                               < img src = ""/images/blog/ffxi/darkixion.jpg"" alt = """" class=""img-responsive mlr-auto mb20"">
+                                    </a>
                                 </p>
                                 <p class=""col-lg-4 col-md-4 col-sm-12 col-sm-12 m0"">
-                                    <img src=""~/images/post/post-small-3.jpg"" alt="""" class=""img-responsive mlr-auto mb20"">
+                                    <a href=""/images/blog/ffxi/khim.jpg"" data-lightbox=""game - slides"">
+                                               < img src = ""/images/blog/ffxi/khim.jpg"" alt = """" class=""img-responsive mlr-auto mb20"">
+                                    </a>
                                 </p>
                             </div>
                             <p class=""mt30"">

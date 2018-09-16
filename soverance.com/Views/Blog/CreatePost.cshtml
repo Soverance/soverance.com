@@ -135,19 +135,24 @@
                                                 <p class="lheight-30 mt20">
                                                     Occasionally the post may be advertised on various pages of the site using either a static image or a slider preview.
                                                     The images should all be either 370 x 270 (preferred), or 270 x 282.  Slider previews will use all three images, while static previews will just use the first one.
-                                                    For a preview video, specify a YouTube "watch" URL, i.e.
-                                                </p>
-                                                <p>
-                                                    https://www.youtube.com/watch?v=8dH-CnwhWC4
-                                                </p>
-                                                <p>
-                                                    Images should be uploaded locally and then specified with the "<strong>/images/</strong>" prefix syntax.
+                                                    For a preview video, specify a complete YouTube "watch" URL.
                                                 </p>
                                                 <h5 class="fsize-32 fweight-700 font-agency uppercase">YouTube Video</h5>
                                                 <p class="lheight-30 mt20">
                                                     <label asp-for="VideoUrl" class="control-label"></label>
                                                     <input asp-for="VideoUrl" class="form-control" />
                                                     <span asp-validation-for="VideoUrl" class="text-danger"></span>
+                                                </p>
+                                                <p>
+                                                    Specify a YouTube Playlist ID if a playlist should appear in the post; otherwise, leave it empty.
+                                                </p>
+                                                <p class="lheight-30 mt20">
+                                                    <label asp-for="PlaylistId" class="control-label"></label>
+                                                    <input asp-for="PlaylistId" class="form-control" />
+                                                    <span asp-validation-for="PlaylistId" class="text-danger"></span>
+                                                </p>
+                                                <p>
+                                                    Images should be uploaded locally and then specified with the "<strong>/images/</strong>" prefix syntax.
                                                 </p>
                                                 <h5 class="fsize-32 fweight-700 font-agency uppercase">SLIDER IMAGES - 270 x 282</h5>
                                                 <p class="lheight-30 mt20">
