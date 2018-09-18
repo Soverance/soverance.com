@@ -36,7 +36,7 @@ namespace soverance.com
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            
             services.Configure<SecretConfig>(Configuration.GetSection("SecretConfig"));
             services.Configure<AzureAdOptions>(Configuration.GetSection("Authentication:AzureAd"));
             services.Configure<MailConfig>(Configuration.GetSection("SMTP"));
