@@ -292,26 +292,20 @@
                 <div class="table-cell valign-top text-right">
                     <div class="right-bl">
                         <div class="search-wrapper inline-block valign-middle">
-                            <i class="fa fa-search color-white fsize-28" aria-hidden="true"></i>
-                            <form class="search-content" action="#">
-                                <input type="text" placeholder="Search Keyword...">
-                                <button class="color-white">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </button>
-                            </form>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/account/profile" class="btn header-btn ml25 color-white hidden-sm hidden-xs">
+                                    @User.FindFirst("name").Value
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="/account/signin" class="btn header-btn ml25 color-white hidden-sm hidden-xs">
+                                    Sign In
+                                </a>
+                            }
                         </div>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <a href="/account/profile" class="btn header-btn ml25 color-white hidden-sm hidden-xs">
-                                @User.FindFirst("name").Value
-                            </a>
-                        }
-                        else
-                        {
-                            <a href="/account/signin" class="btn header-btn ml25 color-white hidden-sm hidden-xs">
-                                Sign In
-                            </a>
-                        }
+                        
                     </div>
                 </div>
             </div>
