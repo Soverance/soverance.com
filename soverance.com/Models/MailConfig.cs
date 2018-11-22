@@ -21,7 +21,9 @@ namespace soverance.com.Models
         [Required]
         [EmailAddress]
         public string ContactEmail { get; set; }
+        [Phone]
         public string ContactPhone { get; set; }
+        [Required]
         public string Subject { get; set; }
         [Required]
         public string Message { get; set; }
