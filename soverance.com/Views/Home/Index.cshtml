@@ -1635,14 +1635,14 @@
                         <div class="left-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="video-bl equal-height" >
                                 <video id="LatestVideoProfile" class="equal-height vjs-big-play-centered video-js vjs-default-skin vjs-16-9 game-full-img" controls preload="auto"
-                                       data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "@Model[7].VideoWatchLink"}}'></video>                                
+                                       data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "@Model[0].VideoWatchLink"}}'></video>                                
                                 <div class="video-bottom">
                                     <div class="video-title">
-                                        @Model[7].Title
+                                        @Model[0].Title
                                     </div>
                                     <div class="mt15">
                                         <div class="inline-block valign-middle color-white ml15">
-                                            @Model[7].ViewCount views
+                                            @Model[0].ViewCount views
                                         </div>
                                     </div>
                                 </div>
@@ -1670,7 +1670,7 @@
                     <div class="tab-pane fade in competition text-left clearfix" id="stream-2">
                         <div class="left-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="video-bl equal-height">
-                                <video id="LatestVideo" class="equal-height vjs-big-play-centered video-js vjs-default-skin vjs-16-9 game-full-img" controls preload="auto"
+                                <video id="LatestVideo" class="vjs-big-play-centered video-js vjs-default-skin vjs-16-9 game-full-img" controls preload="auto"
                                        data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "@Model[0].VideoWatchLink"}}'></video>
                                 <div class="video-bottom">
                                     <div class="video-title">
@@ -1702,7 +1702,7 @@
                     <div class="tab-pane fade in competition text-left clearfix" id="stream-3">
                         <div class="left-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="video-bl equal-height">
-                                <video id="LatestTutorial" class="equal-height vjs-big-play-centered video-js vjs-default-skin vjs-16-9 game-full-img" controls preload="auto"
+                                <video id="LatestTutorial" class="vjs-big-play-centered video-js vjs-default-skin vjs-16-9 game-full-img" controls preload="auto"
                                        data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "@ViewBag.LatestTutorial.VideoWatchLink"}}'></video>
                                 <div class="video-bottom">
                                     <div class="video-title">
