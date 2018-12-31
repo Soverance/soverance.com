@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using soverance.com.Models;
 
@@ -126,7 +126,7 @@ namespace soverance.com.Controllers
         public IActionResult Error()
         {
             ViewData["statusCode"] = HttpContext.Response.StatusCode;
-            //ViewData["message"] = HttpContext.Features.Get<IExceptionHandlerFeature>().Error.Message;
+            ViewData["message"] = HttpContext.Features.Get<IExceptionHandlerFeature>().Error.Message;
             return View();
         }
 
