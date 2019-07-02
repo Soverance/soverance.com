@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System.Web.Mvc">
       <HintPath>C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Assemblies\System.Web.Mvc.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="System.Web.Routing">
       <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.Web.Routing.dll</HintPath>
