@@ -1,4 +1,4 @@
-﻿@model List<YouTubeData>
+﻿@*@model List<YouTubeData>*@
 @{
     ViewData["Title"] = "Soverance Studios Home";
 }
@@ -843,7 +843,7 @@
                                                  data-mobileportraitfontsize="90" data-plugin="rendered">
                                                 <div class="n2-ow n2-ow-all n2-ss-desktop n2-ss-mobile n2-ss-tablet">
                                                     <p class="n2-font-7753338b51c1a1442e4b2825494fb15e-paragraph   n2-ow" style="text-shadow: 2px 2px rgba(0, 0, 0, 0.3)">
-                                                        A powerful foe has descended upon the world of Arcadia. 
+                                                        A powerful foe has descended upon the world of Arcadia.
                                                         <br />The Ethereal Knights, protectors of the realm, have nearly all been destroyed.
                                                         <br />Only you remain.
                                                     </p>
@@ -915,7 +915,7 @@
                                                  data-mobileportraitfontsize="90" data-plugin="rendered">
                                                 <div class="n2-ow n2-ow-all n2-ss-desktop n2-ss-mobile n2-ss-tablet">
                                                     <p class="n2-font-7753338b51c1a1442e4b2825494fb15e-paragraph   n2-ow" style="text-shadow: 2px 2px rgba(0, 0, 0, 0.3)">
-                                                        We use Epic&#39;s Unreal Engine technology to bring new ideas to life                                                       
+                                                        We use Epic&#39;s Unreal Engine technology to bring new ideas to life
                                                         <br />
                                                     </p>
                                                 </div>
@@ -1274,7 +1274,7 @@
                                     Battle deadly monsters, topple huge bosses, wield numerous weapons, cast powerful spells,
                                     solve challenging puzzles, and use all the tools at your disposal to restore peace to the Realms.
                                 </p>
-                            </div>                            
+                            </div>
                             <div class="mt60 table g-bottom">
                                 <div class="table-cell valign-middle">
                                     <iframe src="https://store.steampowered.com/widget/428980/" width="480" height="190" frameborder="0"><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start">﻿</span></iframe>
@@ -1284,8 +1284,8 @@
                         <div class="tab-img col-lg-6 col-md-12 col-sm-12 col-xs-12 pr0 equal-height">
                             <div class="image-bl">
                                 <video id="ethereal" class="vjs-big-play-centered video-js vjs-default-skin vjs-16-9 game-full-img" controls preload="auto" width="570" height="450" poster="~/images/games/ethereal-slide-1.jpg"
-                                       data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "https://www.youtube.com/watch?v=8dH-CnwhWC4"}}'></video>    
-                            </div>                            
+                                       data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "https://www.youtube.com/watch?v=8dH-CnwhWC4"}}'></video>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane fade in text-left clearfix" id="tab-item-2">
@@ -1416,7 +1416,7 @@
                             </div>
                             <div class="mt50 lheight-26 fweight-300">
                                 <p>
-                                    Unleash the power of the ultimate fighters in Final Fantasy XI!  
+                                    Unleash the power of the ultimate fighters in Final Fantasy XI!
                                     Relive epic battles from the acclaimed online RPG in this new fighter from Soverance Studios.
                                     Created using Elecbyte’s M.U.G.E.N. engine, enjoy arcade action, two player versus, co-op team modes and more!
                                 </p>
@@ -1601,6 +1601,7 @@
 </section>
 <!-- TESTIMONIAL SECTION END -->
 <!-- YOUTUBE SECTION START -->
+@*
 <section class="ptb150">
     <div class="container">
         <div class="row">
@@ -1635,7 +1636,7 @@
                         <div class="left-col col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <div class="video-bl equal-height" >
                                 <video id="LatestVideoProfile" class="equal-height vjs-big-play-centered video-js vjs-default-skin vjs-16-9 game-full-img" controls preload="auto"
-                                       data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "@Model[0].VideoWatchLink"}}'></video>                                
+                                       data-setup='{ "techOrder": ["youtube"], "sources": { "type": "video/youtube", "src": "@Model[0].VideoWatchLink"}}'></video>
                                 <div class="video-bottom">
                                     <div class="video-title">
                                         @Model[0].Title
@@ -1736,6 +1737,7 @@
         </div>
     </div>
 </section>
+*@
 <!-- YOUTUBE SECTION END -->
 <!-- REGISTER SECTION START -->
 <section class="register-section background-gradient ptb100">

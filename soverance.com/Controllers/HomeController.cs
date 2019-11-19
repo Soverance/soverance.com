@@ -43,17 +43,18 @@ namespace soverance.com.Controllers
                 post.Category = Category;  // store the category values in the post's model so we can display the name
             }
 
-            // YOUTUBE VIDEOS
-            string GoogleApiKey = SovSecretConfig.Value.GoogleApiKey;
-            List<YouTubeData> VideoList = YouTubeModel.GetVideos(GoogleApiKey, true);
-            ViewBag.LatestVideos = VideoList.Take(4);
-            ViewBag.TotalChannelViews = YouTubeModel.GetChannelTotalViews(GoogleApiKey);
-            ViewBag.TotalSubscribers = YouTubeModel.GetChannelSubscriberCount(GoogleApiKey);            
-            List<YouTubeData> TutorialList = YouTubeModel.GetVideos(GoogleApiKey, false, "PLXZQqd9R-mFHH3cBvJIffMUUWQjl9h1Kh");
-            ViewBag.TutorialPlaylist = TutorialList.Take(4);
-            ViewBag.LatestTutorial = TutorialList[0];
+            //// YOUTUBE VIDEOS
+            //string GoogleApiKey = SovSecretConfig.Value.GoogleApiKey;
+            //List<YouTubeData> VideoList = YouTubeModel.GetVideos(GoogleApiKey, true);
+            //ViewBag.LatestVideos = VideoList.Take(4);
+            //ViewBag.TotalChannelViews = YouTubeModel.GetChannelTotalViews(GoogleApiKey);
+            //ViewBag.TotalSubscribers = YouTubeModel.GetChannelSubscriberCount(GoogleApiKey);            
+            //List<YouTubeData> TutorialList = YouTubeModel.GetVideos(GoogleApiKey, false, "PLXZQqd9R-mFHH3cBvJIffMUUWQjl9h1Kh");
+            //ViewBag.TutorialPlaylist = TutorialList.Take(4);
+            //ViewBag.LatestTutorial = TutorialList[0];
 
-            return View(VideoList);
+            //return View(VideoList);
+            return View();
         }
 
         [AllowAnonymous]
