@@ -1,0 +1,117 @@
+﻿@model soverance.com.Models.MailConfig_Send
+
+@{
+    ViewData["Title"] = "Soverance Studios Client Data Tools";
+}
+
+<section class="page-name parallax" data-paroller-factor="0.1" data-paroller-type="background" data-paroller-direction="vertical">
+    <div class="container">
+        <div class="row">
+            <h1 class="page-title">
+                Generate Client Password Link
+            </h1>
+            <div class="breadcrumbs">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> /
+                <span class="color-1">Generate Client Password Link</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION START -->
+<section class="contact-page ptb150">
+    <div class="container">
+        <div class="row">
+            <ul>
+                <li>
+                    <h3 class="">Generate Client Link</h3>
+                </li>
+            </ul>
+        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            @if (@ViewData["User"] == null)
+            {
+                <div class="row">
+                     <div class="fsize-18 lheight-30 mt40">
+                        <p>Enter a client username for which to generate an expiring password retrieval URL.</p>
+                         <p>
+                            Do note that this tool can only generate new passwords, and is incapable of retrieving a password currently in use.
+                            <br />
+                            If you use this tool to generate a password link for a client, you must manually update that user's AD password with the new value.
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <form asp-controller="Client" asp-action="GenerateLink" method="get">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="row">
+                                <div class="input-wrap col-md-6 col-sm-6">
+                                    <input type="text" name="user" value="@ViewData["User"]" style="width: 300px;" class="general_input italic" placeholder="sAMAccountName" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-wrap col-md-6 col-sm-6">
+                                    <input type="submit" class="btn gradient mt30 color-white color-white plr50 ptb19" value="Generate Link">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>               
+            }
+            else
+            {
+                <p>To deliver this information to a client, enter their email address and click "Send Email".</p>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <form asp-controller="Home" asp-action="SendResults" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="input-wrap col-md-6 col-sm-6">
+                                <input type="text" name="recipient" value="@ViewData["Recipient"]" style="width: 300px;" class="general_input italic" placeholder="Email Address" />
+                                <span asp-validation-for="Recipient" class="text-danger"></span>
+                            </div>
+                            <div class="input-wrap col-md-6 col-sm-6">
+                                <input type="hidden" name="subject" value="Retrieve your credentials for the Soverance Network" style="width: 300px;" />
+                                <span asp-validation-for="Subject" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-wrap col-md-6 col-sm-6">
+                                <input type="hidden" name="message" value="Click the link below to retrieve your credentials for services in the Soverance Network.<br /><br />@ViewData["Link"]<br /><br />This link will expire in 24 hours. Be sure to store your credentials in a secure location." style="width: 500px;" />
+                                <span asp-validation-for="Message" class="text-danger"></span>
+                                <button type="submit" class="btn gradient mt30 color-white color-white plr50 ptb19">Send Email</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>   
+                <br />
+                <div class="row">
+                    <partial name="_ClientLinkPartial" />
+                </div>
+                }
+            }
+        else
+        {
+            <p>
+                You must be signed in to use this feature.
+            </p>
+        }
+        <div class="search-wrapper inline-block valign-middle">
+            @if (User.Identity.IsAuthenticated)
+            {
+
+            }
+            else
+            {
+            <a href="/account/signin" class="">
+                Sign In
+            </a>
+            }
+        </div>
+    </div>
+</section>
+<!-- SECTION END -->
+<!-- VALIDATION START -->
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<!-- VALIDATION END -->

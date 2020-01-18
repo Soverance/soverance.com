@@ -18,9 +18,9 @@ namespace soverance.com.Controllers
     {
         private readonly DatabaseContext SovDatabaseContext;
         private readonly IOptions<SecretConfig> SovSecretConfig;
-        private readonly IOptions<MailConfig> SovMailConfig;
+        private readonly IOptions<MailConfig_Contact> SovMailConfig;
 
-        public HomeController(DatabaseContext _SovDatabaseContext, IOptions<SecretConfig> _SovSecretConfig, IOptions<MailConfig> _SovMailConfig)
+        public HomeController(DatabaseContext _SovDatabaseContext, IOptions<SecretConfig> _SovSecretConfig, IOptions<MailConfig_Contact> _SovMailConfig)
         {
             // construct the configuration objects for this controller
             SovDatabaseContext = _SovDatabaseContext;
@@ -136,7 +136,7 @@ namespace soverance.com.Controllers
         [Route("contact/results")]
         public IActionResult ContactResults(string ContactName, string ContactEmail, string ContactPhone, string Subject, string Message)
         {
-            MailConfig mailConfig = new MailConfig
+            MailConfig_Contact mailConfig = new MailConfig_Contact
             {
                 Server = SovMailConfig.Value.Server,
                 Port = SovMailConfig.Value.Port,
@@ -151,6 +151,28 @@ namespace soverance.com.Controllers
 
             string ContactStatus = MailModel.SendContactEmail(mailConfig);
             ViewData["ContactStatus"] = ContactStatus;
+
+            return View(mailConfig);
+        }
+
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [Route("send/results")]
+        public IActionResult SendResults(string Recipient, string Subject, string Message)
+        {
+            MailConfig_Send mailConfig = new MailConfig_Send
+            {
+                Server = SovMailConfig.Value.Server,
+                Port = SovMailConfig.Value.Port,
+                User = SovMailConfig.Value.User,
+                Password = SovMailConfig.Value.Password,
+                Recipient = Recipient,
+                Subject = Subject,
+                Message = Message
+            };
+
+            string ContactStatus = MailModel.SendClientLink(mailConfig);
+            ViewData["SendStatus"] = ContactStatus;
 
             return View(mailConfig);
         }

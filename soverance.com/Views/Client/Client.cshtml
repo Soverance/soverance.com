@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Client Password Retrieval";
+}
+
+<section class="page-name parallax" data-paroller-factor="0.1" data-paroller-type="background" data-paroller-direction="vertical">
+    <div class="container">
+        <div class="row">
+            <h1 class="page-title">
+                Client Password Retrieval
+            </h1>
+            <div class="breadcrumbs">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a> /
+                <span class="color-1">Client Password Retrieval</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION START -->
+<section class="contact-page ptb150">
+    <div class="container">
+        <div class="row">
+            <ul>
+                <li>
+                    <h3 class="">Client Password Retrieval</h3>
+                </li>
+            </ul>
+        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p>This area isn't useful to you as a Soverance employee.  Logout!</p>
+            <br>
+            <div class="row">
+                <pre>INFO:  @ViewData["Message"]</pre>
+            </div>
+        }
+        else
+        {
+            <p>
+                <br>
+                <div class="row">
+                    <partial name="_ClientLinkPartial" />
+                </div>
+            </p>
+        }
+    </div>
+</section>
+<!-- SECTION END -->

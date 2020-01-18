@@ -8,7 +8,7 @@ namespace soverance.com.Models
 {
     public static class MailModel
     {
-        public static string SendContactEmail(MailConfig mailConfig)
+        public static string SendContactEmail(MailConfig_Contact mailConfig)
         {
             string ReturnResults;
 
@@ -88,6 +88,34 @@ namespace soverance.com.Models
             {
                 return false;
             }
+        }
+
+        public static string SendClientLink(MailConfig_Send mailConfig)
+        {
+            string ReturnResults;
+
+            try
+            {
+                System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage();
+                message.To.Add(mailConfig.Recipient);
+                message.Subject = mailConfig.Subject;
+                message.From = new System.Net.Mail.MailAddress(mailConfig.User);
+                message.Body = mailConfig.Message;
+                message.IsBodyHtml = true;
+
+                System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient(mailConfig.Server, mailConfig.Port);
+                smtp.Credentials = new System.Net.NetworkCredential(mailConfig.User, mailConfig.Password);
+                smtp.EnableSsl = true;
+                smtp.Send(message);
+
+                ReturnResults = "Your message was sent successfully.";
+            }
+            catch (Exception ex)
+            {
+                ReturnResults = ex.ToString();
+            }
+
+            return ReturnResults;
         }
     }
 }

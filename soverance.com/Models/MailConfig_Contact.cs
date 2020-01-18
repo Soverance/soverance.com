@@ -1,12 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace soverance.com.Models
 {
-    public partial class MailConfig
+    public partial class MailConfig_Contact
     {
         public string Server { get; set; }
 

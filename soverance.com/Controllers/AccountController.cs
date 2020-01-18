@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using soverance.com.Models;
 
 namespace soverance.com.Controllers
