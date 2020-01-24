@@ -31,7 +31,7 @@ namespace soverance.com.Models
                     else
                     {
                         uploadsListId = PlaylistId;
-                    }                    
+                    }
                     var nextPageToken = "";
                     while (nextPageToken != null)
                     {
@@ -44,7 +44,7 @@ namespace soverance.com.Models
                         foreach (var playlistItem in playlistItemsListResponse.Items)
                         {
                             YouTubeData VideoDataObject = new YouTubeData();
-                            
+
                             // query the video array to see if we've already added it
                             var query = (from video in VideoList where video.Title == playlistItem.Snippet.Title select video).FirstOrDefault();
                             if (query == null)
@@ -85,7 +85,7 @@ namespace soverance.com.Models
             try
             {
                 var yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = GoogleApiKey });
-                var channelsListRequest = yt.Channels.List("statistics");                
+                var channelsListRequest = yt.Channels.List("statistics");
                 channelsListRequest.ForUsername = "soverancestudios";  // youtube channel name
                 var channelsListResponse = channelsListRequest.Execute();
                 foreach (var channel in channelsListResponse.Items)
@@ -125,6 +125,6 @@ namespace soverance.com.Models
             string TotalSubsString = TotalSubs.ToString("N0");  // formats the number string with commas every 3 places - i.e. 10,000,000
             return TotalSubsString;
         }
-        
+
     }
 }

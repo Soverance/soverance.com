@@ -29,6 +29,7 @@ namespace soverance.com.Echopshere.Controllers
         [Route("echosphere")]
         public IActionResult Index()
         {
+            // YOUTUBE PLAYLIST
             string GoogleApiKey = SovSecretConfig.Value.GoogleApiKey;
             List<YouTubeData> EchosphereList = YouTubeModel.GetVideos(GoogleApiKey, false, "PLXZQqd9R-mFEHtjtYdgI0OtAcIn1Ta_4p");
             ViewBag.EchospherePlaylist = EchosphereList.Take(5);

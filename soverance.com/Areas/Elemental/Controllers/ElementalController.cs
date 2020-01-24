@@ -29,6 +29,7 @@ namespace soverance.com.Elemental.Controllers
         [Route("ctf-elemental")]
         public IActionResult Index()
         {
+            // YOUTUBE PLAYLIST
             string GoogleApiKey = SovSecretConfig.Value.GoogleApiKey;
             List<YouTubeData> ElementalList = YouTubeModel.GetVideos(GoogleApiKey, false, "PLXZQqd9R-mFFvBMV2lVfe4vixRQKqrVUO");
             ViewBag.ElementalPlaylist = ElementalList.Take(5);

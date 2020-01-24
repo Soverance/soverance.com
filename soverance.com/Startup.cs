@@ -52,8 +52,9 @@ namespace soverance.com
             .AddAzureAd(options => Configuration.Bind("AzureAd", options))
             .AddCookie();
         }
-    
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // For documentation on enforcing HTTPS, visit https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
